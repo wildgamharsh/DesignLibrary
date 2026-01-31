@@ -154,125 +154,59 @@
             <p class="subtitle">Explore available templates and design components</p>
         </header>
 
-        <!-- Category: Marketplace -->
-        <section class="category-section">
-            <h2 class="category-title">Marketplace</h2>
-            <div class="grid">
+        <div id="designs-container"></div>
 
-                <!-- Design 1 -->
-                <a href="designs/marketplace/design-1.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 1</h3>
-                        <div class="card-path">designs/marketplace/design-1.html</div>
-                    </div>
-                </a>
+        <script src="designs-manifest.js"></script>
+        <script>
+            function renderDesigns() {
+                const container = document.getElementById('designs-container');
 
-                <!-- Design 2 -->
-                <a href="designs/marketplace/design-2.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 2</h3>
-                        <div class="card-path">designs/marketplace/design-2.html</div>
-                    </div>
-                </a>
+                if (typeof DESIGN_MANIFEST === 'undefined') {
+                    container.innerHTML = '<p style="text-align:center; color:red;">Error: designs-manifest.js not found. Please run "npm run refresh".</p>';
+                    return;
+                }
 
-            </div>
-        </section>
+                Object.keys(DESIGN_MANIFEST).forEach(categoryKey => {
+                    const category = DESIGN_MANIFEST[categoryKey];
 
-        <!-- Category: Service Detail -->
-        <section class="category-section">
-            <h2 class="category-title">Service Detail</h2>
-            <div class="grid">
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
 
-                <!-- Design 1 -->
-                <a href="designs/service_detail/design-1.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 1</h3>
-                        <div class="card-path">designs/service_detail/design-1.html</div>
-                    </div>
-                </a>
+                    const title = document.createElement('h2');
+                    title.className = 'category-title';
+                    title.textContent = category.title;
+                    section.appendChild(title);
 
-                <!-- Design 2 -->
-                <a href="designs/service_detail/design-2.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 2</h3>
-                        <div class="card-path">designs/service_detail/design-2.html</div>
-                    </div>
-                </a>
+                    const grid = document.createElement('div');
+                    grid.className = 'grid';
 
-            </div>
-        </section>
+                    category.items.forEach(item => {
+                        const link = document.createElement('a');
+                        link.href = item.path;
+                        link.className = 'card';
+                        link.target = '_blank';
 
-        <!-- Category: Organizer Profile -->
-        <section class="category-section">
-            <h2 class="category-title">Organizer Profile</h2>
-            <div class="grid">
+                        link.innerHTML = `
+                            <div class="card-preview">
+                                <img src="${item.thumbnail}" alt="${item.title} Preview">
+                            </div>
+                            <div class="card-content">
+                                <span class="badge">TEMPLATE</span>
+                                <h3 class="card-title">${item.title}</h3>
+                                <div class="card-path">${item.path}</div>
+                            </div>
+                        `;
 
-                <!-- Design 1 -->
-                <a href="designs/organizer_profile/design-1.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 1</h3>
-                        <div class="card-path">designs/organizer_profile/design-1.html</div>
-                    </div>
-                </a>
+                        grid.appendChild(link);
+                    });
 
-                <!-- Design 2 -->
-                <a href="designs/organizer_profile/design-2.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 2</h3>
-                        <div class="card-path">designs/organizer_profile/design-2.html</div>
-                    </div>
-                </a>
+                    section.appendChild(grid);
+                    container.appendChild(section);
+                });
+            }
 
-                <!-- Design 3 -->
-                <a href="designs/organizer_profile/design-3.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 3</h3>
-                        <div class="card-path">designs/organizer_profile/design-3.html</div>
-                    </div>
-                </a>
-
-                <!-- Design 4 -->
-                <a href="designs/organizer_profile/design-4.html" class="card" target="_blank">
-                    <div class="card-preview">
-                        <img src="Thumb.jpg" alt="Design Preview">
-                    </div>
-                    <div class="card-content">
-                        <span class="badge">TEMPLATE</span>
-                        <h3 class="card-title">Design 4</h3>
-                        <div class="card-path">designs/organizer_profile/design-4.html</div>
-                    </div>
-                </a>
-
-            </div>
-        </section>
+            document.addEventListener('DOMContentLoaded', renderDesigns);
+        </script>
 
     </div>
 

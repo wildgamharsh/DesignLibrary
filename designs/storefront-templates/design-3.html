@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Decorations - Premium Catering & Decor Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-cream {
+            background-color: #FDFBF8;
+        }
+
+        .bg-dark {
+            background-color: #2C3E50;
+        }
+
+        .text-gold {
+            color: #D4AF37;
+        }
+
+        .bg-gold {
+            background-color: #D4AF37;
+        }
+
+        .border-gold {
+            border-color: #D4AF37;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-card-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-card-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:hover {
+            color: #D4AF37;
+        }
+
+        .btn-primary {
+            background-color: #D4AF37;
+            color: #2C3E50;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #b8952f;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #D4AF37;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #D4AF37;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #D4AF37;
+            color: #2C3E50;
+        }
+    </style>
+</head>
+
+<body class="bg-cream">
+
+    <!-- Navbar -->
+    <nav class="bg-dark/80 backdrop-blur-sm text-white py-4 px-6 md:px-12 fixed top-0 w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-bold tracking-wider">ELITE<span
+                    class="text-gold">DECOR</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link transition-colors">Home</a>
+                <a href="#services" class="nav-link transition-colors">Services</a>
+                <a href="#about" class="nav-link transition-colors">About Us</a>
+                <a href="#contact" class="nav-link transition-colors">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <a href="#home" class="block py-2 nav-link transition-colors">Home</a>
+            <a href="#services" class="block py-2 nav-link transition-colors">Services</a>
+            <a href="#about" class="block py-2 nav-link transition-colors">About Us</a>
+            <a href="#contact" class="block py-2 nav-link transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg h-screen flex items-center justify-center text-white text-center pt-20">
+            <div class="container mx-auto px-6">
+                <h1 class="font-serif text-5xl md:text-7xl font-bold leading-tight">Elevate Your Events</h1>
+                <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">Premium catering and decoration services for
+                    unforgettable moments.</p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#contact" class="btn-primary">Book Now</a>
+                    <a href="#services" class="btn-secondary">Our Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-cream">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-800">Our Exquisite Services</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">We provide a full range of services to make your
+                        event truly spectacular.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Catering Card -->
+                    <div class="service-card-bg h-96 rounded-lg flex flex-col justify-end p-8 text-white"
+                        style="background-image: url('https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="service-card-content">
+                            <h3 class="font-serif text-3xl font-bold">Gourmet Catering</h3>
+                            <p class="mt-2">From intimate gatherings to grand celebrations, our culinary team crafts
+                                bespoke menus using the finest ingredients.</p>
+                            <a href="#" class="mt-4 inline-block btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- Decor Card -->
+                    <div class="service-card-bg h-96 rounded-lg flex flex-col justify-end p-8 text-white"
+                        style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');">
+                        <div class="service-card-content">
+                            <h3 class="font-serif text-3xl font-bold">Luxury Decorations</h3>
+                            <p class="mt-2">Transform any venue into a breathtaking space with our bespoke decor
+                                solutions, tailored to your vision.</p>
+                            <a href="#" class="mt-4 inline-block btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-dark text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold">About Elite Decorations</h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-gray-300">At Elite Decorations, we believe that every event is
+                        a unique story waiting to be told. With over a decade of experience in the industry, we
+                        specialize in creating unforgettable experiences through our premium catering and decoration
+                        services. Our team of passionate professionals is dedicated to bringing your vision to life with
+                        meticulous attention to detail and a commitment to excellence.</p>
+                </div>
+
+                <!-- Testimonials -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="testimonial-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/150?img=1" alt="Sarah Johnson"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Sarah Johnson</h4>
+                                <div class="text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"Elite Decorations made our wedding day absolutely perfect. The food
+                            was exquisite, and the decor was beyond our wildest dreams. Every detail was taken care of
+                            with such professionalism and grace. Highly recommend!"</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/150?img=3" alt="Michael Chen"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Michael Chen</h4>
+                                <div class="text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"The corporate event we hosted was a huge success, thanks to Elite
+                            Decorations. Their team was responsive, creative, and delivered on every promise. The venue
+                            looked stunning, and our guests were thoroughly impressed."</p>
+                    </div>
+                    <div class="testimonial-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <img src="https://i.pravatar.cc/150?img=5" alt="Emily Rodriguez"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Emily Rodriguez</h4>
+                                <div class="text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"I cannot say enough good things about Elite Decorations. They took the
+                            time to understand our vision for our anniversary party and executed it flawlessly. The
+                            ambiance was magical, and the food was to die for. We felt like royalty!"</p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <p class="font-serif text-5xl font-bold text-gold">12+</p>
+                        <p class="mt-2 text-gray-400">Years of Experience</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-5xl font-bold text-gold">500+</p>
+                        <p class="mt-2 text-gray-400">Successful Events</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-5xl font-bold text-gold">98%</p>
+                        <p class="mt-2 text-gray-400">Client Satisfaction</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-5xl font-bold text-gold">20+</p>
+                        <p class="mt-2 text-gray-400">Award Winning</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-cream">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-800">Get In Touch</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Ready to start planning your event? Contact us today
+                        to discuss your vision and let us create an unforgettable experience for you.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-lg shadow-xl">
+                    <form action="#" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" name="name" id="name"
+                                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" name="email" id="email"
+                                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                                <input type="tel" name="phone" id="phone"
+                                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold">
+                            </div>
+                            <div>
+                                <label for="event-type" class="block text-sm font-medium text-gray-700">Event
+                                    Type</label>
+                                <select id="event-type" name="event-type"
+                                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold">
+                                    <option>Wedding</option>
+                                    <option>Corporate Event</option>
+                                    <option>Birthday Party</option>
+                                    <option>Anniversary</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="message" name="message" rows="4"
+                                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gold focus:border-gold"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <button type="submit" class="w-full btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#" class="text-3xl font-serif font-bold tracking-wider text-white">ELITE<span
+                    class="text-gold">DECOR</span></a>
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-gold transition-colors"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold transition-colors"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div
+                class="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2023 Elite Decorations. All Rights Reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
