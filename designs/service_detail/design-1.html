@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Detail - Professional Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .sticky-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .image-carousel {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .image-carousel > div {
+            scroll-snap-align: start;
+        }
+        
+        .tab-active {
+            border-bottom: 2px solid #2563eb;
+            color: #2563eb;
+        }
+        
+        .custom-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .dropdown-arrow::after {
+            content: '';
+            border: solid #6b7280;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            margin-left: 8px;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-open .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        input[type="checkbox"]:checked {
+            background-color: #2563eb;
+        }
+        
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-8">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">M</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 text-lg">Marketplace</span>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Browse</a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900 text-sm font-medium flex items-center">
+                            Categories
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-gray-900 text-sm font-medium">Become a Vendor</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-gray-900 text-sm font-medium">Log in</button>
+                    <button class="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="#" class="text-gray-500 hover:text-gray-700">Home</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <a href="#" class="text-gray-500 hover:text-gray-700">Event Services</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <a href="#" class="text-gray-500 hover:text-gray-700">Decoration</a>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <span class="text-gray-900 font-medium">Wedding Decoration – Premium Package</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Hero Section -->
+                <section>
+                    <!-- Image Gallery -->
+                    <div class="relative rounded-2xl overflow-hidden bg-gray-200">
+                        <div class="image-carousel flex overflow-x-auto">
+                            <div class="min-w-full aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 relative">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=675&fit=crop" alt="Wedding decoration" class="w-full h-full object-cover">
+                                <div class="absolute top-4 left-4 flex space-x-2">
+                                    <span class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-700">
+                                        <i class="fas fa-camera mr-1"></i> 1 / 8
+                                    </span>
+                                </div>
+                                <div class="absolute top-4 right-4 flex space-x-2">
+                                    <button class="bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                        <i class="far fa-heart text-gray-700"></i>
+                                    </button>
+                                    <button class="bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                        <i class="fas fa-share-alt text-gray-700"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation Arrows -->
+                        <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-chevron-left text-gray-700"></i>
+                        </button>
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-lg">
+                            <i class="fas fa-chevron-right text-gray-700"></i>
+                        </button>
+                        <!-- Thumbnail Strip -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                            <div class="w-16 h-12 rounded-lg overflow-hidden border-2 border-white shadow-md">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=100&h=75&fit=crop" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-opacity">
+                                <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=100&h=75&fit=crop" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-opacity">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=100&h=75&fit=crop" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-opacity bg-black/50 flex items-center justify-center">
+                                <span class="text-white text-xs font-medium">+5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Info -->
+                    <div class="mt-6">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="bg-primary-50 text-primary-700 px-2 py-1 rounded-md text-xs font-medium">Premium</span>
+                                    <span class="bg-green-50 text-green-700 px-2 py-1 rounded-md text-xs font-medium">
+                                        <i class="fas fa-check-circle mr-1"></i>Verified
+                                    </span>
+                                </div>
+                                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Wedding Decoration – Premium Package</h1>
+                                <p class="text-gray-600 text-base mb-4">Transform your special day with our comprehensive luxury wedding decoration service</p>
+                                
+                                <div class="flex flex-wrap items-center gap-4 text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="ml-2 font-semibold text-gray-900">4.8</span>
+                                        <span class="text-gray-500 ml-1">(128 reviews)</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                        <span>New York, NY • Serves 50mi radius</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i class="fas fa-calendar-check mr-1"></i>
+                                        <span>250+ events completed</span>
+                                    </div>
+                                </div>
+
+                                <!-- Organizer Quick Info -->
+                                <div class="flex items-center mt-4 pt-4 border-t border-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Organizer" class="w-12 h-12 rounded-full object-cover">
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Hosted by <span class="text-primary-600">Elegant Events Studio</span></p>
+                                        <p class="text-xs text-gray-500">Responds within 2 hours • 8 years experience</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tabs Navigation -->
+                <div class="border-b border-gray-200 sticky top-16 bg-gray-50 z-40 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                    <nav class="flex space-x-8 overflow-x-auto" id="tabs">
+                        <button class="tab-active py-4 text-sm font-medium whitespace-nowrap border-b-2 border-transparent" data-tab="overview">Overview</button>
+                        <button class="py-4 text-sm font-medium whitespace-nowrap text-gray-500 hover:text-gray-700 border-b-2 border-transparent" data-tab="pricing">Pricing</button>
+                        <button class="py-4 text-sm font-medium whitespace-nowrap text-gray-500 hover:text-gray-700 border-b-2 border-transparent" data-tab="reviews">Reviews</button>
+                        <button class="py-4 text-sm font-medium whitespace-nowrap text-gray-500 hover:text-gray-700 border-b-2 border-transparent" data-tab="faq">FAQ</button>
+                    </nav>
+                </div>
+
+                <!-- Service Description -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow" id="overview-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">About This Service</h2>
+                    <div class="prose prose-gray max-w-none">
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Experience the epitome of elegance with our Premium Wedding Decoration Package. Our team of expert designers will transform your venue into a breathtaking celebration space that reflects your unique love story.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            With over 8 years of experience and 250+ successful events, we understand that every detail matters on your special day. From the initial consultation to the final touches, we work closely with you to bring your vision to life.
+                        </p>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 mt-8">What's Included</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Complete Venue Styling</p>
+                                <p class="text-sm text-gray-500">Full venue transformation with cohesive design</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Premium Floral Arrangements</p>
+                                <p class="text-sm text-gray-500">Fresh flowers for centerpieces and décor</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Stage Design & Setup</p>
+                                <p class="text-sm text-gray-500">Custom backdrop and stage decoration</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Lighting Design</p>
+                                <p class="text-sm text-gray-500">Ambient and accent lighting setup</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Table Settings</p>
+                                <p class="text-sm text-gray-500">Linens, chargers, and table décor</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Setup & Breakdown</p>
+                                <p class="text-sm text-gray-500">Professional team for installation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 mt-8">Ideal For</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Weddings</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Engagement Parties</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Anniversary Celebrations</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Bridal Showers</span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">Corporate Events</span>
+                    </div>
+                </section>
+
+                <!-- Pricing & Customization Section -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow" id="pricing-section">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-gray-900">Pricing & Customization</h2>
+                        <span class="text-sm text-gray-500">Starting from <span class="text-2xl font-bold text-gray-900">$2,500</span></span>
+                    </div>
+
+                    <!-- Package Selection -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Select Package</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary-300 transition-colors">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-semibold text-gray-900">Essential</span>
+                                    <div class="w-5 h-5 rounded-full border-2 border-gray-300"></div>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-1">$2,500</p>
+                                <p class="text-sm text-gray-500">Up to 50 guests</p>
+                            </div>
+                            <div class="border-2 border-primary-500 rounded-xl p-4 cursor-pointer bg-primary-50 relative">
+                                <div class="absolute -top-3 left-4 bg-primary-600 text-white text-xs px-2 py-1 rounded-full">Popular</div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-semibold text-gray-900">Premium</span>
+                                    <div class="w-5 h-5 rounded-full border-2 border-primary-500 bg-primary-500 flex items-center justify-center">
+                                        <i class="fas fa-check text-white text-xs"></i>
+                                    </div>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-1">$4,500</p>
+                                <p class="text-sm text-gray-500">Up to 150 guests</p>
+                            </div>
+                            <div class="border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-primary-300 transition-colors">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-semibold text-gray-900">Luxury</span>
+                                    <div class="w-5 h-5 rounded-full border-2 border-gray-300"></div>
+                                </div>
+                                <p class="text-2xl font-bold text-gray-900 mb-1">$8,000</p>
+                                <p class="text-sm text-gray-500">Up to 300 guests</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customization Options -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Event Type</label>
+                            <div class="relative">
+                                <select class="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                    <option>Wedding Ceremony & Reception</option>
+                                    <option>Engagement Party</option>
+                                    <option>Anniversary Celebration</option>
+                                    <option>Corporate Event</option>
+                                </select>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Venue Size</label>
+                            <div class="relative">
+                                <select class="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                    <option>Small (up to 2,000 sq ft)</option>
+                                    <option>Medium (2,000 - 5,000 sq ft)</option>
+                                    <option>Large (5,000 - 10,000 sq ft)</option>
+                                    <option>Extra Large (10,000+ sq ft)</option>
+                                </select>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add-ons -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Add-ons</label>
+                            <div class="space-y-3">
+                                <label class="flex items-center justify-between p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                                        <div class="ml-3">
+                                            <p class="font-medium text-gray-900">Floral Stage Backdrop</p>
+                                            <p class="text-sm text-gray-500">Premium flower wall for ceremony backdrop</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-semibold text-gray-900">+$800</span>
+                                </label>
+                                <label class="flex items-center justify-between p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                                        <div class="ml-3">
+                                            <p class="font-medium text-gray-900">LED Uplighting</p>
+                                            <p class="text-sm text-gray-500">Color-coordinated ambient lighting</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-semibold text-gray-900">+$450</span>
+                                </label>
+                                <label class="flex items-center justify-between p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                                        <div class="ml-3">
+                                            <p class="font-medium text-gray-900">Entry Decor</p>
+                                            <p class="text-sm text-gray-500">Welcome signage and entrance styling</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-semibold text-gray-900">+$350</span>
+                                </label>
+                                <label class="flex items-center justify-between p-4 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                                        <div class="ml-3">
+                                            <p class="font-medium text-gray-900">Hanging Installations</p>
+                                            <p class="text-sm text-gray-500">Ceiling drapes and suspended florals</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-semibold text-gray-900">+$600</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Selectors -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Number of Tables</label>
+                                <div class="flex items-center space-x-4">
+                                    <button class="quantity-btn" id="tables-minus">
+                                        <i class="fas fa-minus text-gray-500 text-sm"></i>
+                                    </button>
+                                    <span class="text-xl font-semibold text-gray-900 w-12 text-center" id="tables-count">15</span>
+                                    <button class="quantity-btn" id="tables-plus">
+                                        <i class="fas fa-plus text-gray-500 text-sm"></i>
+                                    </button>
+                                    <span class="text-sm text-gray-500">× $75 each</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Additional Centerpieces</label>
+                                <div class="flex items-center space-x-4">
+                                    <button class="quantity-btn" id="centerpieces-minus">
+                                        <i class="fas fa-minus text-gray-500 text-sm"></i>
+                                    </button>
+                                    <span class="text-xl font-semibold text-gray-900 w-12 text-center" id="centerpieces-count">5</span>
+                                    <button class="quantity-btn" id="centerpieces-plus">
+                                        <i class="fas fa-plus text-gray-500 text-sm"></i>
+                                    </button>
+                                    <span class="text-sm text-gray-500">× $120 each</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price Summary -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-semibold text-gray-900 mb-4">Price Summary</h4>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Premium Package (150 guests)</span>
+                                    <span class="text-gray-900">$4,500</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Floral Stage Backdrop</span>
+                                    <span class="text-gray-900">$800</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">LED Uplighting</span>
+                                    <span class="text-gray-900">$450</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Table Settings (15 × $75)</span>
+                                    <span class="text-gray-900">$1,125</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Additional Centerpieces (5 × $120)</span>
+                                    <span class="text-gray-900">$600</span>
+                                </div>
+                                <div class="border-t border-gray-200 pt-3 mt-3">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span class="text-gray-900">Estimated Total</span>
+                                        <span class="text-primary-600">$7,475</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Organizer Profile Section -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Meet Your Organizer</h2>
+                    <div class="flex flex-col md:flex-row md:items-start gap-6">
+                        <div class="flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Organizer" class="w-24 h-24 rounded-2xl object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Elegant Events Studio</h3>
+                                    <p class="text-gray-500 text-sm">Founded by Sarah Mitchell</p>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                                        <i class="fas fa-award mr-1"></i> Top Rated
+                                    </span>
+                                    <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                                        <i class="fas fa-shield-alt mr-1"></i> Verified
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6 mt-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span class="font-semibold">4.8</span>
+                                    <span class="text-gray-500 ml-1">(128 reviews)</span>
+                                </div>
+                                <div class="flex items-center text-gray-500">
+                                    <i class="fas fa-briefcase mr-1"></i>
+                                    8 years experience
+                                </div>
+                                <div class="flex items-center text-gray-500">
+                                    <i class="fas fa-clock mr-1"></i>
+                                    Responds in 2hrs
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed">
+                                With a passion for creating unforgettable moments, our team specializes in transforming venues into extraordinary spaces. We've had the privilege of designing over 250 events, from intimate gatherings to grand celebrations. Every detail matters to us because we know it matters to you.
+                            </p>
+                            <button class="mt-4 text-primary-600 font-medium text-sm hover:text-primary-700 flex items-center">
+                                View Full Profile
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reviews Section -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow" id="reviews-section">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-gray-900">Reviews</h2>
+                        <span class="text-sm text-gray-500">128 reviews</span>
+                    </div>
+
+                    <!-- Rating Summary -->
+                    <div class="flex flex-col md:flex-row gap-8 mb-8 p-6 bg-gray-50 rounded-xl">
+                        <div class="text-center md:text-left">
+                            <div class="text-5xl font-bold text-gray-900">4.8</div>
+                            <div class="flex items-center justify-center md:justify-start text-yellow-400 mt-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Based on 128 reviews</p>
+                        </div>
+                        <div class="flex-1 space-y-2">
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 w-8">5</span>
+                                <i class="fas fa-star text-yellow-400 text-xs mx-2"></i>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 78%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500 w-12 text-right">78%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 w-8">4</span>
+                                <i class="fas fa-star text-yellow-400 text-xs mx-2"></i>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 15%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500 w-12 text-right">15%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 w-8">3</span>
+                                <i class="fas fa-star text-yellow-400 text-xs mx-2"></i>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 5%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500 w-12 text-right">5%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 w-8">2</span>
+                                <i class="fas fa-star text-yellow-400 text-xs mx-2"></i>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 2%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500 w-12 text-right">2%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-600 w-8">1</span>
+                                <i class="fas fa-star text-yellow-400 text-xs mx-2"></i>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="progress-bar h-full rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-sm text-gray-500 w-12 text-right">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Cards -->
+                    <div class="space-y-6">
+                        <div class="border-b border-gray-100 pb-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Reviewer" class="w-12 h-12 rounded-full object-cover">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Michael Thompson</h4>
+                                        <p class="text-sm text-gray-500">Wedding • October 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed">
+                                "Absolutely stunning work! The team transformed our venue beyond our wildest dreams. Every detail was perfect, from the floral arrangements to the lighting. Our guests couldn't stop complimenting the decorations. Highly recommend!"
+                            </p>
+                            <div class="flex gap-2 mt-4">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=100&h=100&fit=crop" class="w-16 h-16 rounded-lg object-cover">
+                                <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=100&h=100&fit=crop" class="w-16 h-16 rounded-lg object-cover">
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-100 pb-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Reviewer" class="w-12 h-12 rounded-full object-cover">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Jennifer Roberts</h4>
+                                        <p class="text-sm text-gray-500">Engagement Party • September 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed">
+                                "Professional, creative, and so easy to work with. Sarah understood exactly what we wanted and delivered even more. The communication throughout the planning process was excellent. Worth every penny!"
+                            </p>
+                        </div>
+
+                        <div class="border-b border-gray-100 pb-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Reviewer" class="w-12 h-12 rounded-full object-cover">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">David Chen</h4>
+                                        <p class="text-sm text-gray-500">Corporate Event • August 2024</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4 leading-relaxed">
+                                "Used their services for our company's annual gala. The setup was impeccable and on time. Only minor issue was a small delay in communication, but the end result was fantastic. Would book again."
+                            </p>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-6 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        View All 128 Reviews
+                    </button>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow" id="faq-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-xl overflow-hidden accordion-open">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
+                                <span class="font-medium text-gray-900">How far in advance should I book?</span>
+                                <i class="fas fa-chevron-down text-gray-400 accordion-icon"></i>
+                            </button>
+                            <div class="px-4 pb-4">
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    We recommend booking at least 3-6 months in advance for weddings and large events to ensure availability. For smaller events, 4-6 weeks notice is usually sufficient. Contact us early to secure your preferred date!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
+                                <span class="font-medium text-gray-900">Do you provide setup and breakdown services?</span>
+                                <i class="fas fa-chevron-down text-gray-400 accordion-icon"></i>
+                            </button>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
+                                <span class="font-medium text-gray-900">Can I customize the color scheme?</span>
+                                <i class="fas fa-chevron-down text-gray-400 accordion-icon"></i>
+                            </button>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
+                                <span class="font-medium text-gray-900">What is your cancellation policy?</span>
+                                <i class="fas fa-chevron-down text-gray-400 accordion-icon"></i>
+                            </button>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
+                                <span class="font-medium text-gray-900">Do you travel outside the service area?</span>
+                                <i class="fas fa-chevron-down text-gray-400 accordion-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Additional Details -->
+                <section class="bg-white rounded-2xl p-6 custom-shadow">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Additional Details</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Service Coverage</h4>
+                                <p class="text-sm text-gray-500 mt-1">New York, New Jersey, Connecticut<br>50-mile radius from Manhattan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Response Time</h4>
+                                <p class="text-sm text-gray-500 mt-1">Usually responds within 2 hours<br>during business hours (9am-6pm EST)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-calendar-times text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Cancellation Policy</h4>
+                                <p class="text-sm text-gray-500 mt-1">Full refund up to 30 days before<br>50% refund 14-30 days before</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-credit-card text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900">Payment Options</h4>
+                                <p class="text-sm text-gray-500 mt-1">50% deposit to confirm booking<br>Remaining balance due 7 days before</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What's Not Included -->
+                    <div class="mt-8 pt-6 border-t border-gray-100">
+                        <h4 class="font-medium text-gray-900 mb-4">Not Included</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                Venue rental fees
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                Catering services
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                Photography/videography
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-times text-red-400 mr-2"></i>
+                                DJ or entertainment
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar - Booking Panel -->
+            <div class="lg:col-span-1">
+                <div class="sticky-sidebar space-y-6">
+                    <!-- Main Booking Card -->
+                    <div class="bg-white rounded-2xl p-6 custom-shadow">
+                        <div class="flex items-baseline justify-between mb-6">
+                            <div>
+                                <span class="text-sm text-gray-500">Starting from</span>
+                                <div class="flex items-baseline">
+                                    <span class="text-3xl font-bold text-gray-900">$7,475</span>
+                                    <span class="text-gray-500 ml-2">estimated</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-semibold">4.8</span>
+                                <span class="text-gray-400 ml-1">(128)</span>
+                            </div>
+                        </div>
+
+                        <!-- Date Selection -->
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Event Date</label>
+                                <div class="relative">
+                                    <input type="date" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <i class="fas fa-calendar text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Number of Guests</label>
+                                <div class="relative">
+                                    <select class="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                        <option>100 - 150 guests</option>
+                                        <option>50 - 100 guests</option>
+                                        <option>150 - 200 guests</option>
+                                        <option>200+ guests</option>
+                                    </select>
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Summary -->
+                        <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                            <h4 class="text-sm font-medium text-gray-700 mb-3">Your Selection</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Premium Package</span>
+                                    <span class="text-gray-900">$4,500</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">2 Add-ons</span>
+                                    <span class="text-gray-900">$1,250</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Table & Centerpieces</span>
+                                    <span class="text-gray-900">$1,725</span>
+                                </div>
+                                <div class="border-t border-gray-200 pt-2 mt-2">
+                                    <div class="flex justify-between font-semibold">
+                                        <span class="text-gray-900">Total</span>
+                                        <span class="text-primary-600">$7,475</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <button class="w-full bg-primary-600 text-white py-4 rounded-xl font-semibold hover:bg-primary-700 transition-colors mb-3 flex items-center justify-center hover-lift">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Book Now
+                        </button>
+                        <button class="w-full border border-gray-200 text-gray-700 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center">
+                            <i class="far fa-envelope mr-2"></i>
+                            Contact Organizer
+                        </button>
+
+                        <!-- Trust Indicators -->
+                        <div class="mt-6 pt-6 border-t border-gray-100">
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-shield-alt text-green-500 mr-3"></i>
+                                    <span>Secure booking & payment</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Verified organizer</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-undo text-green-500 mr-3"></i>
+                                    <span>Free cancellation up to 30 days</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-headset text-green-500 mr-3"></i>
+                                    <span>24/7 customer support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Card -->
+                    <div class="bg-white rounded-2xl p-6 custom-shadow">
+                        <div class="flex items-center justify-between">
+                            <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                                <i class="far fa-heart mr-2"></i>
+                                <span class="text-sm font-medium">Save</span>
+                            </button>
+                            <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                                <i class="fas fa-share-alt mr-2"></i>
+                                <span class="text-sm font-medium">Share</span>
+                            </button>
+                            <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                                <i class="fas fa-flag mr-2"></i>
+                                <span class="text-sm font-medium">Report</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Similar Services -->
+                    <div class="bg-white rounded-2xl p-6 custom-shadow">
+                        <h3 class="font-semibold text-gray-900 mb-4">Similar Services</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="flex items-start space-x-3 group">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=100&h=100&fit=crop" alt="Similar service" class="w-16 h-16 rounded-lg object-cover">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 truncate">Luxury Floral Arrangements</h4>
+                                    <p class="text-xs text-gray-500">By Garden Dreams Co.</p>
+                                    <p class="text-sm font-semibold text-gray-900 mt-1">From $1,200</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-start space-x-3 group">
+                                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=100&h=100&fit=crop" alt="Similar service" class="w-16 h-16 rounded-lg object-cover">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 truncate">Event Lighting Design</h4>
+                                    <p class="text-xs text-gray-500">By Lumina Events</p>
+                                    <p class="text-sm font-semibold text-gray-900 mt-1">From $800</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Marketplace</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Careers</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Press</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gray-900">Help Center</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Safety Info</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Cancellation Options</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Vendors</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gray-900">Become a Vendor</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Resources</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Community</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gray-900">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between">
+                <p class="text-sm text-gray-500">© 2024 Marketplace. All rights reserved.</p>
+                <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('[data-tab]');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('tab-active', 'text-primary-600'));
+                tabs.forEach(t => t.classList.add('text-gray-500'));
+                tab.classList.add('tab-active');
+                tab.classList.remove('text-gray-500');
+            });
+        });
+
+        // Quantity selectors
+        function setupQuantitySelector(minusId, plusId, countId) {
+            const minus = document.getElementById(minusId);
+            const plus = document.getElementById(plusId);
+            const count = document.getElementById(countId);
+            
+            minus.addEventListener('click', () => {
+                let value = parseInt(count.textContent);
+                if (value > 0) count.textContent = value - 1;
+            });
+            
+            plus.addEventListener('click', () => {
+                let value = parseInt(count.textContent);
+                count.textContent = value + 1;
+            });
+        }
+
+        setupQuantitySelector('tables-minus', 'tables-plus', 'tables-count');
+        setupQuantitySelector('centerpieces-minus', 'centerpieces-plus', 'centerpieces-count');
+
+        // Accordion functionality
+        const accordions = document.querySelectorAll('.accordion-open button, .border.border-gray-200.rounded-xl button');
+        accordions.forEach(accordion => {
+            accordion.addEventListener('click', () => {
+                const parent = accordion.parentElement;
+                parent.classList.toggle('accordion-open');
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
