@@ -3,6 +3,9 @@
     "live-server": "^1.2.2"
   },
   "scripts": {
-    "refresh": "node generate-manifest.js"
+    "refresh": "node generate-manifest.js",
+    "git": "git add . && git commit -m 'Added storefront templates' && git push -u origin main",
+    "start": "live-server",
+    "dev": "npm run refresh && npm run start"
   }
 }
