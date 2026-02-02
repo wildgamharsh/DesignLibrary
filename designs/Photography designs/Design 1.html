@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EasyTask Editorial Photography Storefront</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --surface: #151518;
+      --text: #eaeaf0;
+      --muted: #b6b6c5;
+      --accent: #d9c7a5;
+      --border: rgba(255,255,255,0.08);
+      --shadow: rgba(0,0,0,0.3);
+      --glass: rgba(255,255,255,0.06);
+    }
+    .light {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5a5a70;
+      --accent: #4c3f2f;
+      --border: rgba(0,0,0,0.06);
+      --glass: rgba(0,0,0,0.04);
+      --shadow: rgba(0,0,0,0.1);
+    }
+    html, body {
+      height: 100%;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(217,199,165,0.15), transparent 60%),
+                  radial-gradient(900px 700px at 10% 10%, rgba(255,255,255,0.06), transparent 50%),
+                  var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .serif { font-family: "Playfair Display", Georgia, serif; }
+    .serif-strong { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
+    .grain {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.035"/></svg>');
+      mix-blend-mode: soft-light;
+    }
+    .section {
+      padding: clamp(64px, 8vw, 120px) 0;
+      position: relative;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .card {
+      background: linear-gradient(180deg, var(--glass), transparent);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.05));
+      color: var(--text);
+      box-shadow: 0 6px 20px var(--shadow);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .headline {
+      letter-spacing: -0.02em;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .muted { color: var(--muted); }
+    .shadow-soft { box-shadow: 0 10px 30px var(--shadow); }
+    .mask-fade {
+      -webkit-mask-image: linear-gradient(180deg, black 70%, transparent 100%);
+      mask-image: linear-gradient(180deg, black 70%, transparent 100%);
+    }
+    .lightbox-enter {
+      animation: lightboxIn 500ms cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fade-up { animation: fadeUp 700ms ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .parallax { transform: translateZ(0); will-change: transform; }
+    .grid-auto-fit {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(12px, 2vw, 24px);
+    }
+    .story-cover {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .story-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      transition: opacity 400ms ease;
+    }
+    .story-cover:hover::after { opacity: 0.8; }
+    .story-entry {
+      cursor: zoom-in;
+      transition: transform 250ms ease, box-shadow 250ms ease;
+    }
+    .story-entry:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--shadow); }
+    .pill {
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .chip {
+      padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      transition: background .2s;
+    }
+    .chip.active { background: rgba(217,199,165,0.15); border-color: rgba(217,199,165,0.35); }
+    .modal {
+      position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); z-index: 50;
+    }
+    .modal.open { display: flex; }
+    .scroll-snap-x {
+      scroll-snap-type: x mandatory;
+    }
+    .snap-start { scroll-snap-align: start; }
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background: radial-gradient(1000px 400px at 50% -10%, rgba(217,199,165,0.25), transparent 60%),
+                  radial-gradient(900px 500px at 10% 20%, rgba(255,255,255,0.09), transparent 50%);
+      pointer-events: none;
+    }
+    .nav-toggle { display: none; }
+    @media (max-width: 1024px) {
+      .nav-toggle { display: block; }
+    }
+  </style>
+</head>
+<body class="min-h-screen relative">
+  <div class="grain"></div>
+
+  <!-- Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mt-4 flex items-center justify-between card rounded-2xl px-4 py-3">
+        <a href="#" class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-200/80 to-amber-400/60 flex items-center justify-center text-black font-bold">N</div>
+          <span class="serif-strong tracking-tight text-lg">The Archivist</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#stories" class="hover:text-amber-200 transition">Stories</a>
+          <a href="#archive" class="hover:text-amber-200 transition">Gallery</a>
+          <a href="#highlight" class="hover:text-amber-200 transition">Highlight</a>
+          <a href="#about" class="hover:text-amber-200 transition">About</a>
+          <a href="#contact" class="hover:text-amber-200 transition">Contact</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="themeToggle" class="btn px-3 py-2 rounded-xl text-sm">Theme</button>
+          <button class="nav-toggle btn px-3 py-2 rounded-xl" aria-label="Open Menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 12h14M3 18h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="section pt-28">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="relative z-10">
+          <span class="pill inline-flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            Visual stories, framed in light
+          </span>
+          <h1 class="headline serif-strong text-5xl md:text-7xl mt-5 leading-tight">Elena Voss — Editorial Photography</h1>
+          <p class="muted mt-5 text-lg max-w-xl">A collector of light and motion. Each frame is a slowed moment, a capture of a feeling, preserved for living rooms and private collections.</p>
+          <div class="flex items-center gap-4 mt-8">
+            <a href="#stories" class="btn px-5 py-3 rounded-xl">View Stories</a>
+            <a href="#contact" class="px-5 py-3 rounded-xl border border-[color:var(--border)] hover:bg-white/5">Book a Session</a>
+          </div>
+        </div>
+        <div class="relative h-[420px] md:h-[520px] overflow-hidden rounded-3xl card shadow-soft">
+          <img src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=2000&auto=format&fit=crop" alt="Hero Editorial" class="absolute inset-0 w-full h-full object-cover">
+          <div class="hero-gradient"></div>
+          <div class="absolute inset-0 flex items-end p-6 mask-fade">
+            <div class="bg-black/40 backdrop-blur-xl rounded-2xl p-4 max-w-md">
+              <div class="serif text-lg">Paris Sessions, 2023</div>
+              <div class="text-sm muted">Luminous portraits in twilight streets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider mt-16"></div>
+      <div class="flex items-center gap-6 mt-8 text-sm muted">
+        <span class="pill">Analog-first</span>
+        <span class="pill">Fashion & Editorial</span>
+        <span class="pill">Weddings</span>
+        <span class="pill">Commercial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Stories -->
+  <section id="stories" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="serif-strong text-3xl md:text-4xl">Portfolio Stories</h2>
+          <p class="muted mt-2">Each chapter is a guided glance through light, texture, and human gesture.</p>
+        </div>
+        <a href="#archive" class="btn px-4 py-2 rounded-xl text-sm">Explore Archive</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 mt-8">
+        <!-- Story 1 -->
+        <article class="story-entry story-cover">
+          <img class="w-full h-64 md:h-80 object-cover" src="https://images.unsplash.com/photo-1517999084181-64420b4dda3b?q=80&w=1400&auto=format&fit=crop" alt="Portrait in Field">
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <div class="serif text-xl">Windswept Portraits</div>
+            <div class="muted text-sm">A study of breath and silence</div>
+          </div>
+        </article>
+        <!-- Story 2 -->
+        <article class="story-entry story-cover">
+          <img class="w-full h-64 md:h-80 object-cover" src="https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=1400&auto=format&fit=crop" alt="Editorial in Studio">
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <div class="serif text-xl">Black & White Notes</div>
+            <div class="muted text-sm">Editing as erasure</div>
+          </div>
+        </article>
+        <!-- Story 3 -->
+        <article class="story-entry story-cover">
+          <img class="w-full h-64 md:h-80 object-cover" src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop" alt="Assistant on Film">
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <div class="serif text-xl">Film 35mm</div>
+            <div class="muted text-sm">Grain, patience, truth</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curated Gallery Archive -->
+  <section id="archive" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-6">
+        <div>
+          <h2 class="serif-strong text-3xl md:text-4xl">Curated Archive</h2>
+          <p class="muted mt-2">Swipe and discover across fields, fashion, portraits, and commerce.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="wedding">Weddings</button>
+          <button class="chip" data-filter="editorial">Editorial</button>
+          <button class="chip" data-filter="portrait">Portraits</button>
+          <button class="chip" data-filter="commercial">Commercial</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-6" id="galleryGrid">
+        <!-- Items -->
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="wedding">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1200&auto=format&fit=crop" alt="Wedding in Garden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Vera, 2024 — Chapel Garden</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="editorial">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1508804185872-d7badad00f95?q=80&w=1200&auto=format&fit=crop" alt="Editorial Black White">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Style 92 — Industrial Portraits</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="portrait">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Portrait Close-up">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Faces — Woodland Reflection</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="commercial">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="Commercial Shoot">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Ad Night — Neon Geometry</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="wedding">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Wedding Reception">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Night Soirée</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="editorial">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1506377278053-860c3df73e05?q=80&w=1200&auto=format&fit=crop" alt="Editorial Fashion">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Runway Report</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="portrait">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1520974735657-6442e8e3d0e2?q=80&w=1200&auto=format&fit=crop" alt="Charcoal Portrait">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Cold Tones</div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden border border-[color:var(--border)] group story-cover" data-cat="commercial">
+          <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1520975693416-35a520493597?q=80&w=1200&auto=format&fit=crop" alt="Commercial Product">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <div class="bg-black/50 text-white text-sm px-3 py-2 rounded-xl">Product Study</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Work Highlight -->
+  <section id="highlight" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="relative h-[380px] md:h-[460px] overflow-hidden rounded-3xl card">
+          <img class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=2000&auto=format&fit=crop" alt="Signature Work">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="serif text-2xl">Tidal Echo</div>
+            <div class="muted">Monochrome shoreline — chiaroscuro across wet glass</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="serif-strong text-3xl md:text-4xl">Signature Work</h3>
+          <p class="muted mt-3">I photograph the hush between motion and stillness—always hunting for a moment where the air holds its breath. Geometry, light decay, and soft edges define this body of work.</p>
+          <blockquote class="mt-6 border-l-4 border-amber-300/50 pl-5 italic muted">
+            “Let the frame be a portal, not a cage.”
+          </blockquote>
+          <div class="flex gap-3 mt-6">
+            <a href="#stories" class="btn px-4 py-2 rounded-xl">Read Story</a>
+            <a href="#contact" class="px-4 py-2 rounded-xl border border-[color:var(--border)]">Commission</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About the Photographer -->
+  <section id="about" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <div class="md:col-span-1">
+          <h3 class="serif-strong text-3xl md:text-4xl">About the Photographer</h3>
+          <p class="muted mt-3">A decade of editorial and event work across six continents. My process starts with a question: what does a place feel like when held close?</p>
+          <div class="flex gap-3 mt-6">
+            <div class="chip">Analog-first</div>
+            <div class="chip">Monochrome</div>
+            <div class="chip">On-location</div>
+          </div>
+        </div>
+        <div class="md:col-span-2 grid grid-cols-2 gap-4">
+          <div class="h-64 md:h-80 rounded-3xl overflow-hidden card">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1400&auto=format&fit=crop" alt="Portrait">
+          </div>
+          <div class="h-64 md:h-80 rounded-3xl overflow-hidden card">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1519740527574-3c815a1bfe4a?q=80&w=1400&auto=format&fit=crop" alt="Studio">
+          </div>
+          <div class="h-64 md:h-80 rounded-3xl overflow-hidden card">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1400&auto=format&fit=crop" alt="Candid">
+          </div>
+          <div class="h-64 md:h-80 rounded-3xl overflow-hidden card">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop" alt="Night">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press & Testimonials -->
+  <section class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 card rounded-3xl p-6">
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Client">
+            <div>
+              <div class="serif-semibold">House & Garden Magazine</div>
+              <div class="muted text-sm">“A rare aesthetic: restraint, lucidity, and a love for negative space.”</div>
+            </div>
+          </div>
+          <div class="divider my-6"></div>
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=200&auto=format&fit=crop" alt="Client 2">
+            <div>
+              <div class="serif-semibold">Neon Edit Collective</div>
+              <div class="muted text-sm">“Portraits that feel like essays in motion.”</div>
+            </div>
+          </div>
+        </div>
+        <div class="card rounded-3xl p-6">
+          <div class="serif-strong text-2xl">Press Logos</div>
+          <div class="flex items-center gap-4 mt-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">H&G</div>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">NE</div>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">TG</div>
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-black/40 to-black/10 flex items-center justify-center">AR</div>
+          </div>
+          <p class="muted text-sm mt-4">Selected features across editorial and fine-art publications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Booking -->
+  <section id="contact" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="card rounded-3xl p-6">
+          <h3 class="serif-strong text-3xl">Let’s Create Something Together</h3>
+          <p class="muted mt-2">Whether it's a portrait, editorial spread, or wedding series, I work with you to frame the story.</p>
+          <form class="mt-6 space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Full name" class="w-full px-4 py-3 rounded-xl border border-[color:var(--border)] bg-transparent outline-none focus:border-amber-300/40">
+              <input type="email" placeholder="Email address" class="w-full px-4 py-3 rounded-xl border border-[color:var(--border)] bg-transparent outline-none focus:border-amber-300/40">
+            </div>
+            <select class="w-full px-4 py-3 rounded-xl border border-[color:var(--border)] bg-transparent outline-none focus:border-amber-300/40">
+              <option>Project type</option>
+              <option>Wedding</option>
+              <option>Editorial</option>
+              <option>Commercial</option>
+              <option>Portrait Session</option>
+            </select>
+            <textarea rows="4" placeholder="Your message..." class="w-full px-4 py-3 rounded-xl border border-[color:var(--border)] bg-transparent outline-none focus:border-amber-300/40"></textarea>
+            <div class="flex items-center gap-3">
+              <button type="submit" class="btn px-5 py-3 rounded-xl">Request Booking</button>
+              <a href="#" class="px-5 py-3 rounded-xl border border-[color:var(--border)]">View Portfolio</a>
+            </div>
+          </form>
+        </div>
+        <div class="grid gap-4">
+          <div class="card rounded-3xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200/70 to-amber-400/50 flex items-center justify-center text-black">EP</div>
+              <div>
+                <div class="serif-semibold">+1 (555) 015-2233</div>
+                <div class="muted text-sm">Email daily</div>
+              </div>
+            </div>
+          </div>
+          <div class="card rounded-3xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200/70 to-amber-400/50 flex items-center justify-center text-black">IG</div>
+              <div>@the.archivist</div>
+            </div>
+          </div>
+          <div class="card rounded-3xl p-6">
+            <div class="muted text-sm">Open to travel across Europe, US, and Asia. Limited window per project—book early.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="section pt-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="divider mb-6"></div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-200/80 to-amber-400/60 flex items-center justify-center text-black font-bold">N</div>
+          <span class="serif-strong">The Archivist</span>
+        </div>
+        <div class="text-sm muted">© <span id="year"></span> Elena Voss. All rights reserved.</div>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="#" class="hover:text-amber-200">Instagram</a>
+          <a href="#" class="hover:text-amber-200">Behance</a>
+          <a href="#" class="hover:text-amber-200">Press</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="modal">
+    <div class="max-w-5xl w-full px-4">
+      <div class="card rounded-3xl overflow-hidden fade-up">
+        <div class="flex items-center justify-between p-4 border-b border-[color:var(--border)]">
+          <div class="serif-strong">Story View</div>
+          <button id="lightboxClose" class="btn px-3 py-1.5 rounded-lg">Close</button>
+        </div>
+        <div class="grid md:grid-cols-5 gap-0">
+          <div class="md:col-span-3 relative">
+            <img id="lightboxImg" src="" alt="Story image" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+              <div id="lightboxCaption" class="serif text-xl">Title</div>
+              <div id="lightboxSub" class="muted text-sm">Subtitle</div>
+            </div>
+          </div>
+          <div class="md:col-span-2 p-4">
+            <div class="serif-strong text-lg">Paris Sessions, 2023</div>
+            <p class="muted mt-2 text-sm leading-relaxed">Moving through cocoa-scented alleys, I tracked light through glass storefronts and mirrored facades. The models chose their own paths—gestures became geometry.</p>
+            <div class="divider my-4"></div>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="h-24 rounded-xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+              </div>
+              <div class="h-24 rounded-xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f95?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+              </div>
+              <div class="h-24 rounded-xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
+              </div>
+            </div>
+            <div class="mt-4">
+              <button class="btn px-4 py-2 rounded-xl w-full">Contact for Session</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') document.body.classList.add('light');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxSub = document.getElementById('lightboxSub');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    const storyData = [
+      {
+        img: 'https://images.unsplash.com/photo-1517999084181-64420b4dda3b?q=80&w=1600&auto=format&fit=crop',
+        title: 'Windswept Portraits',
+        subtitle: 'A study of breath and silence'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=1600&auto=format&fit=crop',
+        title: 'Black & White Notes',
+        subtitle: 'Editing as erasure'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1600&auto=format&fit=crop',
+        title: 'Film 35mm',
+        subtitle: 'Grain, patience, truth'
+      }
+    ];
+
+    function openLightbox(idx) {
+      const data = storyData[idx];
+      lightboxImg.src = data.img;
+      lightboxCaption.textContent = data.title;
+      lightboxSub.textContent = data.subtitle;
+      lightbox.classList.add('open');
+      setTimeout(() => lightboxImg.classList.add('lightbox-enter'), 10);
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.classList.remove('lightbox-enter');
+      lightboxImg.src = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.querySelectorAll('#stories .story-entry').forEach((el, i) => {
+      el.addEventListener('click', () => openLightbox(i));
+    });
+
+    // Gallery filtering
+    const chips = document.querySelectorAll('.chip');
+    const grid = document.getElementById('galleryGrid');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const filter = chip.getAttribute('data-filter');
+        grid.querySelectorAll('[data-cat]').forEach(item => {
+          const show = filter === 'all' || item.getAttribute('data-cat') === filter;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+
+    // Parallax effect on hero image (lightweight)
+    const hero = document.querySelector('.section .card');
+    if (hero) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        hero.style.transform = `perspective(800px) translateZ(0) rotateX(${ -y * 2 }deg) rotateY(${ x * 2 }deg)`;
+      });
+      hero.addEventListener('mouseleave', () => {
+        hero.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    }
+
+    // Accessibility: reduced motion respect
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches) {
+      document.querySelectorAll('*').forEach(el => el.style.scrollBehavior = 'auto');
+    }
+  </script>
+</body>
+</html>

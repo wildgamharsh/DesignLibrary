@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cinematic Photography Studio – Premium Storefront Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-main: #050506;
+      --bg-alt: #0b0b0d;
+      --bg-soft: #111117;
+      --bg-soft-2: #161621;
+      --accent: #e6b36b;
+      --accent-soft: rgba(230, 179, 107, 0.18);
+      --accent-strong: #f7c777;
+      --text-main: #f5f5f7;
+      --text-muted: #a0a0b2;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+      --shadow-subtle: 0 8px 25px rgba(0, 0, 0, 0.4);
+      --transition-fast: 200ms ease-out;
+      --transition-med: 280ms ease;
+      --nav-height: 76px;
+      --container-max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at top, #181829 0, #050506 55%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+      color: var(--text-main);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top Navigation */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav-inner {
+      pointer-events: auto;
+      width: 100%;
+      max-width: calc(var(--container-max) + 40px);
+      margin: 10px 20px 0;
+      border-radius: 999px;
+      background: rgba(5, 5, 8, 0.92);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px 10px 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0, #fdf2d1 0, #f0aa4b 38%, #111 85%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18),
+                  0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      opacity: 0.9;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.86rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      padding: 6px 0;
+      position: relative;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), var(--accent-strong));
+      transition: width var(--transition-med);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      transition: background var(--transition-med), color var(--transition-med),
+                  border-color var(--transition-med), box-shadow var(--transition-med),
+                  transform var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #050505;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.18);
+      color: var(--text-muted);
+      background: rgba(10, 10, 15, 0.7);
+    }
+    .btn-ghost:hover {
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(15, 15, 20, 0.95);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      flex-direction: column;
+      padding: 5px 0;
+    }
+    .nav-toggle span {
+      width: 14px;
+      height: 1.3px;
+      background: #fff;
+      border-radius: 999px;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(2.5px) rotate(42deg);
+    }
+    .nav-toggle.open span:nth-child(2) {
+      transform: translateY(-2.5px) rotate(-42deg);
+    }
+
+    /* Mobile Nav Drawer */
+    .nav-drawer {
+      position: fixed;
+      inset: var(--nav-height) 0 auto 0;
+      background: rgba(5, 5, 8, 0.98);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      transform: translateY(-110%);
+      transition: transform var(--transition-med);
+      z-index: 40;
+    }
+
+    .nav-drawer.open {
+      transform: translateY(0);
+    }
+
+    .nav-drawer-inner {
+      padding: 18px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-drawer a {
+      padding: 8px 0;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-drawer a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-drawer-cta {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding-top: var(--nav-height);
+      display: flex;
+      align-items: stretch;
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 40px;
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 120px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+    .hero-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff 0, var(--accent-strong) 45%, #8b581b 100%);
+      box-shadow: 0 0 20px rgba(230, 179, 107, 0.7);
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 3.3vw, 3.4rem);
+      line-height: 1.04;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-tagline {
+      max-width: 440px;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-meta-divider {
+      width: 24px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .hero-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+    .hero-secondary-link span.icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .hero-footnote {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .hero-footnote strong {
+      color: var(--accent-strong);
+      font-weight: 500;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .hero-frame {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4 / 5;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transform: translateY(8px);
+    }
+
+    .hero-frame-layer {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 1s ease-in-out, transform 12s ease-out;
+      opacity: 0;
+    }
+
+    .hero-frame-layer.visible {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    .hero-frame-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 20px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      align-self: flex-end;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(10, 10, 11, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #60ff9f;
+      box-shadow: 0 0 12px rgba(96, 255, 159, 0.8);
+    }
+
+    .hero-caption {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .hero-caption-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-caption-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .hero-caption-text {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .hero-caption-year {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(8, 8, 10, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-accent-orbit {
+      position: absolute;
+      inset: -80px;
+      background:
+        radial-gradient(circle at 0 0, rgba(246, 213, 150, 0.25), transparent 60%),
+        radial-gradient(circle at 100% 90%, rgba(142, 143, 255, 0.2), transparent 55%);
+      opacity: 0.85;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-floating-panel {
+      position: absolute;
+      right: 0;
+      bottom: 40px;
+      transform: translateX(40%);
+      width: 230px;
+      border-radius: 20px;
+      padding: 12px 14px 12px 14px;
+      background: rgba(8, 8, 12, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-floating-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .hero-floating-label span.line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
+    }
+
+    .hero-floating-stats {
+      display: flex;
+      gap: 10px;
+    }
+
+    .hero-floating-stat {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero-floating-stat strong {
+      font-size: 0.78rem;
+    }
+
+    .hero-floating-stat span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Section Generic */
+    section {
+      padding: 70px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      gap: 16px;
+    }
+
+    .section-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .section-subtitle {
+      max-width: 400px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Services */
+    .services {
+      background: radial-gradient(circle at top, #171724 0, #050506 60%);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 55%),
+                  linear-gradient(145deg, #101018, #050506);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 16px 14px 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-med),
+                  border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(230, 179, 107, 0.4), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-med), transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      transform: translate3d(-40px, -40px, 0);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
+      border-color: rgba(255, 255, 255, 0.16);
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.08), transparent 55%),
+                  linear-gradient(145deg, #121222, #050506);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .service-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-icon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.8), transparent 60%);
+      opacity: 0.4;
+      mix-blend-mode: screen;
+    }
+
+    .service-title {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+    }
+
+    .service-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .service-link {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-strong);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .service-link span.arrow {
+      font-size: 0.82rem;
+      transform: translateY(0.5px);
+      transition: transform var(--transition-fast);
+    }
+
+    .service-card:hover .service-link span.arrow {
+      transform: translate(2px, 0.5px);
+    }
+
+    /* Gallery */
+    .gallery {
+      background: var(--bg-main);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .gallery-hero {
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 26px;
+      position: relative;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-hero-track {
+      position: relative;
+      width: 100%;
+      height: 260px;
+    }
+    @media (min-width: 900px) {
+      .gallery-hero-track {
+        height: 320px;
+      }
+    }
+
+    .gallery-hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 1s ease, transform 10s ease-out;
+    }
+    .gallery-hero-slide.active {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    .gallery-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+      display: flex;
+      align-items: stretch;
+      padding: 20px;
+    }
+
+    .gallery-hero-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 380px;
+      gap: 14px;
+    }
+
+    .gallery-hero-label {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: rgba(8, 8, 10, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .gallery-hero-label span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+    }
+
+    .gallery-hero-title {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+    }
+
+    .gallery-hero-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .gallery-hero-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .gallery-hero-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gallery-hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.25);
+      transition: background var(--transition-med), transform var(--transition-med);
+    }
+
+    .gallery-hero-dot.active {
+      background: #fff;
+      transform: scale(1.4);
+    }
+
+    .gallery-hero-nav {
+      display: flex;
+      gap: 6px;
+    }
+
+    .gallery-hero-arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(8, 8, 12, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .gallery-hero-arrow:hover {
+      background: rgba(18, 18, 22, 0.98);
+      transform: translateY(-1px);
+    }
+
+    .gallery-hero-stats {
+      margin-left: auto;
+      align-self: flex-end;
+      display: flex;
+      gap: 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .gallery-hero-stat {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(6, 6, 10, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* Gallery Filters */
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .filter-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text-muted);
+      background: rgba(7, 7, 12, 0.9);
+      padding: 6px 12px;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+                  border-color var(--transition-fast), transform var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .filter-pill.active {
+      color: #050506;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    .filter-pill.active span.dot {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-auto-rows: 90px;
+      gap: 8px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+      transform: translateY(0);
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+                  filter var(--transition-med), opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .gallery-item.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translateY(6px);
+      pointer-events: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform 700ms ease-out, filter 700ms ease-out;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.2) contrast(1.08);
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item-meta {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity var(--transition-med), transform var(--transition-med);
+      pointer-events: none;
+      font-size: 0.72rem;
+    }
+
+    .gallery-item:hover .gallery-item-meta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item-title {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .gallery-item-tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.34);
+    }
+
+    .gallery-span-2x2 { grid-column: span 2; grid-row: span 2; }
+    .gallery-span-3x2 { grid-column: span 3; grid-row: span 2; }
+    .gallery-span-4x2 { grid-column: span 4; grid-row: span 2; }
+
+    /* Featured Projects */
+    .projects {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.06), transparent 60%),
+                  linear-gradient(145deg, #101018, #050506);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+                  border-color var(--transition-med);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .project-media {
+      position: relative;
+      overflow: hidden;
+      max-height: 210px;
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 700ms ease-out, filter 700ms ease-out;
+      filter: saturate(1.04) contrast(1.02);
+    }
+
+    .project-card:hover .project-media img {
+      transform: scale(1.1);
+      filter: saturate(1.15) contrast(1.08);
+    }
+
+    .project-body {
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .project-title {
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .project-text {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+
+    .project-meta {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .project-link {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-strong);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* About */
+    .about {
+      background: radial-gradient(circle at 100% 0, #262646 0, #050506 60%);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-portrait-wrap {
+      position: relative;
+      max-width: 360px;
+    }
+
+    .about-portrait-frame {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .about-portrait-frame img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transform: scale(1.03) translateY(2px);
+    }
+
+    .about-identity {
+      position: absolute;
+      bottom: -20px;
+      left: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(8, 8, 12, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      backdrop-filter: blur(12px);
+    }
+
+    .about-identity strong {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+    }
+
+    .about-identity span {
+      color: var(--text-muted);
+      font-size: 0.74rem;
+    }
+
+    .about-ribbon {
+      position: absolute;
+      top: 18px;
+      right: -22px;
+      transform: rotate(90deg);
+      transform-origin: top right;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .about-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-heading {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    .about-style {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .about-style-item {
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(8, 8, 12, 0.85);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--bg-soft);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .testimonials-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.4fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .testimonial-slider {
+      position: relative;
+      border-radius: 22px;
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.05), transparent 65%),
+                  linear-gradient(145deg, #101018, #050506);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px 18px 18px;
+      overflow: hidden;
+      min-height: 210px;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      inset: 18px;
+      opacity: 0;
+      transform: translateX(12px);
+      transition: opacity 400ms ease, transform 400ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .testimonial-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .testimonial-quote {
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .testimonial-client {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .testimonial-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-client-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.8rem;
+    }
+
+    .testimonial-client-info span {
+      color: var(--text-muted);
+      font-size: 0.74rem;
+    }
+
+    .testimonial-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .testimonial-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .testimonial-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: background var(--transition-med), transform var(--transition-med);
+    }
+
+    .testimonial-dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    .testimonial-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .testimonial-arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      font-size: 0.78rem;
+    }
+    .testimonial-arrow:hover {
+      background: rgba(20, 20, 26, 0.95);
+      transform: translateY(-1px);
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--bg-soft-2);
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      padding-bottom: 100px;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .contact-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-heading {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .contact-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast),
+                  border-color var(--transition-fast);
+    }
+    .social-icon:hover {
+      background: #ffffff;
+      color: #000;
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    .contact-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-strong);
+    }
+
+    .contact-form {
+      border-radius: 22px;
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.05), transparent 65%),
+                  linear-gradient(145deg, #101018, #050506);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 18px 18px 18px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.8rem;
+    }
+
+    .form-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(5, 5, 10, 0.95);
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color var(--transition-med), box-shadow var(--transition-med),
+                  background var(--transition-med);
+    }
+
+    .form-textarea {
+      border-radius: 16px;
+      min-height: 90px;
+      resize: vertical;
+      padding-top: 10px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(230, 179, 107, 0.35);
+      background: rgba(12, 12, 18, 0.98);
+    }
+
+    .form-foot {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .btn-submit {
+      padding-inline: 18px;
+    }
+
+    /* Sticky Mobile Bottom Nav */
+    .mobile-bottom-nav {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: 56px;
+      background: rgba(5, 5, 8, 0.96);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      display: none;
+      z-index: 45;
+    }
+
+    .mobile-bottom-nav-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .mobile-bottom-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      color: var(--text-muted);
+    }
+
+    .mobile-bottom-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+    }
+
+    .mobile-bottom-item.active {
+      color: var(--accent-strong);
+    }
+
+    .mobile-bottom-item.active .mobile-bottom-dot {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #000;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(2, 2, 4, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 60;
+      animation: fadeIn 180ms ease-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      width: min(96vw, 980px);
+      max-height: 90vh;
+      border-radius: 22px;
+      background: #050506;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lightbox-media {
+      position: relative;
+      background: #000;
+      max-height: 70vh;
+      overflow: hidden;
+    }
+
+    .lightbox-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #000;
+    }
+
+    .lightbox-caption {
+      padding: 10px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: linear-gradient(to right, #050506, #101018);
+    }
+
+    .lightbox-caption-title {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.74rem;
+      color: var(--text-main);
+    }
+
+    .lightbox-caption-meta {
+      display: flex;
+      gap: 10px;
+      font-size: 0.74rem;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      z-index: 2;
+    }
+
+    .lightbox-close:hover {
+      background: #ffffff;
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .lightbox-arrow {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.8);
+      font-size: 0.9rem;
+      pointer-events: auto;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .lightbox-arrow:hover {
+      background: #ffffff;
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Documentation / Guide (minimal) */
+    .guide {
+      padding: 40px 0 80px;
+      background: #050506;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    .guide h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .guide-block {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 14px 12px;
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.04), transparent 60%),
+                  linear-gradient(145deg, #080810, #050506);
+    }
+
+    .guide-block strong {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .guide-block ul {
+      list-style: none;
+    }
+
+    .guide-block li {
+      margin-bottom: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.1fr);
+        padding-top: 110px;
+      }
+
+      .hero-visual {
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      .hero-floating-panel {
+        display: none;
+      }
+
+      .about-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .testimonials-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 90px;
+      }
+
+      .gallery-span-3x2 { grid-column: span 4; }
+      .gallery-span-4x2 { grid-column: span 4; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner {
+        padding-inline: 12px;
+        border-radius: 20px;
+      }
+
+      .nav-links,
+      .nav-cta .btn-ghost {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero-inner {
+        padding-inline: 18px;
+        padding-top: 100px;
+        padding-bottom: 70px;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-footnote {
+        flex-direction: column;
+      }
+
+      .gallery-hero-track {
+        height: 240px;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-portrait-wrap {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .about-identity {
+        left: 10px;
+        right: 10px;
+      }
+
+      .testimonials-inner {
+        gap: 22px;
+      }
+
+      .contact-form {
+        padding: 16px 14px;
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .guide-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .mobile-bottom-nav {
+        display: flex;
+      }
+
+      .contact {
+        padding-bottom: 70px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 110px;
+      }
+
+      .gallery-span-2x2, .gallery-span-3x2, .gallery-span-4x2 {
+        grid-column: span 2;
+      }
+
+      .hero-frame {
+        max-width: none;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-subtitle {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Sticky Nav -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">
+            <span class="brand-name">Studio Aurelius</span>
+            <span class="brand-tagline">Cinematic Photography</span>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#hero" class="nav-link">Welcome</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#gallery" class="nav-link">Portfolio</a>
+          <a href="#projects" class="nav-link">Stories</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="nav-cta">
+          <button class="btn btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Rates &amp; Availability
+          </button>
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Book a Session
+            <span>↗</span>
+          </button>
+          <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="nav-drawer" id="navDrawer">
+      <div class="nav-drawer-inner">
+        <a href="#hero" class="drawer-link">Welcome</a>
+        <a href="#services" class="drawer-link">Services</a>
+        <a href="#gallery" class="drawer-link">Portfolio</a>
+        <a href="#projects" class="drawer-link">Stories</a>
+        <a href="#about" class="drawer-link">About</a>
+        <a href="#contact" class="drawer-link">Contact</a>
+        <div class="nav-drawer-cta">
+          <button class="btn btn-ghost" style="flex:1" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Check Dates
+          </button>
+          <button class="btn btn-primary" style="flex:1" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Book
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-accent-orbit"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-kicker">
+            <span class="hero-kicker-dot"></span>
+            <span>Cinematic storytelling for modern romantics</span>
+          </div>
+          <h1 class="hero-title">
+            <span>Photography that</span>
+            <span>feels like cinema.</span>
+          </h1>
+          <p class="hero-tagline">
+            A premium, editorial-inspired studio for weddings, portraits, and commercial campaigns.
+            Designed to translate fleeting moments into timeless frames.
+          </p>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Based in</span>
+              <span class="hero-meta-divider"></span>
+              <span>New York · Available Worldwide</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Specialties</span>
+              <span class="hero-meta-divider"></span>
+              <span>Weddings · Editorial · Portraiture · Film</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+              View Signature Portfolio
+              <span>⟶</span>
+            </button>
+            <a href="#contact" class="hero-secondary-link">
+              <span class="icon">◎</span>
+              <span>Request availability</span>
+            </a>
+          </div>
+          <div class="hero-footnote">
+            <span>
+              Trusted by <strong>editorial brands</strong>, modern couples, and creative agencies.
+            </span>
+            <span>
+              Average gallery delivery within <strong>4–6 weeks</strong> · Sneak peeks in 72 hours.
+            </span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-frame">
+            <div class="hero-frame-layer visible" id="heroLayer1" style="background-image:url('https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="hero-frame-layer" id="heroLayer2" style="background-image:url('https://images.pexels.com/photos/2892216/pexels-photo-2892216.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="hero-frame-layer" id="heroLayer3" style="background-image:url('https://images.pexels.com/photos/2837009/pexels-photo-2837009.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+            <div class="hero-frame-overlay">
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Bookings open · 2025
+              </div>
+              <div class="hero-caption">
+                <div class="hero-caption-meta">
+                  <div class="hero-caption-title">Editorial Wedding Stories</div>
+                  <div class="hero-caption-text">Shot on a blend of 35mm film &amp; digital for a tactile, cinematic finish.</div>
+                </div>
+                <div class="hero-caption-year">Since 2012</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-floating-panel">
+            <div class="hero-floating-label">
+              <span>Studio Snapshot</span>
+              <span class="line"></span>
+            </div>
+            <div class="hero-floating-stats">
+              <div class="hero-floating-stat">
+                <strong>320+</strong>
+                <span>Weddings &amp; stories documented</span>
+              </div>
+              <div class="hero-floating-stat">
+                <strong>18</strong>
+                <span>Countries on assignment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-block">
+            <div class="section-kicker">Signature Services</div>
+            <h2 class="section-title">Curated experiences</h2>
+          </div>
+          <p class="section-subtitle">
+            Design modular packages for weddings, portraits, editorial work, and bespoke campaigns.
+            Each block below can be expanded into dedicated landing pages.
+          </p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">∞</div>
+            <h3 class="service-title">Weddings</h3>
+            <p class="service-text">
+              Documentary-meets-editorial coverage crafted for couples who value emotion and style in equal measure.
+            </p>
+            <span class="service-link">
+              Explore wedding collections
+              <span class="arrow">↗</span>
+            </span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">◎</div>
+            <h3 class="service-title">Portraits</h3>
+            <p class="service-text">
+              Intimate studio and on-location sessions with cinematic light, tailored to individuals, families, and creatives.
+            </p>
+            <span class="service-link">
+              View portrait offerings
+              <span class="arrow">↗</span>
+            </span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">✶</div>
+            <h3 class="service-title">Editorial</h3>
+            <p class="service-text">
+              Art-directed storytelling for brands, magazines, and lookbooks with a refined, fashion-forward aesthetic.
+            </p>
+            <span class="service-link">
+              Review editorial work
+              <span class="arrow">↗</span>
+            </span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">▤</div>
+            <h3 class="service-title">Commercial</h3>
+            <p class="service-text">
+              Campaigns, product launches, and advertising imagery that translate brand narratives into cinematic visuals.
+            </p>
+            <span class="service-link">
+              Commercial overview
+              <span class="arrow">↗</span>
+            </span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">◦</div>
+            <h3 class="service-title">Bespoke</h3>
+            <p class="service-text">
+              Destination, multi-day, and artist-in-residence projects, customized around your vision and timelines.
+            </p>
+            <span class="service-link">
+              Design a custom brief
+              <span class="arrow">↗</span>
+            </span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-block">
+            <div class="section-kicker">Portfolio</div>
+            <h2 class="section-title">The work, refined</h2>
+          </div>
+          <p class="section-subtitle">
+            A curated mix of weddings, portraits, editorial assignments, and cinematic landscapes.
+            Filter, explore, and open any image in a full-screen lightbox with captions.
+          </p>
+        </div>
+
+        <!-- Hero Carousel -->
+        <div class="gallery-hero">
+          <div class="gallery-hero-track" id="heroCarousel">
+            <div class="gallery-hero-slide active" data-index="0" style="background-image:url('https://images.pexels.com/photos/3030063/pexels-photo-3030063.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="gallery-hero-slide" data-index="1" style="background-image:url('https://images.pexels.com/photos/2121663/pexels-photo-2121663.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="gallery-hero-slide" data-index="2" style="background-image:url('https://images.pexels.com/photos/2837009/pexels-photo-2837009.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+            <div class="gallery-hero-overlay">
+              <div class="gallery-hero-info">
+                <div>
+                  <div class="gallery-hero-label">
+                    <span class="dot"></span>
+                    Highlighted series
+                  </div>
+                  <h3 class="gallery-hero-title">Vertical stories in motion</h3>
+                  <p class="gallery-hero-desc">
+                    Swipe through marquee collections: destination vows, editorial portraits, and city-after-dark stories.
+                    Perfect for showcasing hero series on your storefront.
+                  </p>
+                </div>
+                <div class="gallery-hero-meta">
+                  <div class="gallery-hero-controls">
+                    <div id="galleryHeroDots" class="gallery-hero-dots">
+                      <span class="gallery-hero-dot active" data-target="0"></span>
+                      <span class="gallery-hero-dot" data-target="1"></span>
+                      <span class="gallery-hero-dot" data-target="2"></span>
+                    </div>
+                    <div class="gallery-hero-nav">
+                      <button class="gallery-hero-arrow" id="galleryPrev" aria-label="Previous">←</button>
+                      <button class="gallery-hero-arrow" id="galleryNext" aria-label="Next">→</button>
+                    </div>
+                  </div>
+                  <div class="gallery-hero-stats">
+                    <div class="gallery-hero-stat">Featured sets · 9</div>
+                    <div class="gallery-hero-stat">Swipe &amp; tap to expand</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="gallery-filters" id="galleryFilters">
+          <button class="filter-pill active" data-filter="all">
+            <span class="dot"></span>
+            All stories
+          </button>
+          <button class="filter-pill" data-filter="wedding">
+            <span class="dot"></span>
+            Weddings
+          </button>
+          <button class="filter-pill" data-filter="portrait">
+            <span class="dot"></span>
+            Portraits
+          </button>
+          <button class="filter-pill" data-filter="editorial">
+            <span class="dot"></span>
+            Editorial
+          </button>
+          <button class="filter-pill" data-filter="film">
+            <span class="dot"></span>
+            Film
+          </button>
+          <button class="filter-pill" data-filter="landscape">
+            <span class="dot"></span>
+            Landscape
+          </button>
+        </div>
+
+        <!-- Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Each gallery-item has data attributes for lightbox -->
+          <figure class="gallery-item gallery-span-2x2" data-category="wedding" data-index="0" data-title="Midnight on the terrace" data-caption="Intimate rooftop vows framed by the city skyline. Shot on digital with film-inspired grading." data-location="Brooklyn, New York">
+            <img loading="lazy" src="https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Couple holding hands during city rooftop wedding." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Midnight on the terrace</div>
+              <div class="gallery-item-tag">Wedding</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-3x2" data-category="editorial" data-index="1" data-title="Velvet editorial" data-caption="Moody studio editorial with sculpted light and layered textures." data-location="Studio, SoHo">
+            <img loading="lazy" src="https://images.pexels.com/photos/2121663/pexels-photo-2121663.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Editorial fashion portrait in studio lighting." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Velvet editorial</div>
+              <div class="gallery-item-tag">Editorial</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-2x2" data-category="portrait" data-index="2" data-title="Golden hour muse" data-caption="Softly lit portrait session wrapped in sunset tones and lens flare." data-location="Pacific Coast">
+            <img loading="lazy" src="https://images.pexels.com/photos/2837009/pexels-photo-2837009.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Portrait of woman in golden hour backlight." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Golden hour muse</div>
+              <div class="gallery-item-tag">Portrait</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-2x2" data-category="film" data-index="3" data-title="35mm reverie" data-caption="Grain-kissed frames captured on 35mm film for a tactile, nostalgic finish." data-location="Paris, France">
+            <img loading="lazy" src="https://images.pexels.com/photos/2892216/pexels-photo-2892216.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Romantic couple in the city shot on film." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">35mm reverie</div>
+              <div class="gallery-item-tag">Film</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-4x2" data-category="landscape" data-index="4" data-title="Above the city" data-caption="Fine-art landscape work exploring structure, fog, and light from above." data-location="Manhattan, New York">
+            <img loading="lazy" src="https://images.pexels.com/photos/3660530/pexels-photo-3660530.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Aerial city skyline at dusk." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Above the city</div>
+              <div class="gallery-item-tag">Landscape</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-2x2" data-category="wedding" data-index="5" data-title="Seaside vows" data-caption="Wind-swept, sun-drenched frames from an intimate coastal ceremony." data-location="Amalfi Coast, Italy">
+            <img loading="lazy" src="https://images.pexels.com/photos/1445514/pexels-photo-1445514.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bride and groom standing on seaside cliff." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Seaside vows</div>
+              <div class="gallery-item-tag">Wedding</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-3x2" data-category="portrait" data-index="6" data-title="Monochrome study" data-caption="Studio series exploring shadow, line, and expression in black &amp; white." data-location="Los Angeles, CA">
+            <img loading="lazy" src="https://images.pexels.com/photos/2837005/pexels-photo-2837005.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Black and white studio portrait." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Monochrome study</div>
+              <div class="gallery-item-tag">Portrait</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-2x2" data-category="editorial" data-index="7" data-title="Night shift" data-caption="Urban editorial series shot entirely after dark with cinematic neon." data-location="Tokyo, Japan">
+            <img loading="lazy" src="https://images.pexels.com/photos/2100063/pexels-photo-2100063.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fashion model under neon lights at night." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Night shift</div>
+              <div class="gallery-item-tag">Editorial</div>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item gallery-span-2x2" data-category="film" data-index="8" data-title="Kodak summer" data-caption="Sun-bleached, pastel-drenched frames captured on Kodak Portra." data-location="Palm Springs, CA">
+            <img loading="lazy" src="https://images.pexels.com/photos/2837008/pexels-photo-2837008.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Woman in pool shot on film." />
+            <figcaption class="gallery-item-meta">
+              <div class="gallery-item-title">Kodak summer</div>
+              <div class="gallery-item-tag">Film</div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-block">
+            <div class="section-kicker">Featured Stories</div>
+            <h2 class="section-title">Case studies</h2>
+          </div>
+          <p class="section-subtitle">
+            Transform standout shoots into editorial-style case studies. Pair large imagery with
+            succinct narratives that walk clients through your process and visual voice.
+          </p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-media">
+              <img loading="lazy" src="https://images.pexels.com/photos/3014857/pexels-photo-3014857.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Bride and groom walking at sunset." />
+            </div>
+            <div class="project-body">
+              <div class="project-tag">Destination wedding</div>
+              <h3 class="project-title">Sienna &amp; Luca · Amalfi dusk</h3>
+              <p class="project-text">
+                A three-day celebration along the cliffs of the Amalfi Coast, blending fashion-forward portraiture with
+                unguarded, documentary moments as the sun slipped into the Tyrrhenian Sea.
+              </p>
+              <div class="project-meta">
+                <span>Shot on digital &amp; 35mm · 840 images delivered</span>
+                <span class="project-link">Read story <span>↗</span></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img loading="lazy" src="https://images.pexels.com/photos/167832/pexels-photo-167832.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Fashion model posing on rooftop." />
+            </div>
+            <div class="project-body">
+              <div class="project-tag">Editorial campaign</div>
+              <h3 class="project-title">Aria Studio · Citylines</h3>
+              <p class="project-text">
+                A minimalist, architectural-inspired campaign that re-framed a heritage brand for a younger,
+                design-conscious audience through stark silhouettes and graphic light.
+              </p>
+              <div class="project-meta">
+                <span>Produced for print &amp; digital rollout</span>
+                <span class="project-link">View campaign <span>↗</span></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img loading="lazy" src="https://images.pexels.com/photos/1738986/pexels-photo-1738986.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Woman standing in desert landscape." />
+            </div>
+            <div class="project-body">
+              <div class="project-tag">Personal work</div>
+              <h3 class="project-title">Dust &amp; light · A desert study</h3>
+              <p class="project-text">
+                A series of personal frames exploring scale, isolation, and the nostalgia of roadside Americana,
+                informing the studio’s color palette and tonal signature.
+              </p>
+              <div class="project-meta">
+                <span>Exhibited · Limited edition prints</span>
+                <span class="project-link">Explore series <span>↗</span></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-inner">
+          <div class="about-portrait-wrap">
+            <div class="about-portrait-frame">
+              <img loading="lazy" src="https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Portrait of photographer holding camera." />
+            </div>
+            <div class="about-identity">
+              <strong>Your Name Here</strong>
+              <span>Founder · Lead photographer</span>
+            </div>
+            <div class="about-ribbon">Cinematic storytelling · Crafted frames</div>
+          </div>
+          <div class="about-copy">
+            <h2 class="about-heading">The person behind the lens</h2>
+            <p class="about-text">
+              Your storefront is more than a portfolio—it is a living moodboard for your clients.
+              Use this space to introduce your style, your process, and what you care about when you
+              step into a shoot. Share why you are drawn to subtle in-between moments as much as striking,
+              editorial compositions.
+            </p>
+            <p class="about-text">
+              Whether you are documenting vows on a rain-soaked rooftop, crafting a clean commercial campaign,
+              or building a personal series on 35mm, the through line is the same: intentional, cinematic imagery
+              that still feels human.
+            </p>
+            <div class="about-style">
+              <div class="about-style-item">
+                <strong>Visual approach</strong><br />
+                Clean compositions, layered depth, and a restrained color palette with warm highlights.
+              </div>
+              <div class="about-style-item">
+                <strong>Client experience</strong><br />
+                Calm, directive, and detail-focused—with timelines and communication built for ease.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="testimonials-inner">
+          <div>
+            <div class="section-kicker">Testimonials</div>
+            <h2 class="section-title" style="margin-top:4px">In their words</h2>
+            <p class="section-subtitle" style="margin-top: 10px; max-width: 380px;">
+              A rotating slider for client notes—perfect for anchoring trust on your homepage and
+              across individual service pages.
+            </p>
+          </div>
+          <div class="testimonial-slider" id="testimonialSlider">
+            <div class="testimonial-slide active" data-index="0">
+              <p class="testimonial-quote">
+                “Every frame feels like it was pulled from a film still. Our gallery moves, breathes,
+                and somehow looks exactly like us—just elevated. The experience was quietly luxurious
+                from first email to final delivery.”
+              </p>
+              <div class="testimonial-client">
+                <div class="testimonial-avatar">
+                  <img loading="lazy" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smiling client portrait." />
+                </div>
+                <div class="testimonial-client-info">
+                  <strong>Alex &amp; Morgan</strong>
+                  <span>Wedding · Hudson Valley</span>
+                </div>
+              </div>
+              <div class="testimonial-controls">
+                <span>Featured client stories</span>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="testimonial-dots" id="testimonialDots">
+                    <span class="testimonial-dot active" data-target="0"></span>
+                    <span class="testimonial-dot" data-target="1"></span>
+                    <span class="testimonial-dot" data-target="2"></span>
+                  </div>
+                  <div class="testimonial-arrows">
+                    <button class="testimonial-arrow" id="testimonialPrev" aria-label="Previous testimonial">←</button>
+                    <button class="testimonial-arrow" id="testimonialNext" aria-label="Next testimonial">→</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="1">
+              <p class="testimonial-quote">
+                “From treatment decks to on-set direction, everything felt intentional and precise.
+                The final imagery carried our campaign and has become the visual foundation of our rebrand.”
+              </p>
+              <div class="testimonial-client">
+                <div class="testimonial-avatar">
+                  <img loading="lazy" src="https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Creative director portrait." />
+                </div>
+                <div class="testimonial-client-info">
+                  <strong>Elena Ruiz</strong>
+                  <span>Creative Director · Aria Studio</span>
+                </div>
+              </div>
+              <div class="testimonial-controls">
+                <span>Editorial &amp; commercial partners</span>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="testimonial-dots">
+                    <span class="testimonial-dot" data-target="0"></span>
+                    <span class="testimonial-dot active" data-target="1"></span>
+                    <span class="testimonial-dot" data-target="2"></span>
+                  </div>
+                  <div class="testimonial-arrows">
+                    <button class="testimonial-arrow">←</button>
+                    <button class="testimonial-arrow">→</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="2">
+              <p class="testimonial-quote">
+                “I have never felt comfortable in front of a camera, and yet these portraits feel effortless.
+                The direction was subtle but confident, and the images have become a cornerstone of my brand.”
+              </p>
+              <div class="testimonial-client">
+                <div class="testimonial-avatar">
+                  <img loading="lazy" src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Business owner portrait." />
+                </div>
+                <div class="testimonial-client-info">
+                  <strong>Jordan Lee</strong>
+                  <span>Founder · Studio Kin</span>
+                </div>
+              </div>
+              <div class="testimonial-controls">
+                <span>Portrait &amp; brand clients</span>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="testimonial-dots">
+                    <span class="testimonial-dot" data-target="0"></span>
+                    <span class="testimonial-dot" data-target="1"></span>
+                    <span class="testimonial-dot active" data-target="2"></span>
+                  </div>
+                  <div class="testimonial-arrows">
+                    <button class="testimonial-arrow">←</button>
+                    <button class="testimonial-arrow">→</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-inner">
+          <div class="contact-copy">
+            <div class="section-kicker">Contact</div>
+            <h2 class="contact-heading">Reserve your date</h2>
+            <p class="contact-text">
+              Use this form to inquire about weddings, editorial projects, or custom commissions.
+              Share as much detail as you comfortably can—date, location, and the story you’re hoping to tell.
+            </p>
+            <div class="contact-meta">
+              <span>Average response time · Within 24 hours</span>
+              <span>For urgent commercial inquiries, email directly:
+                <strong>hello@studioaurelius.co</strong></span>
+            </div>
+            <div class="contact-social">
+              <button class="social-icon" aria-label="Instagram">IG</button>
+              <button class="social-icon" aria-label="Pinterest">PI</button>
+              <button class="social-icon" aria-label="TikTok">TT</button>
+              <button class="social-icon" aria-label="Behance">BE</button>
+            </div>
+            <button class="contact-cta" type="button">
+              <span>Open live calendar</span>
+              <span>↗</span>
+            </button>
+          </div>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a template. Hook this form to your email or CRM.');">
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" id="name" type="text" placeholder="Your full name" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" id="email" type="email" placeholder="name@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="sessionType">Session type</label>
+                <select class="form-select" id="sessionType" required>
+                  <option value="">Select one</option>
+                  <option>Wedding / Elopement</option>
+                  <option>Portrait / Brand Session</option>
+                  <option>Editorial / Commercial</option>
+                  <option>Multi-day / Destination</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="date">Preferred date</label>
+                <input class="form-input" id="date" type="date" />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">Tell me about your vision</label>
+              <textarea class="form-textarea" id="message" placeholder="Location, number of guests, aesthetic references, budget range…"></textarea>
+            </div>
+            <div class="form-foot">
+              <span>By clicking submit, you agree to be contacted about your inquiry.</span>
+              <button class="btn btn-primary btn-submit" type="submit">
+                Send inquiry
+                <span>⟶</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-bottom-nav-inner">
+        <button class="mobile-bottom-item active" data-target="#hero">
+          <span class="mobile-bottom-dot">◎</span>
+          <span>Home</span>
+        </button>
+        <button class="mobile-bottom-item" data-target="#gallery">
+          <span class="mobile-bottom-dot">▤</span>
+          <span>Work</span>
+        </button>
+        <button class="mobile-bottom-item" data-target="#projects">
+          <span class="mobile-bottom-dot">✶</span>
+          <span>Stories</span>
+        </button>
+        <button class="mobile-bottom-item" data-target="#contact">
+          <span class="mobile-bottom-dot">↗</span>
+          <span>Book</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-inner">
+        <div class="lightbox-media">
+          <img id="lightboxImage" src="" alt="" />
+          <div class="lightbox-nav">
+            <button class="lightbox-arrow" id="lightboxPrev" aria-label="Previous image">←</button>
+            <button class="lightbox-arrow" id="lightboxNext" aria-label="Next image">→</button>
+          </div>
+          <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+        </div>
+        <div class="lightbox-caption">
+          <div>
+            <div class="lightbox-caption-title" id="lightboxTitle"></div>
+            <div id="lightboxCaption"></div>
+          </div>
+          <div class="lightbox-caption-meta">
+            <span id="lightboxLocation"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Minimal Guide -->
+    <section class="guide">
+      <div class="container">
+        <h3>Template notes · Editing guide</h3>
+        <div class="guide-grid">
+          <div class="guide-block">
+            <strong>Gallery items</strong>
+            <ul>
+              <li>Duplicate <code>.gallery-item</code> blocks to add images.</li>
+              <li>Update <code>data-category</code> with: wedding, portrait, editorial, film, landscape.</li>
+              <li>Edit <code>data-title</code>, <code>data-caption</code>, and <code>data-location</code> for lightbox content.</li>
+            </ul>
+          </div>
+          <div class="guide-block">
+            <strong>Colors &amp; type</strong>
+            <ul>
+              <li>Adjust the palette via <code>:root</code> variables (e.g. <code>--accent</code>, <code>--bg-main</code>).</li>
+              <li>Swap fonts globally by changing <code>font-family</code> on <code>body</code>.</li>
+              <li>Buttons share the <code>.btn</code> base class with <code>.btn-primary</code> / <code>.btn-ghost</code>.</li>
+            </ul>
+          </div>
+          <div class="guide-block">
+            <strong>Layout blocks</strong>
+            <ul>
+              <li>Each major section (hero, services, gallery, projects, about, testimonials, contact) is modular.</li>
+              <li>Reorder by moving entire <code>&lt;section&gt;</code> elements.</li>
+              <li>Mobile behavior is tuned at <code>768px</code> and <code>520px</code> breakpoints in the media queries.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navDrawer = document.getElementById('navDrawer');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('open');
+        navDrawer.classList.toggle('open');
+      });
+    }
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navDrawer.classList.remove('open');
+        navToggle.classList.remove('open');
+      });
+    });
+
+    // Hero frame simple rotation
+    const heroLayers = [document.getElementById('heroLayer1'), document.getElementById('heroLayer2'), document.getElementById('heroLayer3')];
+    let heroIndex = 0;
+    function rotateHeroLayer() {
+      heroLayers.forEach((layer, i) => {
+        if (!layer) return;
+        layer.classList.toggle('visible', i === heroIndex);
+      });
+      heroIndex = (heroIndex + 1) % heroLayers.length;
+    }
+    setInterval(rotateHeroLayer, 8000);
+
+    // Gallery hero carousel
+    const heroSlides = document.querySelectorAll('.gallery-hero-slide');
+    const heroDots = document.querySelectorAll('.gallery-hero-dot');
+    const heroPrev = document.getElementById('galleryPrev');
+    const heroNext = document.getElementById('galleryNext');
+    let galleryHeroIndex = 0;
+
+    function setHeroSlide(idx) {
+      galleryHeroIndex = (idx + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach((s, i) => s.classList.toggle('active', i === galleryHeroIndex));
+      heroDots.forEach((d, i) => d.classList.toggle('active', i === galleryHeroIndex));
+    }
+
+    heroDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const t = parseInt(dot.dataset.target, 10);
+        setHeroSlide(t);
+      });
+    });
+    if (heroPrev && heroNext) {
+      heroPrev.addEventListener('click', () => setHeroSlide(galleryHeroIndex - 1));
+      heroNext.addEventListener('click', () => setHeroSlide(galleryHeroIndex + 1));
+    }
+    setInterval(() => setHeroSlide(galleryHeroIndex + 1), 9000);
+
+    // Gallery filters
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        galleryItems.forEach(item => {
+          const cat = item.dataset.category;
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImage');
+    const lbTitle = document.getElementById('lightboxTitle');
+    const lbCaption = document.getElementById('lightboxCaption');
+    const lbLocation = document.getElementById('lightboxLocation');
+    const lbClose = document.getElementById('lightboxClose');
+    const lbPrev = document.getElementById('lightboxPrev');
+    const lbNext = document.getElementById('lightboxNext');
+
+    const galleryData = Array.from(galleryItems).map((item, idx) => ({
+      src: item.querySelector('img').src,
+      alt: item.querySelector('img').alt,
+      title: item.dataset.title || '',
+      caption: item.dataset.caption || '',
+      location: item.dataset.location || '',
+      index: idx
+    }));
+
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = (index + galleryData.length) % galleryData.length;
+      const data = galleryData[currentLightboxIndex];
+      lbImg.src = data.src;
+      lbImg.alt = data.alt;
+      lbTitle.textContent = data.title;
+      lbCaption.textContent = data.caption;
+      lbLocation.textContent = data.location;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbPrev) lbPrev.addEventListener('click', () => openLightbox(currentLightboxIndex - 1));
+    if (lbNext) lbNext.addEventListener('click', () => openLightbox(currentLightboxIndex + 1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox(currentLightboxIndex - 1);
+      if (e.key === 'ArrowRight') openLightbox(currentLightboxIndex + 1);
+    });
+
+    // Testimonials slider
+    const testimonialSlides = document.querySelectorAll('#testimonialSlider .testimonial-slide');
+    const testimonialDotsMaster = document.getElementById('testimonialDots');
+    const testimonialPrev = document.getElementById('testimonialPrev');
+    const testimonialNext = document.getElementById('testimonialNext');
+    let testimonialIndex = 0;
+
+    function setTestimonial(idx) {
+      testimonialIndex = (idx + testimonialSlides.length) % testimonialSlides.length;
+      testimonialSlides.forEach((slide, i) => slide.classList.toggle('active', i === testimonialIndex));
+      if (!testimonialDotsMaster) return;
+      const dots = testimonialDotsMaster.querySelectorAll('.testimonial-dot');
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === testimonialIndex));
+    }
+
+    if (testimonialDotsMaster) {
+      testimonialDotsMaster.querySelectorAll('.testimonial-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          const t = parseInt(dot.dataset.target, 10);
+          setTestimonial(t);
+        });
+      });
+    }
+    if (testimonialPrev && testimonialNext) {
+      testimonialPrev.addEventListener('click', () => setTestimonial(testimonialIndex - 1));
+      testimonialNext.addEventListener('click', () => setTestimonial(testimonialIndex + 1));
+    }
+    setInterval(() => setTestimonial(testimonialIndex + 1), 12000);
+
+    // Mobile bottom nav scroll
+    const mobileBottomItems = document.querySelectorAll('.mobile-bottom-item');
+    mobileBottomItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const target = document.querySelector(item.dataset.target);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const sections = ['#hero', '#gallery', '#projects', '#contact'].map(sel => document.querySelector(sel));
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 120;
+      let activeIndex = 0;
+      sections.forEach((section, i) => {
+        if (!section) return;
+        if (scrollPos >= section.offsetTop) {
+          activeIndex = i;
+        }
+      });
+      mobileBottomItems.forEach((item, i) => {
+        item.classList.toggle('active', i === activeIndex);
+      });
+    });
+  </script>
+</body>
+</html>

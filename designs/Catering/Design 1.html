@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Memories - Premium Catering Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-gold: #D4A574;
+            --primary-dark: #2C1810;
+            --text-gray: #6B7280;
+            --light-bg: #FDF7F0;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.9), rgba(44, 24, 16, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23F3E5D0" width="1200" height="800"/><circle fill="%23D4A574" opacity="0.1" cx="200" cy="200" r="150"/><circle fill="%23D4A574" opacity="0.1" cx="1000" cy="600" r="200"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-card {
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .price-badge {
+            background: linear-gradient(135deg, var(--primary-gold), #B8935A);
+            color: white;
+        }
+        
+        .diet-tag {
+            background: #F0FDF4;
+            color: #15803D;
+            border: 1px solid #BBF7D0;
+        }
+        
+        .popular-badge {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-gold), #B8935A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-body bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-utensils text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading text-2xl font-bold text-gray-800">Delicious Memories</h1>
+                    <p class="text-xs text-gray-600">Premium Catering Services</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">About</a>
+                <a href="#menu" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Menu</a>
+                <a href="#services" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Services</a>
+                <a href="#gallery" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Gallery</a>
+                <a href="#testimonials" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Testimonials</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Contact</a>
+                <button class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 font-semibold">
+                    Book Your Event
+                </button>
+            </div>
+            
+            <button class="md:hidden text-gray-700" id="mobileMenuBtn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Delicious Memories<br>
+                <span class="gradient-text">Curated for Your Special Day</span>
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                Creating unforgettable culinary experiences for weddings, corporate events, and celebrations with our expertly crafted menus and exceptional service.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToMenu()" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
+                    <i class="fas fa-book-open mr-2"></i>View Our Menu
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-gray-800 transition-all duration-300">
+                    <i class="fas fa-quote-right mr-2"></i>Request Custom Quote
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="font-heading text-4xl font-bold text-gray-800 mb-4">Our Exclusive Menu Collections</h3>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Explore our meticulously curated menu options created for weddings, corporate events, and special celebrations. Each dish is crafted with the finest ingredients and presented with elegance.
+                </p>
+            </div>
+
+            <!-- Menu Search & Filters -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="relative w-full md:w-96">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="menuSearch" placeholder="Search dishes..." 
+                           class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                </div>
+                <div class="flex gap-3">
+                    <select class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                        <option>All Cuisines</option>
+                        <option>Traditional</option>
+                        <option>Continental</option>
+                        <option>Fusion</option>
+                    </select>
+                    <select class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                        <option>All Dietary</option>
+                        <option>Vegetarian</option>
+                        <option>Vegan</option>
+                        <option>Gluten-free</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Menu Tabs -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-center gap-2 mb-8">
+                    <button class="menu-tab active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="wedding">
+                        <i class="fas fa-ring mr-2"></i>Wedding Menus
+                    </button>
+                    <button class="menu-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="anniversary">
+                        <i class="fas fa-heart mr-2"></i>Anniversary & Milestones
+                    </button>
+                    <button class="menu-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="engagement">
+                        <i class="fas fa-glass-cheers mr-2"></i>Engagement & Seemantham
+                    </button>
+                    <button class="menu-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="birthday">
+                        <i class="fas fa-birthday-cake mr-2"></i>Birthday & Housewarming
+                    </button>
+                    <button class="menu-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="corporate">
+                        <i class="fas fa-building mr-2"></i>Corporate Events
+                    </button>
+                    <button class="menu-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-tab="special">
+                        <i class="fas fa-star mr-2"></i>Special Functions
+                    </button>
+                </div>
+
+                <!-- Wedding Menu -->
+                <div id="wedding" class="tab-content active">
+                    <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Wedding Celebration Menus</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6 relative">
+                            <div class="popular-badge absolute -top-2 -right-2 px-3 py-1 rounded-full text-xs font-bold">
+                                MOST POPULAR
+                            </div>
+                            <h5 class="font-heading text-xl font-semibold mb-3">Muhurtham Breakfast</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Traditional Idli & Sambar</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Coconut Chutney</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Filter Coffee</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Sweet Pongal</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹150 per plate
+                            </div>
+                        </div>
+
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Wedding Lunch Buffet</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Biryani (Veg/Non-veg)</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Paneer Butter Masala</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Dal Tadka</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Roti & Rice</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹450 per plate
+                            </div>
+                        </div>
+
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Dessert Selection</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Gulab Jamun</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Kulfi Counter</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Payasam</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Fresh Fruit Platter</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEGAN</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹120 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anniversary Menu -->
+                <div id="anniversary" class="tab-content">
+                    <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Anniversary & Milestone Celebrations</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Golden Anniversary Special</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Traditional Thali</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Signature Curries</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Festive Sweets</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹380 per plate
+                            </div>
+                        </div>
+
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Milestone Dinner Buffet</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Continental Starters</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Live Pasta Counter</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Grilled Specialties</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">NON-VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹520 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engagement Menu -->
+                <div id="engagement" class="tab-content">
+                    <h4 class="font-heading text-2xl font-semibent text-gray-800 mb-6">Engagement & Seemantham Ceremonies</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Engagement Welcome Items</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Welcome Drinks</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Assorted Snacks</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Traditional Sweets</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹200 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Birthday Menu -->
+                <div id="birthday" class="tab-content">
+                    <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Birthday & Housewarming Celebrations</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Kids Birthday Special</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Mini Pizza</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Chicken Nuggets</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Ice Cream Counter</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹280 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corporate Menu -->
+                <div id="corporate" class="tab-content">
+                    <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Corporate Event Menus</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Business Lunch</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Executive Thali</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Fresh Salads</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEGAN</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Tea/Coffee</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹320 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Functions -->
+                <div id="special" class="tab-content">
+                    <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6">Special Function Menus</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="menu-card rounded-lg p-6">
+                            <h5 class="font-heading text-xl font-semibold mb-3">Retirement Party</h5>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span>Farewell Special Thali</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG/NON-VEG</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>Memory Lane Desserts</span>
+                                    <span class="diet-tag px-2 py-1 rounded-full text-xs">VEG</span>
+                                </div>
+                            </div>
+                            <div class="price-badge px-4 py-2 rounded-full text-center font-semibold">
+                                ₹350 per plate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Counters Section -->
+            <div class="mt-16 bg-gray-50 rounded-lg p-8">
+                <h4 class="font-heading text-2xl font-semibold text-gray-800 mb-6 text-center">Live Counters & Stall Options</h4>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-fire text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h5 class="font-semibold mb-2">Live Dosa Counter</h5>
+                        <p class="text-sm text-gray-600">Fresh dosas made to order</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-cookie-bite text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h5 class="font-semibold mb-2">Chaat Station</h5>
+                        <p class="text-sm text-gray-600">Interactive chaat making</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-ice-cream text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h5 class="font-semibold mb-2">Dessert Stall</h5>
+                        <p class="text-sm text-gray-600">Fresh desserts & kulfi</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-pepper-hot text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h5 class="font-semibold mb-2">Grill Counter</h5>
+                        <p class="text-sm text-gray-600">Live grilled specialties</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h3 class="font-heading text-4xl font-bold text-center text-gray-800 mb-12">What Our Clients Say</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Exceptional service for our daughter's wedding. Every guest was impressed with the quality and presentation of the food."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white font-semibold">R</div>
+                        <div class="ml-3">
+                            <p class="font-semibold">Rajesh Kumar</p>
+                            <p class="text-sm text-gray-600">Wedding Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Professional team, delicious food, and seamless execution. Perfect for our corporate annual meeting."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+                        <div class="ml-3">
+                            <p class="font-semibold">Anitha Sharma</p>
+                            <p class="text-sm text-gray-600">Corporate Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Amazing variety and taste! The live counters were a big hit at our anniversary celebration."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white font-semibold">M</div>
+                        <div class="ml-3">
+                            <p class="font-semibold">Meera Patel</p>
+                            <p class="text-sm text-gray-600">Anniversary Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="font-heading text-4xl font-bold text-gray-800 mb-4">Get in Touch</h3>
+                <p class="text-lg text-gray-600">Ready to create delicious memories for your special event?</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                            <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500">
+                                <option>Event Type</option>
+                                <option>Wedding</option>
+                                <option>Corporate</option>
+                                <option>Birthday</option>
+                                <option>Anniversary</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <textarea placeholder="Tell us about your event..." rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"></textarea>
+                        <button class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Inquiry
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Visit Us</h4>
+                            <p class="text-gray-600">123 Catering Street, Food District<br>Mumbai, Maharashtra 400001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-phone text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Call Us</h4>
+                            <p class="text-gray-600">+91 98765 43210<br>+91 87654 32109</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-2">Email Us</h4>
+                            <p class="text-gray-600">info@deliciousmemories.com<br>events@deliciousmemories.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-yellow-50 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3">Download Menu PDF</h4>
+                        <p class="text-gray-600 mb-4">Get our complete menu catalogue for your reference.</p>
+                        <button class="bg-yellow-600 text-white px-6 py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+                            <i class="fas fa-download mr-2"></i>Download Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-4">Delicious Memories</h4>
+                    <p class="text-gray-400 mb-4">Creating unforgettable culinary experiences for your special moments.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Services</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Wedding Catering</a></li>
+                        <li><a href="#" class="hover:text-white">Corporate Events</a></li>
+                        <li><a href="#" class="hover:text-white">Birthday Parties</a></li>
+                        <li><a href="#" class="hover:text-white">Anniversary Celebrations</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#menu" class="hover:text-white">Our Menu</a></li>
+                        <li><a href="#" class="hover:text-white">Gallery</a></li>
+                        <li><a href="#testimonials" class="hover:text-white">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Contact Info</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>+91 98765 43210</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@deliciousmemories.com</li>
+                        <li><i class="fas fa-clock mr-2"></i>Mon - Sun: 9AM - 10PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Delicious Memories. All rights reserved. | Designed with ❤️ for memorable events</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Tab Functionality
+        document.querySelectorAll('.menu-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.menu-tab').forEach(t => {
+                    t.classList.remove('active', 'bg-yellow-500', 'text-white');
+                    t.classList.add('text-gray-600', 'hover:bg-gray-100');
+                });
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked tab
+                tab.classList.add('active', 'bg-yellow-500', 'text-white');
+                tab.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                
+                // Show corresponding content
+                const targetTab = tab.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Initialize first tab
+        document.querySelector('.menu-tab[data-tab="wedding"]').classList.add('bg-yellow-500', 'text-white');
+
+        // Smooth scrolling for menu button
+        function scrollToMenu() {
+            document.getElementById('menu').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Menu Search Functionality
+        document.getElementById('menuSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const menuCards = document.querySelectorAll('.menu-card');
+            
+            menuCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            // Mobile menu implementation would go here
+            console.log('Mobile menu clicked');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe menu cards for animation
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('backdrop-blur-md', 'bg-white/90');
+            } else {
+                header.classList.remove('backdrop-blur-md', 'bg-white/90');
+            }
+        });
+    </script>
+</body>
+</html>
