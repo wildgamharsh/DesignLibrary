@@ -17,55 +17,90 @@ const DESIGN_MANIFEST = {
       }
     ]
   },
-  "storefront-templates": {
-    "title": "Storefront-templates",
+  "TEMPLATES by Harsh": {
+    "title": "TEMPLATES by Harsh",
     "items": [
       {
         "title": "Design 1",
         "file": "design-1.html",
-        "path": "designs/storefront-templates/design-1.html",
+        "path": "designs/TEMPLATES by Harsh/design-1.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 2",
         "file": "design-2.html",
-        "path": "designs/storefront-templates/design-2.html",
+        "path": "designs/TEMPLATES by Harsh/design-2.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 3",
         "file": "design-3.html",
-        "path": "designs/storefront-templates/design-3.html",
+        "path": "designs/TEMPLATES by Harsh/design-3.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 4",
         "file": "design-4.html",
-        "path": "designs/storefront-templates/design-4.html",
+        "path": "designs/TEMPLATES by Harsh/design-4.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 5",
         "file": "design-5.html",
-        "path": "designs/storefront-templates/design-5.html",
+        "path": "designs/TEMPLATES by Harsh/design-5.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 6",
         "file": "design-6.html",
-        "path": "designs/storefront-templates/design-6.html",
+        "path": "designs/TEMPLATES by Harsh/design-6.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 7",
         "file": "design-7.html",
-        "path": "designs/storefront-templates/design-7.html",
+        "path": "designs/TEMPLATES by Harsh/design-7.html",
         "thumbnail": "Thumb.jpg"
       },
       {
         "title": "Design 8",
         "file": "design-8.html",
-        "path": "designs/storefront-templates/design-8.html",
+        "path": "designs/TEMPLATES by Harsh/design-8.html",
+        "thumbnail": "Thumb.jpg"
+      }
+    ]
+  },
+  "TEMPLATES by Tejvir": {
+    "title": "TEMPLATES by Tejvir",
+    "items": [
+      {
+        "title": "Design 1",
+        "file": "Design 1.html",
+        "path": "designs/TEMPLATES by Tejvir/Design 1.html",
+        "thumbnail": "Thumb.jpg"
+      },
+      {
+        "title": "Design 2",
+        "file": "Design 2.html",
+        "path": "designs/TEMPLATES by Tejvir/Design 2.html",
+        "thumbnail": "Thumb.jpg"
+      },
+      {
+        "title": "Design 3",
+        "file": "Design 3.html",
+        "path": "designs/TEMPLATES by Tejvir/Design 3.html",
+        "thumbnail": "Thumb.jpg"
+      },
+      {
+        "title": "Design 4",
+        "file": "Design 4.html",
+        "path": "designs/TEMPLATES by Tejvir/Design 4.html",
+        "thumbnail": "Thumb.jpg"
+      },
+      {
+        "title": "Design 5",
+        "file": "Design 5.html",
+        "path": "designs/TEMPLATES by Tejvir/Design 5.html",
         "thumbnail": "Thumb.jpg"
       }
     ]
