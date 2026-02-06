@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Decorations | Premium Catering & Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --gold: #C5A059;
+            --dark: #121212;
+            --light: #F9F7F2;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #E8D4A2 50%, #C5A059 100%);
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #C5A059 0%, #B38B41 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            background-color: rgba(18, 18, 18, 0.85);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+        }
+
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background: #b38b41;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .testimonial-card {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            ring: 2px var(--gold);
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-blur border-b border-white/10 transition-all duration-300 py-4" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 gold-gradient rounded-full flex items-center justify-center">
+                    <i data-lucide="crown" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-serif font-bold text-white tracking-wider">ELITE <span
+                        class="text-[#C5A059]">DECOR</span></span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-white/80">
+                <a href="#home" class="hover:text-[#C5A059] transition-colors">Home</a>
+                <a href="#services" class="hover:text-[#C5A059] transition-colors">Services</a>
+                <a href="#about" class="hover:text-[#C5A059] transition-colors">About</a>
+                <a href="#testimonials" class="hover:text-[#C5A059] transition-colors">Reviews</a>
+                <a href="#contact" class="hover:text-[#C5A059] transition-colors">Contact</a>
+            </div>
+
+            <button
+                class="hidden md:block btn-gold px-6 py-2 rounded-sm text-sm font-semibold uppercase tracking-widest">
+                Book Event
+            </button>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white" onclick="toggleMenu()">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-full left-0 w-full bg-[#121212] border-t border-white/10 flex flex-col p-6 space-y-4">
+            <a href="#home" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Home</a>
+            <a href="#services" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Services</a>
+            <a href="#about" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">About</a>
+            <a href="#testimonials" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Reviews</a>
+            <a href="#contact" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000"
+                alt="Luxury Banquet" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center text-white">
+            <h4 class="text-[#C5A059] uppercase tracking-[0.4em] mb-4 opacity-0 animate-up">Elegance Refined</h4>
+            <h1 class="text-5xl md:text-8xl font-serif font-bold mb-8 leading-tight opacity-0 animate-up delay-1">
+                Crafting Your <br><span class="italic">Dream Moments</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-white/80 mb-10 opacity-0 animate-up delay-2">
+                Premier catering and bespoke decorations for weddings, corporate galas, and private celebrations. Where
+                every detail matters.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center opacity-0 animate-up delay-2">
+                <a href="#services"
+                    class="btn-gold px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest">Explore
+                    Services</a>
+                <a href="#contact"
+                    class="border border-white/30 hover:bg-white/10 px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest backdrop-blur-sm transition-all">Get
+                    a Quote</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-white/50 w-8 h-8"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="gold-text uppercase tracking-widest font-semibold text-sm">What We Offer</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-4">Exquisite Experiences</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Catering -->
+                <div
+                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
+                            alt="Catering"
+                            class="service-image w-full h-full object-cover transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
+                            <i data-lucide="utensils" class="w-4 h-4 text-[#C5A059]"></i>
+                            <span class="text-xs font-bold uppercase">Catering</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif mb-3">Gourmet Catering</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Artfully crafted menus featuring local organic
+                            ingredients and international fusion flavors designed for discerning palates.</p>
+                        <a href="#"
+                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
+                            View Menu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Decoration -->
+                <div
+                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
+                            alt="Decoration"
+                            class="service-image w-full h-full object-cover transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-[#C5A059]"></i>
+                            <span class="text-xs font-bold uppercase">Decoration</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif mb-3">Bespoke Design</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Floral arrangements, luxury lighting, and thematic
+                            installations that transform ordinary spaces into breathtaking environments.</p>
+                        <a href="#"
+                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
+                            View Gallery <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event Planning -->
+                <div
+                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1470753590773-c7d80e046255?auto=format&fit=crop&q=80&w=800"
+                            alt="Planning"
+                            class="service-image w-full h-full object-cover transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-4 h-4 text-[#C5A059]"></i>
+                            <span class="text-xs font-bold uppercase">Planning</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-serif mb-3">Full Coordination</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Comprehensive event management from
+                            conceptualization to execution. We handle the stress, you enjoy the magic.</p>
+                        <a href="#"
+                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Our Process <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-[#121212] text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=600"
+                            alt="About 1" class="rounded-lg mt-8">
+                        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=600"
+                            alt="About 2" class="rounded-lg">
+                    </div>
+                    <div
+                        class="absolute -bottom-6 -right-6 w-48 h-48 gold-gradient p-8 flex flex-col justify-center rounded-lg shadow-xl hidden md:flex">
+                        <span class="text-4xl font-bold">15+</span>
+                        <span class="text-sm uppercase tracking-tighter">Years of Excellence</span>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <span class="gold-text uppercase tracking-widest font-semibold text-sm">About Elite Decor</span>
+                    <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-8">Creating Legends Out Of Your Special Events
+                    </h2>
+                    <p class="text-white/70 mb-6 leading-loose">
+                        Founded in 2008, Elite Decorations has grown from a boutique decor house into a full-service
+                        event production powerhouse. We believe that every occasion is a unique story waiting to be told
+                        through sensory experiences, vibrant colors, and impeccable service.
+                    </p>
+                    <p class="text-white/70 mb-8 leading-loose">
+                        Our team of award-winning chefs and visionary designers work in tandem to ensure your vision
+                        isn't just met—it's surpassed.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
+                            <span>White-glove service standards</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
+                            <span>Customized floral and lighting design</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
+                            <span>Michelin-inspired event catering</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-3xl"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="gold-text uppercase tracking-widest font-semibold text-sm">Client Stories</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-4">Kind Words From Elite Clients</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-10 bg-white border border-gray-100 rounded-2xl">
+                    <div class="flex gap-1 mb-6 text-[#C5A059]">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-8 leading-relaxed">
+                        "The level of sophistication Elite Decorations brought to our wedding was beyond our wildest
+                        dreams. The floral arrangements were a masterpiece."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?u=1" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Eleanor Sterling</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest">Wedding Client</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-10 bg-[#121212] text-white rounded-2xl transform md:-translate-y-4">
+                    <div class="flex gap-1 mb-6 text-[#C5A059]">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-white/80 italic mb-8 leading-relaxed">
+                        "Professionalism at its peak. Our annual corporate gala was flawless. The catering was
+                        Michelin-grade and the service was incredibly attentive."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?u=2" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Jameson Vane</h4>
+                            <p class="text-xs text-white/40 uppercase tracking-widest">CEO, Nexus Corp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-10 bg-white border border-gray-100 rounded-2xl">
+                    <div class="flex gap-1 mb-6 text-[#C5A059]">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-8 leading-relaxed">
+                        "I didn't have to worry about a single detail. Elite Decor managed everything from the guest
+                        seating to the late-night dessert bar. Exceptional."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?u=3" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold">Sophia Martinez</h4>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest">Private Party</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-[#F9F7F2]">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 p-12 lg:p-20 bg-[#121212] text-white flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-serif mb-6">Let's Create <br>Something Iconic</h2>
+                        <p class="text-white/60 mb-12">Contact us for a complimentary consultation and venue
+                            walkthrough.</p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-5 h-5 text-[#C5A059]"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-white/40">Email Us</p>
+                                    <p class="text-lg">hello@elitedecorations.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-5 h-5 text-[#C5A059]"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-white/40">Call Us</p>
+                                    <p class="text-lg">+1 (555) 234-5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-[#C5A059]"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-white/40">Visit Studio</p>
+                                    <p class="text-lg">777 Luxury Lane, Beverly Hills, CA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 mt-16">
+                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 p-12 lg:p-20">
+                    <form id="contactForm" onsubmit="handleForm(event)" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Full
+                                    Name</label>
+                                <input type="text"
+                                    class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Email
+                                    Address</label>
+                                <input type="email"
+                                    class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
+                                    placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Event Type</label>
+                            <select
+                                class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent">
+                                <option>Wedding Celebration</option>
+                                <option>Corporate Gala</option>
+                                <option>Private Dinner</option>
+                                <option>Other Milestone</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Your
+                                Message</label>
+                            <textarea rows="4"
+                                class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
+                                placeholder="Tell us about your event vision..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full btn-gold py-5 rounded-sm text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-3">
+                            Send Inquiry <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                    <div id="formSuccess" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-center">
+                        Thank you! Our concierge will contact you within 24 hours.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A0A0A] text-white py-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-8 h-8 gold-gradient rounded-full flex items-center justify-center">
+                        <i data-lucide="crown" class="text-white w-4 h-4"></i>
+                    </div>
+                    <span class="text-xl font-serif font-bold tracking-wider">ELITE <span
+                            class="text-[#C5A059]">DECOR</span></span>
+                </a>
+
+                <p class="text-white/40 text-sm">
+                    © 2023 Elite Decorations. All rights reserved. Designed for Excellence.
+                </p>
+
+                <div class="flex gap-8 text-sm uppercase tracking-widest text-white/60">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('py-3');
+                nav.classList.remove('shadow-xl');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isHidden = menu.classList.contains('hidden');
+
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Contact Form Handling
+        function handleForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const success = document.getElementById('formSuccess');
+
+            form.style.opacity = '0.5';
+            form.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+            }, 1000);
+        }
+
+        // Animation on scroll observer (simple implementation)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-up');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
+
+</html>

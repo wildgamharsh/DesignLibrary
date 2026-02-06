@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE • Decorations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair_Display:wght@400&amp;family=Instrument_Serif:ital@0;1&amp;family=Inter:wght@400;500&amp;display=swap">
+</head>
+
+<body class="font-sans bg-[#FFF8F5] overflow-x-hidden">
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-pink-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <span class="block h-px w-6 bg-rose-300"></span>
+                    <span class="font-serif text-[21px] tracking-[0.065em] text-rose-500">ELITE</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-11 text-sm uppercase tracking-[0.065em] font-medium">
+                    <a href="#" class="hover:text-rose-500 transition-colors nav-link">Work</a>
+                    <a href="#" class="hover:text-rose-500 transition-colors nav-link">Services</a>
+                    <a href="#" class="hover:text-rose-500 transition-colors nav-link">Our Story</a>
+                    <a href="#" class="hover:text-rose-500 transition-colors nav-link">Journal</a>
+                    <a href="#" class="hover:text-rose-500 transition-colors nav-link">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="scrollToContact()" id="book-btn"
+                        class="bg-rose-500 hover:bg-rose-600 transition-all text-white text-xs uppercase tracking-[0.065em] px-6 py-3 rounded-full text-sm font-medium flex-shrink-0">
+                        Book a Consultation
+                    </button>
+
+                    <!-- Mobile toggle -->
+                    <button id="mobile-toggle" class="md:hidden text-rose-500 text-xl">
+                        ≡
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 right-0 bg-white shadow-xl z-40 py-6 px-6">
+        <div class="flex flex-col gap-5 text-sm uppercase tracking-widest font-medium">
+            <a href="#" class="py-1 nav-link">Work</a>
+            <a href="#" class="py-1 nav-link">Services</a>
+            <a href="#" class="py-1 nav-link">Our Story</a>
+            <a href="#" class="py-1 nav-link">Journal</a>
+            <a href="#" class="py-1 nav-link">Contact</a>
+            <button onclick="scrollToContact()"
+                class="mt-4 bg-rose-500 text-white py-3 rounded-full text-xs tracking-[0.065em] w-full">
+                Book a Consultation
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <header id="hero" class="relative h-screen flex items-center justify-center bg-black">
+        <!-- Background image -->
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms]"
+            style="background-image: url('https://picsum.photos/id/870/2000/1400');">
+        </div>
+
+        <!-- Overlay gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#3F1E2E]/70 via-[#5F3344]/30 to-transparent"></div>
+
+        <!-- Canvas for petals -->
+        <canvas id="petalsCanvas" class="absolute inset-0 pointer-events-none z-10" width="1920" height="1080"></canvas>
+
+        <!-- Hero content -->
+        <div class="relative z-20 text-center px-6 text-white">
+            <div class="inline-flex items-center gap-3 mb-4">
+                <div class="h-px bg-white/40 w-8"></div>
+                <span class="uppercase text-xs tracking-[0.065em] font-medium">Est. 2019 • Provence &amp; Beyond</span>
+                <div class="h-px bg-white/40 w-8"></div>
+            </div>
+
+            <h1 class="font-serif text-[9.5rem] lg:text-[11rem] leading-[0.75] tracking-[-0.01em] mb-2">
+                MOMENTS<br><span class="text-rose-300">MADE ETERNAL</span>
+            </h1>
+
+            <p class="text-sm tracking-[0.065em] font-medium uppercase mb-8">Wedding &amp; Celebration Florals • Design
+                Studio</p>
+
+            <button onclick="scrollToPortfolio()" id="hero-cta"
+                class="group relative overflow-hidden bg-transparent border border-white/80 hover:border-rose-300 px-9 py-4 text-xs uppercase tracking-[0.065em] rounded-full inline-flex items-center transition-all">
+                <span class="relative z-10">View Our Legacy</span>
+                <span class="ml-4 transition-transform group-hover:rotate-45">→</span>
+            </button>
+        </div>
+
+        <!-- Scroll prompt -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <div class="text-[10px] tracking-[0.065em] text-white/70 mb-2">SCROLL TO ENTER</div>
+            <div class="h-px w-7 bg-white/40"></div>
+        </div>
+    </header>
+
+    <!-- Services -->
+    <section id="services" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Section header -->
+            <div class="flex flex-col items-center text-center mb-12 lg:mb-16">
+                <span class="inline-block text-rose-400 text-xs tracking-[0.065em] font-medium mb-2">CHAPTER II</span>
+                <h2 class="font-serif text-6xl lg:text-[5.75rem] leading-none tracking-[-0.006em]">
+                    Signature<br>Collections</h2>
+                <div class="h-px w-14 bg-rose-300 mt-7"></div>
+            </div>
+
+            <!-- Services grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+
+                <!-- Service 1 -->
+                <div class="group relative overflow-hidden bg-[#FFF8F5] rounded-3xl h-full flex flex-col">
+                    <!-- Image -->
+                    <div class="h-80 overflow-hidden relative">
+                        <img id="service-img-1" src="https://picsum.photos/id/312/600/420" alt="Floral Symphony"
+                            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+
+                        <!-- Overlay label -->
+                        <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#3F1E2E] to-transparent">
+                        </div>
+                        <div class="absolute bottom-5 left-5 text-white text-xs tracking-[0.065em] font-medium">01</div>
+                    </div>
+
+                    <div class="flex-1 px-7 py-8 flex flex-col">
+                        <div class="uppercase text-rose-400 text-xs tracking-[0.065em] mb-1">Signature</div>
+                        <h4 class="font-serif text-[2.15rem] leading-tight tracking-[-0.006em] mb-3">
+                            Blushing<br>Symphony</h4>
+                        <p class="text-sm text-neutral-500 flex-1">Hand-selected peonies, garden roses &amp; cascading
+                            orchids woven into sculptural installations that breathe romance into every space.</p>
+
+                        <div
+                            class="mt-7 pt-7 border-t border-rose-100 flex items-center justify-between text-xs uppercase tracking-widest">
+                            <span class="text-rose-400">Floral Design</span>
+                            <span class="inline-block h-px w-6 bg-rose-300"></span>
+                            <span class="font-medium">From 18k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group relative overflow-hidden bg-[#FFF8F5] rounded-3xl h-full flex flex-col">
+                    <!-- Image -->
+                    <div class="h-80 overflow-hidden relative">
+                        <img id="service-img-2" src="https://picsum.photos/id/870/600/420" alt="Venue Styling"
+                            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#3F1E2E] to-transparent">
+                        </div>
+                        <div class="absolute bottom-5 left-5 text-white text-xs tracking-[0.065em] font-medium">02</div>
+                    </div>
+
+                    <div class="flex-1 px-7 py-8 flex flex-col">
+                        <div class="uppercase text-rose-400 text-xs tracking-[0.065em] mb-1">Signature</div>
+                        <h4 class="font-serif text-[2.15rem] leading-tight tracking-[-0.006em] mb-3">Luminous<br>Canopy
+                        </h4>
+                        <p class="text-sm text-neutral-500 flex-1">Bespoke draped ceilings, crystal chandeliers,
+                            candlelit pathways and ethereal lighting that transforms ordinary venues into celestial
+                            realms.</p>
+
+                        <div
+                            class="mt-7 pt-7 border-t border-rose-100 flex items-center justify-between text-xs uppercase tracking-widest">
+                            <span class="text-rose-400">Lighting &amp; Draping</span>
+                            <span class="inline-block h-px w-6 bg-rose-300"></span>
+                            <span class="font-medium">From 29k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group relative overflow-hidden bg-[#FFF8F5] rounded-3xl h-full flex flex-col lg:mt-12">
+                    <!-- Image -->
+                    <div class="h-80 overflow-hidden relative">
+                        <img id="service-img-3" src="https://picsum.photos/id/106/600/420" alt="Table Artistry"
+                            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+
+                        <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#3F1E2E] to-transparent">
+                        </div>
+                        <div class="absolute bottom-5 left-5 text-white text-xs tracking-[0.065em] font-medium">03</div>
+                    </div>
+
+                    <div class="flex-1 px-7 py-8 flex flex-col">
+                        <div class="uppercase text-rose-400 text-xs tracking-[0.065em] mb-1">Signature</div>
+                        <h4 class="font-serif text-[2.15rem] leading-tight tracking-[-0.006em] mb-3">
+                            Velvet<br>Tablescape</h4>
+                        <p class="text-sm text-neutral-500 flex-1">Antique silver, hand-blown glass, sculptural linens
+                            and seasonal botanicals — each table is a private gallery for your guests to remember
+                            forever.</p>
+
+                        <div
+                            class="mt-7 pt-7 border-t border-rose-100 flex items-center justify-between text-xs uppercase tracking-widest">
+                            <span class="text-rose-400">Tablescapes</span>
+                            <span class="inline-block h-px w-6 bg-rose-300"></span>
+                            <span class="font-medium">From 7k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View all services -->
+            <div class="flex justify-center mt-12">
+                <a href="#" id="all-services-btn"
+                    class="inline-flex items-center gap-3 text-xs uppercase tracking-[0.065em] group">
+                    <span
+                        class="font-medium border-b border-transparent group-hover:border-rose-400 pb-px transition-all">Explore
+                        all six signature collections</span>
+                    <span class="transition-transform group-hover:translate-x-1">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="bg-[#3F1E2E] text-white py-20 lg:py-28 relative overflow-hidden">
+        <!-- Subtle floral background pattern -->
+        <div
+            class="absolute inset-0 bg-[url('https://picsum.photos/id/312/1200/800')] opacity-10 bg-cover mix-blend-soft-light">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <!-- Intro -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                <!-- Left column -->
+                <div class="lg:col-span-5">
+                    <div class="sticky top-28">
+                        <span class="inline-flex items-center gap-2 text-xs uppercase text-rose-300 tracking-[0.065em]">
+                            <span class="block h-px bg-rose-300 w-6"></span>FOUNDED BY ISABELLE MOREAU
+                        </span>
+                        <h2 class="font-serif text-[6.5rem] lg:text-[7rem] leading-[0.82] tracking-[-0.01em] mt-3 mb-5">
+                            We don’t<br>decorate.<br><span class="text-rose-300">We remember.</span></h2>
+
+                        <div class="h-px bg-rose-300/30 my-6"></div>
+
+                        <p class="text-xs uppercase font-medium text-rose-300 tracking-widest">Provence • Santorini •
+                            Aspen • Marrakech</p>
+                    </div>
+                </div>
+
+                <!-- Right column -->
+                <div class="lg:col-span-7">
+                    <!-- Story block -->
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 lg:p-10 mb-8">
+                        <p class="leading-relaxed text-base lg:text-[1.08rem] text-rose-100/90 font-light">
+                            For eight seasons we have quietly designed the weddings of royalty,
+                            film legends, and those who simply believe that their love deserves
+                            the same reverence as a cathedral.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-px bg-white/5 rounded-3xl overflow-hidden mb-8">
+                        <div class="bg-transparent px-5 py-7 text-center">
+                            <div class="font-serif text-4xl text-rose-300">147</div>
+                            <div class="text-[10px] tracking-widest uppercase text-white/50">Weddings</div>
+                        </div>
+                        <div class="bg-transparent px-5 py-7 text-center border-x border-white/10">
+                            <div class="font-serif text-4xl text-rose-300">19</div>
+                            <div class="text-[10px] tracking-widest uppercase text-white/50">Countries</div>
+                        </div>
+                        <div class="bg-transparent px-5 py-7 text-center">
+                            <div class="font-serif text-4xl text-rose-300">∞</div>
+                            <div class="text-[10px] tracking-widest uppercase text-white/50">Moments</div>
+                        </div>
+                    </div>
+
+                    <!-- Signature piece -->
+                    <div class="flex items-center gap-4 bg-white/5 rounded-3xl px-6 py-5">
+                        <div class="bg-rose-300 h-px w-6"></div>
+                        <span class="uppercase text-xs font-medium tracking-[0.065em] whitespace-nowrap">Our most
+                            requested piece</span>
+                        <div class="flex-1 h-px bg-rose-300/30"></div>
+                        <span class="font-serif text-base italic">“The Midnight Rose Chandelier”</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-20 lg:py-28 bg-white">
+        <!-- Section header -->
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-10">
+            <div class="flex flex-wrap items-end justify-between border-b border-rose-100 pb-4">
+                <div>
+                    <span class="block text-xs uppercase text-rose-400 tracking-[0.065em] font-medium">CHAPTER
+                        III</span>
+                    <h2 class="font-serif text-[5.5rem] leading-none tracking-[-0.008em]">Legacy Weddings</h2>
+                </div>
+
+                <!-- Filter tabs -->
+                <div id="portfolio-filters"
+                    class="flex gap-7 text-xs uppercase font-medium tracking-widest mt-5 md:mt-0 overflow-x-auto pb-1 scrollbar-hide">
+                    <button data-filter="all"
+                        class="filter-btn active text-rose-500 border-b-2 border-rose-500 pb-px">All</button>
+                    <button data-filter="floral"
+                        class="filter-btn hover:text-rose-400 transition-colors">Floral</button>
+                    <button data-filter="ceremony"
+                        class="filter-btn hover:text-rose-400 transition-colors">Ceremony</button>
+                    <button data-filter="reception"
+                        class="filter-btn hover:text-rose-400 transition-colors">Reception</button>
+                    <button data-filter="destination"
+                        class="filter-btn hover:text-rose-400 transition-colors">Destination</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Masonry Grid -->
+        <div class="relative px-6 lg:px-12">
+            <!-- Masonry container -->
+            <div id="portfolio-grid" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+
+                <!-- Populated by JS -->
+
+            </div>
+        </div>
+
+        <!-- View more -->
+        <div class="text-center mt-12">
+            <button onclick="viewFullPortfolio()" id="full-portfolio-btn"
+                class="bg-black hover:bg-zinc-900 transition-colors text-white px-8 py-3.5 rounded-full text-xs tracking-[0.065em] flex items-center gap-3 mx-auto group">
+                VIEW ENTIRE ARCHIVE
+                <span class="inline-block transition-transform group-hover:rotate-45">↗</span>
+            </button>
+            <p class="text-[11px] text-neutral-400 mt-3">142 events • 2019 — 2025</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="bg-[#FFF8F5] py-16 lg:py-24">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+            <!-- Header -->
+            <div class="text-center mb-14">
+                <span class="inline-block text-xs font-medium bg-rose-100 text-rose-500 px-5 py-1.5 rounded-3xl">—
+                    Voices from the aisle —</span>
+                <h2 class="font-serif text-[5rem] lg:text-[6rem] leading-none tracking-[-0.006em] mt-3">They
+                    still<br>write to us.</h2>
+            </div>
+
+            <!-- Carousel -->
+            <div class="relative">
+                <!-- Testimonial slider -->
+                <div id="testimonial-slider" class="overflow-hidden">
+                    <!-- Filled by JS -->
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex items-center justify-center gap-6 mt-8 lg:mt-12">
+                    <button id="prev-testimonial"
+                        class="w-11 h-11 rounded-full border border-rose-200 flex items-center justify-center hover:border-rose-400 transition-colors">
+                        ←
+                    </button>
+                    <div class="flex gap-2" id="testimonial-dots">
+                        <!-- JS populated -->
+                    </div>
+                    <button id="next-testimonial"
+                        class="w-11 h-11 rounded-full border border-rose-200 flex items-center justify-center hover:border-rose-400 transition-colors">
+                        →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Atelier / Behind the scenes -->
+    <section class="bg-black py-20 lg:py-28 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Split layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center">
+                <!-- Left text -->
+                <div class="lg:col-span-5 mb-12 lg:mb-0">
+                    <div class="uppercase text-xs tracking-[0.065em] text-rose-300 mb-1">The Atelier • Grasse, France
+                    </div>
+                    <h2 class="font-serif text-[4.75rem] leading-tight tracking-[-0.01em] mb-7">Every stem<br>is chosen
+                        by<br>hand at 4am.</h2>
+
+                    <div class="text-sm leading-relaxed text-neutral-400 max-w-xs">
+                        Our 14 floral artisans work beneath skylights fed by moonlight.
+                        Nothing is mass-produced. Nothing is rushed.
+                    </div>
+
+                    <button onclick="scrollToContact()"
+                        class="mt-9 text-xs uppercase border-b border-rose-300 pb-px hover:text-rose-300 transition-colors inline-flex items-center gap-3">
+                        Schedule a private studio visit <span class="text-xs">↗</span>
+                    </button>
+                </div>
+
+                <!-- Atelier image + caption -->
+                <div class="lg:col-span-7 relative">
+                    <!-- Image frame -->
+                    <div
+                        class="relative aspect-[10/7] rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgb(244,63,94)]">
+                        <!-- Main atelier image -->
+                        <img src="https://picsum.photos/id/312/900/630" alt="Atelier at dawn"
+                            class="absolute inset-0 w-full h-full object-cover brightness-[0.88]">
+
+                        <!-- Floating badge -->
+                        <div
+                            class="absolute top-6 right-6 bg-white text-black text-[11px] font-medium px-4 py-2 rounded-2xl flex flex-col items-center leading-none">
+                            <span class="text-[9px] tracking-widest text-rose-500">SEASON</span><span
+                                class="text-xl">24</span><span class="text-[9px] text-neutral-400">— SPRING</span>
+                        </div>
+                    </div>
+
+                    <!-- Caption ribbon -->
+                    <div
+                        class="absolute -bottom-4 left-8 bg-rose-500 text-xs py-3 px-7 rounded-3xl shadow-xl flex items-center gap-3">
+                        <span class="inline-block h-px bg-white w-4"></span>
+                        3,840 roses flown in from Ecuador yesterday
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-white py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Top banner -->
+            <div
+                class="bg-[#3F1E2E] rounded-[3.5rem] py-12 lg:py-16 px-7 lg:px-16 flex flex-col lg:flex-row items-center justify-between mb-16">
+                <div>
+                    <span class="uppercase text-xs text-rose-300 tracking-[0.065em] block mb-1">Next available
+                        date</span>
+                    <div class="font-serif text-white text-[3.25rem] lg:text-[4rem] leading-none tracking-[-0.006em]">17
+                        October<br><span class="text-rose-300">2025</span></div>
+                </div>
+
+                <button onclick="fakeConsultationClick()" id="consult-btn"
+                    class="bg-rose-500 hover:bg-rose-400 transition-colors mt-7 lg:mt-0 text-sm font-medium uppercase tracking-widest px-10 py-5 rounded-2xl whitespace-nowrap">
+                    Reserve your consultation
+                </button>
+            </div>
+
+            <!-- Contact grid -->
+            <div class="grid lg:grid-cols-12 gap-12">
+                <!-- Form -->
+                <div class="lg:col-span-7">
+                    <div class="mb-5">
+                        <span class="inline-block text-rose-400 text-xs tracking-[0.065em] font-medium">CHAPTER
+                            IV</span>
+                        <h2 class="font-serif text-[4.5rem] lg:text-[5.5rem] leading-[1.05] tracking-[-0.006em]">Let’s
+                            begin<br>your story.</h2>
+                    </div>
+
+                    <!-- Contact form -->
+                    <form id="contact-form" class="space-y-7">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label
+                                    class="block text-xs uppercase font-medium text-neutral-400 tracking-widest mb-2">Your
+                                    name</label>
+                                <input type="text" id="name"
+                                    class="bg-transparent border-0 border-b border-neutral-300 focus:border-rose-400 w-full py-3 outline-none text-sm placeholder:text-neutral-400"
+                                    placeholder="Amara Laurent" required>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs uppercase font-medium text-neutral-400 tracking-widest mb-2">Wedding
+                                    date</label>
+                                <input type="date" id="wedding-date"
+                                    class="bg-transparent border-0 border-b border-neutral-300 focus:border-rose-400 w-full py-3 outline-none text-sm"
+                                    value="2025-10-17">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-xs uppercase font-medium text-neutral-400 tracking-widest mb-2">Venue
+                                / City</label>
+                            <input type="text" id="venue" value="Château de l’Orangerie, Provence"
+                                class="bg-transparent border-0 border-b border-neutral-300 focus:border-rose-400 w-full py-3 outline-none text-sm">
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-xs uppercase font-medium text-neutral-400 tracking-widest mb-2">Tell
+                                us your dream in one sentence</label>
+                            <textarea id="dream" rows="2"
+                                class="bg-transparent border-0 border-b border-neutral-300 focus:border-rose-400 w-full py-3 outline-none text-sm resize-none"
+                                placeholder="I want the aisle to feel like I’m walking through my grandmother’s rose garden at sunrise..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="bg-black text-white hover:bg-zinc-900 transition-colors w-full lg:w-auto px-12 py-4 rounded-full text-xs tracking-[0.065em] uppercase mt-4">
+                            Send to Isabelle &amp; the Atelier
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info sidebar -->
+                <div class="lg:col-span-5 bg-[#FFF8F5] rounded-3xl p-8 lg:p-10 h-fit lg:sticky top-8">
+                    <div class="uppercase text-rose-400 text-xs tracking-[0.065em] font-medium mb-2">Studio visits by
+                        appointment only</div>
+
+                    <div class="font-serif text-[2.1rem] leading-tight mb-9">Grasse, South of France<br><span
+                            class="text-xs font-sans text-neutral-400">+ 3 sister studios worldwide</span></div>
+
+                    <div class="space-y-8 text-sm">
+                        <!-- Contact details -->
+                        <div>
+                            <div class="uppercase text-xs font-medium text-neutral-400 mb-px">Private line</div>
+                            <a href="tel:+33493231219" class="font-medium hover:text-rose-500 transition-colors">+33 4
+                                93 23 12 19</a>
+                        </div>
+
+                        <div>
+                            <div class="uppercase text-xs font-medium text-neutral-400 mb-px">Studio email</div>
+                            <a href="mailto:atelier@elitedecorations.fr"
+                                class="font-medium hover:text-rose-500 transition-colors">atelier@elitedecorations.fr</a>
+                        </div>
+
+                        <div>
+                            <div class="uppercase text-xs font-medium text-neutral-400 mb-px">Follow the journey</div>
+                            <div class="flex gap-5 text-xs">
+                                <a href="#" class="hover:text-rose-400 transition-colors">Instagram</a>
+                                <a href="#" class="hover:text-rose-400 transition-colors">Private Journal</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decorative divider -->
+                    <div class="my-8 border-t border-dotted border-rose-200"></div>
+
+                    <!-- Last wedding note -->
+                    <div class="bg-white rounded-2xl p-5 text-xs">
+                        <div class="italic text-neutral-500 text-[13px]">"Isabelle cried when she saw the final
+                            installation.<br>We all did."<br><span
+                                class="block text-rose-400 text-[11px] not-italic font-medium mt-3">— The Duchesse de
+                                Sienne, June 2024</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#3F1E2E] text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Logo + tagline -->
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-14 mb-12">
+                <div class="flex items-center gap-3 mb-6 md:mb-0">
+                    <span class="block h-px w-6 bg-rose-300"></span>
+                    <span class="font-serif text-xl tracking-[0.065em]">ELITE</span>
+                </div>
+
+                <p class="text-xs uppercase tracking-[0.065em] text-rose-300">Crafting love stories since the summer
+                    solstice of 2019</p>
+            </div>
+
+            <!-- Links grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-10 text-xs uppercase">
+                <div>
+                    <div class="font-medium mb-4 text-rose-300 text-[11px] tracking-widest">Collections</div>
+                    <ul class="space-y-3 text-neutral-400 text-[13px]">
+                        <li><a href="#" class="hover:text-white transition-colors">Blushing Symphony</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Luminous Canopy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Velvet Tablescape</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Midnight Rose</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="font-medium mb-4 text-rose-300 text-[11px] tracking-widest">Experiences</div>
+                    <ul class="space-y-3 text-neutral-400 text-[13px]">
+                        <li><a href="#" class="hover:text-white transition-colors">Atelier Day in Grasse</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Destination Rehearsal</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Heirloom Bouquet Archive</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="font-medium mb-4 text-rose-300 text-[11px] tracking-widest">Journal</div>
+                    <ul class="space-y-3 text-neutral-400 text-[13px]">
+                        <li><a href="#" class="hover:text-white transition-colors">The 2025 Rose Forecast</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">A 300-year-old Oak &amp; 84
+                                candles</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Isabelle’s Private Notes</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:text-right">
+                    <div class="text-[11px] text-neutral-400">Hand-finished in Provence<br>with love for couples
+                        who<br>refuse to settle.</div>
+
+                    <div class="h-px bg-rose-300/40 my-6 md:hidden"></div>
+
+                    <div class="text-[10px] text-neutral-400 tracking-widest">© ELITE DECORATIONS<br><span
+                            class="text-[9px]">All moments remain ours</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Modal -->
+    <div id="portfolioModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/80">
+        <div onclick="event.stopImmediatePropagation()" id="modalContent"
+            class="bg-white max-w-3xl w-full mx-5 rounded-3xl overflow-hidden relative">
+
+            <!-- Content populated by JS -->
+
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script already injected via CDN
+
+        // Fake portfolio data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "Blossom &amp; Ember",
+                location: "Château de Fontenille, Provence",
+                date: "June 14, 2024",
+                category: "floral",
+                image: "https://picsum.photos/id/312/800/1100",
+                description: "A 7-meter suspended arch of 2,400 blush David Austin roses and Italian ruscus caught the last golden light of the Provençal evening. The bride walked beneath it twice — once to say “I do” and again to leave as a wife.",
+                details: "142 guests • 41 candles • 3 chandeliers made entirely of fresh greenery"
+            },
+            {
+                id: 2,
+                title: "The Santorini Vow",
+                location: "Oia, Greece",
+                date: "September 9, 2023",
+                category: "destination",
+                image: "https://picsum.photos/id/870/800/1100",
+                description: "We brought 1,800 white ranunculus and pale pink sweet peas from Grasse to the caldera edge. The wind tried to take them. The wind lost.",
+                details: "Clifftop ceremony • 68 guests • Sunset at 19:48"
+            },
+            {
+                id: 3,
+                title: "Velvet Midnight",
+                location: "The Royal Opera House, London",
+                date: "February 17, 2025",
+                category: "reception",
+                image: "https://picsum.photos/id/106/800/1100",
+                description: "A black-tie reception where every table was crowned with cascading burgundy velvet ribbons, antique silver, and 300 deep burgundy garden roses. The ceiling disappeared under 42 hand-blown glass orbs filled with floating candles and smokebush.",
+                details: "Opera House exclusive • 9-hour install"
+            }
+        ];
+
+        // Fake testimonials
+        const testimonials = [
+            {
+                name: "Amara Laurent",
+                role: "Married at Château de l’Orangerie",
+                date: "October 2024",
+                quote: "Isabelle didn’t just decorate our wedding. She translated my childhood summers in my grandmother’s garden into an experience 168 people will never forget. I still keep one dried rose from the aisle in my diary.",
+                avatar: "https://picsum.photos/id/64/64/64"
+            },
+            {
+                name: "Leila &amp; Matteo Rossi",
+                role: "Santorini clifftop elopement",
+                date: "September 2023",
+                quote: "We asked for ‘minimal’. She gave us 1,200 stems and somehow still made it feel like the most intimate moment of our lives. The flowers framed the Aegean perfectly, as if the sea itself had ordered them.",
+                avatar: "https://picsum.photos/id/870/64/64"
+            }
+        ];
+
+        let currentTestimonialIndex = 0;
+
+        // Render portfolio grid
+        function renderPortfolioGrid(filter = "all") {
+            const container = document.getElementById("portfolio-grid");
+            container.innerHTML = "";
+
+            portfolioItems.forEach(item => {
+                if (filter !== "all" && item.category !== filter) return;
+
+                const div = document.createElement("div");
+                div.className = `break-inside-avoid mb-6 cursor-pointer group`;
+                div.innerHTML = `
+                    <div class="relative overflow-hidden rounded-3xl bg-zinc-100 aspect-[5/7]">
+                        <img src="${item.image}" 
+                             alt="${item.title}"
+                             class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+                        
+                        <!-- Hover overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#3F1E2E]/90 via-[#3F1E2E]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                            <span class="uppercase text-[10px] tracking-[0.065em] text-rose-300">${item.date}</span>
+                            <span class="font-serif text-xl leading-tight text-white">${item.title}</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 pb-1 px-1">
+                        <span class="block text-xs text-neutral-400">${item.location}</span>
+                    </div>
+                `;
+
+                div.addEventListener("click", () => showPortfolioModal(item));
+                container.appendChild(div);
+            });
+
+            // Add one more placeholder to balance masonry
+            if (filter === "all") {
+                const placeholder = document.createElement("div");
+                placeholder.className = "break-inside-avoid mb-6 hidden lg:block";
+                placeholder.innerHTML = `
+                    <div class="bg-[#FFF8F5] rounded-3xl h-72 flex items-center justify-center">
+                        <div class="text-center">
+                            <span class="block text-[11px] tracking-[0.065em] text-rose-400">142nd wedding</span>
+                            <span class="font-serif text-neutral-300 text-5xl">—</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(placeholder);
+            }
+        }
+
+        // Show portfolio modal
+        function showPortfolioModal(item) {
+            const modalContent = document.getElementById("modalContent");
+
+            modalContent.innerHTML = `
+                <div class="relative">
+                    <!-- Close -->
+                    <button onclick="closeModal()" id="modal-close-btn"
+                        class="absolute top-5 right-5 z-20 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-md text-sm">✕</button>
+                    
+                    <!-- Hero image -->
+                    <div class="h-80 lg:h-[380px] overflow-hidden">
+                        <img src="${item.image}" alt="${item.title}" 
+                            class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-7 lg:p-9">
+                        <div class="uppercase text-[11px] tracking-[0.065em] text-rose-400 mb-px">${item.date}</div>
+                        <h3 class="font-serif text-[2.35rem] leading-tight tracking-[-0.006em]">${item.title}</h3>
+                        <p class="text-xs uppercase text-neutral-400 mb-6">${item.location}</p>
+                        
+                        <p class="text-neutral-600 text-[0.95rem] leading-relaxed mb-7">${item.description}</p>
+                        
+                        <div class="bg-[#FFF8F5] text-xs py-4 px-5 rounded-2xl mb-7">
+                            <span class="font-medium text-rose-400">Details preserved:</span><br>
+                            ${item.details}
+                        </div>
+                        
+                        <button onclick="closeModal()" 
+                            class="uppercase text-xs text-neutral-400 hover:text-rose-400 transition-colors tracking-widest flex items-center gap-3 text-sm">
+                            Close window <span class="inline-block h-px bg-neutral-300 w-7"></span> ✕
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("portfolioModal").classList.remove("hidden");
+        }
+
+        function closeModal() {
+            document.getElementById("portfolioModal").classList.add("hidden");
+        }
+
+        // Render testimonials
+        function renderTestimonials() {
+            let html = '';
+
+            testimonials.forEach((testimonial, i) => {
+                const isActive = i === currentTestimonialIndex ? "block" : "hidden";
+                html += `
+                    <div id="testimonial-slide-${i}" class="${isActive} transition-all">
+                        <div class="bg-white rounded-3xl shadow-sm p-8 lg:p-11 max-w-3xl mx-auto">
+                            <!-- Avatar -->
+                            <div class="flex items-center gap-3 mb-6">
+                                <img src="${testimonial.avatar}" alt="${testimonial.name}" 
+                                     class="w-9 h-9 rounded-full object-cover ring-1 ring-rose-100">
+                                <div>
+                                    <div class="font-medium">${testimonial.name}</div>
+                                    <div class="text-xs text-neutral-400">${testimonial.role}</div>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="font-serif text-[1.63rem] leading-tight tracking-[-0.003em] italic text-neutral-700 mb-6">
+                                “${testimonial.quote}”
+                            </blockquote>
+                            
+                            <div class="text-[11px] text-rose-300 tracking-widest">${testimonial.date}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("testimonial-slider").innerHTML = html;
+
+            // Render dots
+            let dotsHTML = '';
+            testimonials.forEach((_, i) => {
+                dotsHTML += `
+                    <button data-index="${i}" class="testimonial-dot w-6 h-px bg-rose-300 transition-all ${i === currentTestimonialIndex ? 'bg-rose-500 w-9' : ''}"></button>
+                `;
+            });
+            document.getElementById("testimonial-dots").innerHTML = dotsHTML;
+        }
+
+        // Switch testimonial
+        function switchTestimonial(n) {
+            currentTestimonialIndex = n;
+            if (currentTestimonialIndex > testimonials.length - 1) currentTestimonialIndex = 0;
+            if (currentTestimonialIndex < 0) currentTestimonialIndex = testimonials.length - 1;
+
+            renderTestimonials();
+        }
+
+        // Canvas petal animation
+        function createPetalAnimation() {
+            const canvas = document.getElementById("petalsCanvas");
+            const ctx = canvas.getContext("2d");
+
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+
+            class Petal {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h - h / 2;
+                    this.size = Math.random() * 13 + 9;
+                    this.speed = Math.random() * 1.1 + 0.7;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotationSpeed = Math.random() * 0.028 - 0.014;
+                    this.opacity = Math.random() * 0.65 + 0.45;
+                    this.sway = Math.random() * 1.5;
+                }
+
+                update() {
+                    this.y += this.speed;
+                    this.x += Math.sin(this.y / 60) * this.sway;
+                    this.rotation += this.rotationSpeed;
+
+                    // Fade out & reset at bottom
+                    if (this.y > h + 20) {
+                        this.reset();
+                        this.y = -10;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.opacity;
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+
+                    // Pink petal shape
+                    ctx.fillStyle = "#f8a5c2";
+
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size * 1.65, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Highlight line on petal
+                    ctx.strokeStyle = "#f5d3e1";
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(-1, -this.size * 1.1);
+                    ctx.lineTo(-1, this.size * 1.3);
+                    ctx.stroke();
+
+                    ctx.restore();
+                }
+            }
+
+            const petals = [];
+            const petalCount = Math.min(38, Math.floor(w / 22));
+
+            for (let i = 0; i < petalCount; i++) {
+                petals.push(new Petal());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+
+                petals.forEach(petal => {
+                    petal.update();
+                    petal.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            // Resize handler
+            window.addEventListener("resize", () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            });
+
+            animate();
+        }
+
+        // Fake booking button animation
+        function fakeConsultationClick() {
+            const btn = document.getElementById("consult-btn");
+            const originalText = btn.textContent;
+
+            btn.style.width = btn.offsetWidth + "px";
+            btn.textContent = "✓ Sent to Isabelle Moreau";
+            btn.classList.remove("bg-rose-500", "hover:bg-rose-400");
+            btn.classList.add("bg-emerald-500");
+
+            setTimeout(() => {
+                alert("Your private consultation request for October 17th has been received.\n\nIsabelle will reply within 48 hours.\n\nWith love,\nThe Atelier Team");
+                btn.textContent = originalText;
+                btn.classList.add("bg-rose-500", "hover:bg-rose-400");
+                btn.classList.remove("bg-emerald-500");
+            }, 1650);
+        }
+
+        // Scroll helper
+        function scrollToPortfolio() {
+            document.getElementById("portfolio").scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollToContact() {
+            document.getElementById("contact").scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function viewFullPortfolio() {
+            // Simulate going to a full portfolio page
+            const btn = document.getElementById("full-portfolio-btn");
+            const originalHTML = btn.innerHTML;
+
+            btn.innerHTML = `<span class="inline-flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="animate-spin h-3.5 w-3.5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>Opening the private archive...</span>`;
+
+            setTimeout(() => {
+                alert("Welcome to the private Elite Archive.\n\nOnly 31 couples have full access to all 142 weddings.\n\nYour consultation request has already been approved — Isabelle will send you the password shortly.");
+                btn.innerHTML = originalHTML;
+            }, 1350);
+        }
+
+        // Navbar scroll effect
+        function initNavbarScroll() {
+            window.addEventListener("scroll", () => {
+                const navbar = document.getElementById("navbar");
+                if (window.scrollY > 120) {
+                    navbar.classList.add("shadow-md");
+                } else {
+                    navbar.classList.remove("shadow-md");
+                }
+            });
+        }
+
+        // Mobile menu
+        function initMobileMenu() {
+            const toggle = document.getElementById("mobile-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            toggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+
+                if (!mobileMenu.classList.contains("hidden")) {
+                    toggle.innerHTML = "✕";
+                } else {
+                    toggle.innerHTML = "≡";
+                }
+            });
+        }
+
+        // Portfolio filter functionality
+        function initPortfolioFilters() {
+            const filterButtons = document.querySelectorAll(".filter-btn");
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    // Remove active state from all
+                    filterButtons.forEach(b => {
+                        b.classList.toggle("active", b === btn);
+                        b.classList.toggle("text-rose-500", b === btn);
+                        b.classList.toggle("border-b-2", b === btn);
+                        b.classList.toggle("border-rose-500", b === btn);
+                    });
+
+                    const filter = btn.getAttribute("data-filter");
+                    renderPortfolioGrid(filter);
+                });
+            });
+        }
+
+        // Form handling
+        function initContactForm() {
+            const form = document.getElementById("contact-form");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const submitBtn = form.querySelector("button[type='submit']");
+                const originalContent = submitBtn.textContent;
+
+                submitBtn.style.pointerEvents = "none";
+                submitBtn.innerHTML = `<span class="inline-block w-px h-px">✓ Request received. Isabelle is reading it now.</span>`;
+                submitBtn.classList.remove("bg-black");
+                submitBtn.classList.add("bg-emerald-500");
+
+                setTimeout(() => {
+                    alert("Thank you. Your words have been delivered to Isabelle Moreau’s private desk in the Grasse atelier.\n\nShe personally responds to every letter.");
+
+                    // Reset form
+                    form.reset();
+
+                    submitBtn.textContent = originalContent;
+                    submitBtn.classList.remove("bg-emerald-500");
+                    submitBtn.classList.add("bg-black");
+                    submitBtn.style.pointerEvents = "all";
+                }, 210);
+            });
+        }
+
+        // Initialize everything
+        window.onload = () => {
+            // Render initial portfolio
+            renderPortfolioGrid("all");
+
+            // Render testimonials
+            renderTestimonials();
+
+            // Petals on hero
+            createPetalAnimation();
+
+            // Carousel controls
+            document.getElementById("prev-testimonial").addEventListener("click", () => {
+                switchTestimonial(currentTestimonialIndex - 1);
+            });
+
+            document.getElementById("next-testimonial").addEventListener("click", () => {
+                switchTestimonial(currentTestimonialIndex + 1);
+            });
+
+            // Dot click handlers
+            document.getElementById("testimonial-dots").addEventListener("click", function (e) {
+                if (e.target.classList.contains("testimonial-dot")) {
+                    const index = parseInt(e.target.getAttribute("data-index"));
+                    switchTestimonial(index);
+                }
+            });
+
+            // Modal close
+            document.getElementById("portfolioModal").addEventListener("click", function (e) {
+                if (e.target === this) {
+                    this.classList.add("hidden");
+                }
+            });
+
+            // Fake "All services" link interaction
+            document.getElementById("all-services-btn").addEventListener("click", function (e) {
+                e.preventDefault();
+                alert("The remaining three collections — ‘Moonlit Canopy’, ‘Golden Harvest’, and ‘Heritage Silk’ — are revealed only to couples who book a private consultation.");
+            });
+
+            initNavbarScroll();
+            initMobileMenu();
+            initPortfolioFilters();
+            initContactForm();
+
+            // Keyboard support for modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    const modal = document.getElementById("portfolioModal");
+                    if (!modal.classList.contains("hidden")) {
+                        modal.classList.add("hidden");
+                    }
+                }
+            });
+
+            // Make hero CTA slightly pulse
+            setTimeout(() => {
+                document.getElementById("hero-cta").classList.add("animate-pulse");
+            }, 1400);
+
+            console.log("%cWelcome to Elite Decorations.\nOnly the most intentional love stories are invited here.",
+                "font-family: Playfair Display; color:#e11d48; font-size: 14px");
+        }
+    </script>
+</body>
+
+</html>

@@ -4,581 +4,960 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Decorations | Premium Catering & Events</title>
+    <title>Élite • Decorations</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --gold: #C5A059;
-            --dark: #121212;
-            --light: #F9F7F2;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        h1,
-        h2,
-        h3,
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .gold-gradient {
-            background: linear-gradient(135deg, #C5A059 0%, #E8D4A2 50%, #C5A059 100%);
-        }
-
-        .gold-text {
-            background: linear-gradient(135deg, #C5A059 0%, #B38B41 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-blur {
-            backdrop-filter: blur(12px);
-            background-color: rgba(18, 18, 18, 0.85);
-        }
-
-        .hero-overlay {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-        }
-
-        .service-card:hover .service-image {
-            transform: scale(1.05);
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .btn-gold:hover {
-            background: #b38b41;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
-        }
-
-        .testimonial-card {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-up {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            ring: 2px var(--gold);
-        }
-    </style>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair_Display:wght@400&amp;family=Inter:wght@300;400&amp;display=swap">
 </head>
 
-<body class="overflow-x-hidden">
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-blur border-b border-white/10 transition-all duration-300 py-4" id="navbar">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2">
-                <div class="w-10 h-10 gold-gradient rounded-full flex items-center justify-center">
-                    <i data-lucide="crown" class="text-white w-6 h-6"></i>
+<body class="font-sans antialiased bg-[#FFF8F5]">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#F5E6E0]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <span class="inline-block h-px w-6 bg-[#E8A8B8]"></span>
+                    <span class="font-serif text-[#E8A8B8] text-sm tracking-[0.065em] uppercase">Élite</span>
                 </div>
-                <span class="text-2xl font-serif font-bold text-white tracking-wider">ELITE <span
-                        class="text-[#C5A059]">DECOR</span></span>
-            </a>
 
-            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-white/80">
-                <a href="#home" class="hover:text-[#C5A059] transition-colors">Home</a>
-                <a href="#services" class="hover:text-[#C5A059] transition-colors">Services</a>
-                <a href="#about" class="hover:text-[#C5A059] transition-colors">About</a>
-                <a href="#testimonials" class="hover:text-[#C5A059] transition-colors">Reviews</a>
-                <a href="#contact" class="hover:text-[#C5A059] transition-colors">Contact</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-11 text-sm uppercase tracking-[0.065em] font-medium">
+                    <a href="#" class="nav-link text-[#3F2E2C] hover:text-[#E8A8B8] transition-colors">Home</a>
+                    <a href="#services"
+                        class="nav-link text-[#3F2E2C] hover:text-[#E8A8B8] transition-colors">Services</a>
+                    <a href="#portfolio"
+                        class="nav-link text-[#3F2E2C] hover:text-[#E8A8B8] transition-colors">Portfolio</a>
+                    <a href="#about" class="nav-link text-[#3F2E2C] hover:text-[#E8A8B8] transition-colors">About</a>
+                    <a href="#contact"
+                        class="nav-link text-[#3F2E2C] hover:text-[#E8A8B8] transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="scrollToPortfolio()" id="book-btn"
+                        class="bg-[#E8A8B8] hover:bg-[#d88a9c] transition-all text-white text-xs tracking-[0.065em] px-6 py-3 rounded-full flex items-center gap-2 text-sm">
+                        <span>Enquire Now</span>
+                        <span class="inline-block h-px w-3 bg-white"></span>
+                        <span class="text-xs">→</span>
+                    </button>
+
+                    <!-- Mobile menu toggle -->
+                    <button id="mobile-toggle" class="md:hidden text-[#3F2E2C] text-xl">
+                        ☰
+                    </button>
+                </div>
             </div>
-
-            <button
-                class="hidden md:block btn-gold px-6 py-2 rounded-sm text-sm font-semibold uppercase tracking-widest">
-                Book Event
-            </button>
-
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-white" onclick="toggleMenu()">
-                <i data-lucide="menu" id="menu-icon"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden md:hidden absolute top-full left-0 w-full bg-[#121212] border-t border-white/10 flex flex-col p-6 space-y-4">
-            <a href="#home" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Home</a>
-            <a href="#services" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Services</a>
-            <a href="#about" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">About</a>
-            <a href="#testimonials" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Reviews</a>
-            <a href="#contact" class="text-white/80 hover:text-[#C5A059]" onclick="toggleMenu()">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000"
-                alt="Luxury Banquet" class="w-full h-full object-cover">
-            <div class="absolute inset-0 hero-overlay"></div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="hidden md:hidden fixed top-16 inset-x-0 bg-white shadow-xl z-40 py-6 border-t border-[#F5E6E0]">
+        <div class="flex flex-col items-center gap-6 text-sm uppercase tracking-[0.065em]">
+            <a href="#" class="nav-link-mobile">Home</a>
+            <a href="#services" class="nav-link-mobile">Services</a>
+            <a href="#portfolio" class="nav-link-mobile">Portfolio</a>
+            <a href="#about" class="nav-link-mobile">About</a>
+            <a href="#contact" class="nav-link-mobile">Contact</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+
+        <!-- Background image -->
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms]"
+            style="background-image: url('https://picsum.photos/id/870/2000/1400');">
         </div>
 
-        <div class="container mx-auto px-6 relative z-10 text-center text-white">
-            <h4 class="text-[#C5A059] uppercase tracking-[0.4em] mb-4 opacity-0 animate-up">Elegance Refined</h4>
-            <h1 class="text-5xl md:text-8xl font-serif font-bold mb-8 leading-tight opacity-0 animate-up delay-1">
-                Crafting Your <br><span class="italic">Dream Moments</span>
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#3F2E2C]/80 via-[#3F2E2C]/30 to-transparent"></div>
+
+        <!-- Floating petals container -->
+        <div id="petals-container" class="absolute inset-0 pointer-events-none"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-3 mb-3">
+                <div class="h-px w-12 bg-[#E8A8B8]"></div>
+                <span class="uppercase text-[#E8A8B8] text-xs tracking-[0.065em] font-medium">Est. 2019 • Provence &amp;
+                    Beyond</span>
+                <div class="h-px w-12 bg-[#E8A8B8]"></div>
+            </div>
+
+            <h1 class="font-serif text-[9rem] lg:text-[11rem] leading-[0.75] text-white tracking-[-0.01em] mb-1">
+                ÉLITE<br><span class="text-[#E8A8B8] tracking-[0.02em] text-[5.5rem] lg:text-[6.5rem]">DECOR</span>
             </h1>
-            <p class="max-w-2xl mx-auto text-lg text-white/80 mb-10 opacity-0 animate-up delay-2">
-                Premier catering and bespoke decorations for weddings, corporate galas, and private celebrations. Where
-                every detail matters.
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center opacity-0 animate-up delay-2">
-                <a href="#services"
-                    class="btn-gold px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest">Explore
-                    Services</a>
-                <a href="#contact"
-                    class="border border-white/30 hover:bg-white/10 px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest backdrop-blur-sm transition-all">Get
-                    a Quote</a>
-            </div>
+
+            <p class="text-white/90 text-sm lg:text-base tracking-[0.065em] font-medium mb-8">We don’t decorate
+                weddings.<br>We immortalise love stories.</p>
+
+            <button onclick="scrollToPortfolio()" id="hero-cta"
+                class="group relative overflow-hidden bg-transparent border border-[#E8A8B8] text-[#E8A8B8] px-10 py-4 rounded-full text-xs tracking-[0.065em] uppercase hover:text-white transition-all duration-300 flex items-center justify-center gap-3 mx-auto">
+                <span class="relative z-10">Begin your legacy</span>
+                <span class="transition-transform duration-300 group-hover:rotate-45">→</span>
+
+                <!-- Hover shine -->
+                <span id="shine"
+                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+            </button>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="text-white/50 w-8 h-8"></i>
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <span class="text-[#E8A8B8] text-[10px] tracking-[0.065em] mb-1">SCROLL TO ENTER</span>
+            <div class="h-px w-7 bg-[#E8A8B8]"></div>
         </div>
-    </section>
+    </header>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="gold-text uppercase tracking-widest font-semibold text-sm">What We Offer</span>
-                <h2 class="text-4xl md:text-5xl font-serif mt-4">Exquisite Experiences</h2>
+    <!-- SERVICES -->
+    <section id="services" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Section header -->
+            <div class="flex flex-col items-center text-center mb-14">
+                <span
+                    class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.065em] text-[#E8A8B8] font-medium mb-3">
+                    <span class="h-px w-5 bg-[#E8A8B8]"></span> CURATED EXCELLENCE
+                </span>
+                <h2 class="font-serif text-[#3F2E2C] text-6xl lg:text-[5.25rem] leading-none tracking-[-0.006em]">
+                    Four signatures.<br>One unforgettable day.
+                </h2>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Catering -->
-                <div
-                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
-                            alt="Catering"
-                            class="service-image w-full h-full object-cover transition-transform duration-700">
-                        <div
-                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
-                            <i data-lucide="utensils" class="w-4 h-4 text-[#C5A059]"></i>
-                            <span class="text-xs font-bold uppercase">Catering</span>
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-serif mb-3">Gourmet Catering</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Artfully crafted menus featuring local organic
-                            ingredients and international fusion flavors designed for discerning palates.</p>
-                        <a href="#"
-                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
-                            View Menu <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+            <!-- Services grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
 
-                <!-- Decoration -->
-                <div
-                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
-                            alt="Decoration"
-                            class="service-image w-full h-full object-cover transition-transform duration-700">
-                        <div
-                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-4 h-4 text-[#C5A059]"></i>
-                            <span class="text-xs font-bold uppercase">Decoration</span>
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-serif mb-3">Bespoke Design</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Floral arrangements, luxury lighting, and thematic
-                            installations that transform ordinary spaces into breathtaking environments.</p>
-                        <a href="#"
-                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
-                            View Gallery <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+                <!-- Service 1 -->
+                <div class="group relative bg-[#FFF8F5] overflow-hidden h-full rounded-3xl">
+                    <!-- Image -->
+                    <div class="h-80 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+                        style="background-image: url('https://picsum.photos/id/312/600/400');"></div>
 
-                <!-- Event Planning -->
-                <div
-                    class="service-card group cursor-pointer overflow-hidden bg-white border border-gray-100 rounded-xl transition-all duration-500 hover:shadow-2xl">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1470753590773-c7d80e046255?auto=format&fit=crop&q=80&w=800"
-                            alt="Planning"
-                            class="service-image w-full h-full object-cover transition-transform duration-700">
-                        <div
-                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-4 h-4 text-[#C5A059]"></i>
-                            <span class="text-xs font-bold uppercase">Planning</span>
-                        </div>
+                    <!-- Content overlay -->
+                    <div class="p-7 pb-9">
+                        <div class="uppercase text-[#E8A8B8] text-xs font-medium tracking-[0.065em] mb-1">01</div>
+                        <h4 class="font-serif text-[#3F2E2C] text-[1.75rem] leading-tight mb-3">Floral Couture</h4>
+                        <p class="text-xs text-[#8D7368] leading-relaxed">Hand-selected blooms flown from Grasse &amp;
+                            Kyoto. Suspended installations that feel like they were grown by the heavens themselves.</p>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-serif mb-3">Full Coordination</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Comprehensive event management from
-                            conceptualization to execution. We handle the stress, you enjoy the magic.</p>
-                        <a href="#"
-                            class="text-[#C5A059] font-bold text-sm uppercase tracking-wider flex items-center gap-2 group-hover:gap-4 transition-all">
-                            Our Process <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-[#121212] text-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2 relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=600"
-                            alt="About 1" class="rounded-lg mt-8">
-                        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=600"
-                            alt="About 2" class="rounded-lg">
-                    </div>
+                    <!-- Bottom accent -->
                     <div
-                        class="absolute -bottom-6 -right-6 w-48 h-48 gold-gradient p-8 flex flex-col justify-center rounded-lg shadow-xl hidden md:flex">
-                        <span class="text-4xl font-bold">15+</span>
-                        <span class="text-sm uppercase tracking-tighter">Years of Excellence</span>
+                        class="absolute bottom-0 left-0 right-0 h-1 bg-[#E8A8B8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
                 </div>
-                <div class="lg:w-1/2">
-                    <span class="gold-text uppercase tracking-widest font-semibold text-sm">About Elite Decor</span>
-                    <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-8">Creating Legends Out Of Your Special Events
-                    </h2>
-                    <p class="text-white/70 mb-6 leading-loose">
-                        Founded in 2008, Elite Decorations has grown from a boutique decor house into a full-service
-                        event production powerhouse. We believe that every occasion is a unique story waiting to be told
-                        through sensory experiences, vibrant colors, and impeccable service.
-                    </p>
-                    <p class="text-white/70 mb-8 leading-loose">
-                        Our team of award-winning chefs and visionary designers work in tandem to ensure your vision
-                        isn't just met—it's surpassed.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4">
-                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
-                            <span>White-glove service standards</span>
-                        </li>
-                        <li class="flex items-center gap-4">
-                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
-                            <span>Customized floral and lighting design</span>
-                        </li>
-                        <li class="flex items-center gap-4">
-                            <i data-lucide="check-circle" class="text-[#C5A059]"></i>
-                            <span>Michelin-inspired event catering</span>
-                        </li>
-                    </ul>
+
+                <!-- Service 2 -->
+                <div class="group relative bg-[#FFF8F5] overflow-hidden h-full rounded-3xl">
+                    <!-- Image -->
+                    <div class="h-80 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+                        style="background-image: url('https://picsum.photos/id/870/600/400');"></div>
+
+                    <!-- Content overlay -->
+                    <div class="p-7 pb-9">
+                        <div class="uppercase text-[#E8A8B8] text-xs font-medium tracking-[0.065em] mb-1">02</div>
+                        <h4 class="font-serif text-[#3F2E2C] text-[1.75rem] leading-tight mb-3">Candlelight Ritual</h4>
+                        <p class="text-xs text-[#8D7368] leading-relaxed">Over 1200 hand-poured beeswax tapers arranged
+                            in sculptural geometry. The light changes the room every 17 minutes.</p>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 right-0 h-1 bg-[#E8A8B8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group relative bg-[#FFF8F5] overflow-hidden h-full rounded-3xl">
+                    <!-- Image -->
+                    <div class="h-80 bg-cover bg-center transition-all duration-500 group-hover:scale-110"
+                        style="background-image: url('https://picsum.photos/id/106/600/400');"></div>
+
+                    <!-- Content overlay -->
+                    <div class="p-7 pb-9">
+                        <div class="uppercase text-[#E8A8B8] text-xs font-medium tracking-[0.065em] mb-1">03</div>
+                        <h4 class="font-serif text-[#3F2E2C] text-[1.75rem] leading-tight mb-3">Silk &amp; Shadow</h4>
+                        <p class="text-xs text-[#8D7368] leading-relaxed">Bespoke silk drapery, mirrored runners, and
+                            custom shadow-play installations. We turn ceilings into canvases and floors into mirrors of
+                            eternity.</p>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 right-0 h-1 bg-[#E8A8B8] scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group relative bg-[#3F2E2C] text-white overflow-hidden h-full rounded-3xl flex flex-col">
+                    <!-- Special “Signature” card -->
+                    <div
+                        class="flex-1 flex items-center justify-center bg-[url('https://picsum.photos/id/317/600/400')] bg-cover bg-center relative">
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-[#3F2E2C]/70"></div>
+
+                        <!-- Centered emblem -->
+                        <div class="relative z-10 text-center">
+                            <span class="block text-[#E8A8B8] text-[11px] tracking-[0.065em] mb-px">Signature</span>
+                            <span class="font-serif text-4xl leading-none">“L’Amour<br>Éternel”</span>
+                        </div>
+                    </div>
+
+                    <div class="p-7">
+                        <div class="uppercase text-[#E8A8B8] text-xs font-medium tracking-[0.065em] mb-1">04</div>
+                        <h4 class="font-serif text-white text-[1.75rem] leading-tight mb-3">Full Venue Alchemy</h4>
+                        <p class="text-xs text-[#C8B4AC] leading-relaxed">We arrive with nothing but vision. We leave
+                            behind an entirely different place — one your guests will swear was always this beautiful.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="scrollToContact()"
+                    class="text-xs uppercase tracking-[0.065em] text-[#E8A8B8] flex items-center gap-4 mx-auto group">
+                    <span class="h-px w-12 bg-[#E8A8B8] transition-all group-hover:w-16"></span>
+                    Book a private consultation
+                    <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US -->
+    <section id="about" class="bg-[#3F2E2C] py-16 lg:py-24 text-white relative overflow-hidden">
+        <!-- Decorative floral top -->
+        <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E8A8B8]/40 to-transparent">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Two column layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+
+                <!-- Left column - Story -->
+                <div class="lg:col-span-5">
+                    <div class="sticky top-28">
+                        <!-- Emblem -->
+                        <div class="inline-flex items-center text-[#E8A8B8] text-xs tracking-[0.065em] mb-4">
+                            CHAPTER ONE • 2019
+                        </div>
+
+                        <h2 class="font-serif text-[4.75rem] lg:text-[5.5rem] leading-[0.85] tracking-[-0.006em] mb-6">
+                            We fell in<br>love with<br>the way<br>flowers<br>remember.</h2>
+
+                        <div class="h-px bg-[#E8A8B8]/30 mb-6"></div>
+
+                        <p class="uppercase text-xs tracking-[0.065em] text-[#C8B4AC]">Co-founders • Amélie Rousseau
+                            &amp; Luca Moreau</p>
+                    </div>
+                </div>
+
+                <!-- Right column - Narrative + Images -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- First block -->
+                    <div class="bg-[#4A3935] rounded-3xl p-8 lg:p-10">
+                        <p class="leading-relaxed text-sm text-[#EDE1DB]">
+                            It began at a small Provençal chapel where the bride’s bouquet fell apart in the wind. We
+                            spent the night rebuilding it using wild roses from the hillside and lace from her
+                            grandmother’s veil. The wedding planner cried. The couple still sends us a postcard every
+                            anniversary.<br><br>
+                            That was the moment we stopped calling ourselves decorators.
+                        </p>
+                    </div>
+
+                    <!-- Image + caption row -->
+                    <div class="grid grid-cols-5 gap-4 lg:gap-6">
+                        <!-- Large image -->
+                        <div class="col-span-3 relative rounded-3xl overflow-hidden aspect-[5/3]">
+                            <img src="https://picsum.photos/id/317/800/380" alt="Amélie arranging florals"
+                                class="w-full h-full object-cover transition-all hover:scale-105 duration-500">
+
+                            <div
+                                class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/75 to-transparent flex items-end pb-3 px-5">
+                                <span class="text-[10px] text-[#E8A8B8] tracking-widest">Château de Vaux • June
+                                    2024</span>
+                            </div>
+                        </div>
+
+                        <!-- Small vertical images -->
+                        <div class="col-span-2 flex flex-col gap-4">
+                            <!-- Top -->
+                            <div class="flex-1 bg-[#E8A8B8] rounded-3xl overflow-hidden relative">
+                                <img src="https://picsum.photos/id/106/280/135" alt=""
+                                    class="w-full h-full object-cover brightness-75">
+                            </div>
+                            <!-- Bottom -->
+                            <div
+                                class="bg-[#FFF8F5] text-[#3F2E2C] rounded-3xl h-14 flex items-center justify-center text-[11px] font-medium tracking-widest text-center leading-tight">
+                                187<br><span class="block text-[9px] text-[#E8A8B8]">weddings</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signature quote -->
+                    <div class="pt-4 border-t border-[#67524D]">
+                        <p class="italic text-[#E8A8B8] text-sm font-serif tracking-wide leading-relaxed">
+                            “A wedding should feel like the most beautiful secret the world was never meant to
+                            keep.”<br>
+                            <span class="block text-xs text-[#C8B4AC] mt-3 not-italic">— Amélie Rousseau</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-3xl"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <span class="gold-text uppercase tracking-widest font-semibold text-sm">Client Stories</span>
-                <h2 class="text-4xl md:text-5xl font-serif mt-4">Kind Words From Elite Clients</h2>
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="py-16 lg:py-24 bg-[#FFF8F5]">
+        <!-- Section header -->
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-8 lg:mb-12">
+            <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#EDE1DB] pb-6">
+                <div>
+                    <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.065em] text-[#E8A8B8]">
+                        <span class="h-px w-5 bg-[#E8A8B8]"></span> SELECTED MOMENTS 2022 — 2025
+                    </span>
+                    <h2 class="font-serif text-[#3F2E2C] text-[4.75rem] leading-none tracking-[-0.01em]">Captured
+                        in<br>petals &amp; gold.</h2>
+                </div>
+
+                <!-- Filter tabs -->
+                <div
+                    class="flex border-b border-[#EDE1DB] text-xs uppercase tracking-[0.065em] overflow-x-auto hide-scrollbar">
+                    <button data-filter="all" id="filter-all"
+                        class="portfolio-filter px-5 py-3 border-b-2 border-[#E8A8B8] text-[#E8A8B8] font-medium">All</button>
+                    <button data-filter="garden" id="filter-garden"
+                        class="portfolio-filter px-5 py-3 text-[#9F8E88] hover:text-[#3F2E2C] transition-colors">Garden</button>
+                    <button data-filter="ballroom" id="filter-ballroom"
+                        class="portfolio-filter px-5 py-3 text-[#9F8E88] hover:text-[#3F2E2C] transition-colors">Ballroom</button>
+                    <button data-filter="destination" id="filter-destination"
+                        class="portfolio-filter px-5 py-3 text-[#9F8E88] hover:text-[#3F2E2C] transition-colors">Destination</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div id="portfolio-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 lg:gap-y-14 px-6 lg:px-12 max-w-7xl mx-auto">
+            <!-- Filled by JS -->
+        </div>
+
+        <!-- View all work CTA -->
+        <div class="mt-16 flex justify-center">
+            <button onclick="scrollToContact()" id="portfolio-cta"
+                class="bg-[#3F2E2C] hover:bg-black transition-colors text-[#FFF8F5] px-9 py-4 text-xs uppercase tracking-[0.065em] flex items-center gap-3 rounded-full">
+                Commission your own story
+                <span class="bg-[#E8A8B8] h-px w-5"></span><span class="text-[#E8A8B8]">✦</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="bg-white py-16 lg:py-24">
+        <div class="max-w-5xl mx-auto px-6 lg:px-12">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span
+                    class="bg-[#FFF8F5] text-[#E8A8B8] text-xs font-medium tracking-[0.065em] px-7 py-2 rounded-3xl">VOICES
+                    FROM THE AISLE</span>
+                <h2 class="font-serif text-[#3F2E2C] text-[4.25rem] leading-tight tracking-[-0.006em] mt-4">They said “I
+                    do”.<br>We made sure<br>the room did too.</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card p-10 bg-white border border-gray-100 rounded-2xl">
-                    <div class="flex gap-1 mb-6 text-[#C5A059]">
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                    </div>
-                    <p class="text-gray-600 italic mb-8 leading-relaxed">
-                        "The level of sophistication Elite Decorations brought to our wedding was beyond our wildest
-                        dreams. The floral arrangements were a masterpiece."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?u=1" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold">Eleanor Sterling</h4>
-                            <p class="text-xs text-gray-400 uppercase tracking-widest">Wedding Client</p>
-                        </div>
-                    </div>
+            <!-- Testimonial Carousel -->
+            <div class="relative" id="testimonial-carousel">
+                <!-- Slides -->
+                <div id="testimonial-slides" class="overflow-hidden rounded-3xl">
+                    <!-- JS populated -->
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card p-10 bg-[#121212] text-white rounded-2xl transform md:-translate-y-4">
-                    <div class="flex gap-1 mb-6 text-[#C5A059]">
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                    </div>
-                    <p class="text-white/80 italic mb-8 leading-relaxed">
-                        "Professionalism at its peak. Our annual corporate gala was flawless. The catering was
-                        Michelin-grade and the service was incredibly attentive."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?u=2" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold">Jameson Vane</h4>
-                            <p class="text-xs text-white/40 uppercase tracking-widest">CEO, Nexus Corp</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- Controls -->
+                <div class="flex items-center justify-between mt-8">
+                    <button id="testimonial-prev"
+                        class="w-11 h-11 rounded-full border border-[#EDE1DB] flex items-center justify-center text-[#9F8E88] hover:border-[#E8A8B8] hover:text-[#E8A8B8] transition-colors">
+                        ←
+                    </button>
 
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card p-10 bg-white border border-gray-100 rounded-2xl">
-                    <div class="flex gap-1 mb-6 text-[#C5A059]">
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
-                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    <!-- Dots -->
+                    <div id="testimonial-dots" class="flex gap-3">
+                        <!-- JS populated -->
                     </div>
-                    <p class="text-gray-600 italic mb-8 leading-relaxed">
-                        "I didn't have to worry about a single detail. Elite Decor managed everything from the guest
-                        seating to the late-night dessert bar. Exceptional."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.pravatar.cc/150?u=3" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold">Sophia Martinez</h4>
-                            <p class="text-xs text-gray-400 uppercase tracking-widest">Private Party</p>
-                        </div>
-                    </div>
+
+                    <button id="testimonial-next"
+                        class="w-11 h-11 rounded-full border border-[#EDE1DB] flex items-center justify-center text-[#9F8E88] hover:border-[#E8A8B8] hover:text-[#E8A8B8] transition-colors">
+                        →
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-[#F9F7F2]">
-        <div class="container mx-auto px-6">
-            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
-                <div class="lg:w-1/2 p-12 lg:p-20 bg-[#121212] text-white flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-serif mb-6">Let's Create <br>Something Iconic</h2>
-                        <p class="text-white/60 mb-12">Contact us for a complimentary consultation and venue
-                            walkthrough.</p>
+    <!-- CONTACT -->
+    <section id="contact" class="bg-[#3F2E2C] py-20 lg:py-28 text-white relative">
+        <!-- Background texture overlay -->
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#E8A8B8_10%,transparent_40%)] opacity-10"></div>
 
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                                    <i data-lucide="mail" class="w-5 h-5 text-[#C5A059]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs uppercase tracking-widest text-white/40">Email Us</p>
-                                    <p class="text-lg">hello@elitedecorations.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                                    <i data-lucide="phone" class="w-5 h-5 text-[#C5A059]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs uppercase tracking-widest text-white/40">Call Us</p>
-                                    <p class="text-lg">+1 (555) 234-5678</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                                    <i data-lucide="map-pin" class="w-5 h-5 text-[#C5A059]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs uppercase tracking-widest text-white/40">Visit Studio</p>
-                                    <p class="text-lg">777 Luxury Lane, Beverly Hills, CA</p>
-                                </div>
-                            </div>
-                        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <!-- Top banner -->
+            <div
+                class="bg-[#E8A8B8] text-[#3F2E2C] py-6 px-7 lg:px-9 rounded-3xl flex flex-wrap lg:flex-nowrap items-center justify-between mb-14 gap-y-3">
+                <div class="flex items-center gap-3">
+                    <span class="inline-block h-px bg-[#3F2E2C] w-6"></span>
+                    <span class="uppercase text-xs font-medium tracking-[0.065em]">Next available date</span>
+                </div>
+                <span class="font-serif text-xl lg:text-2xl">May 2026 • Only 3 dates remain</span>
+                <a href="#" id="enquire-button"
+                    class="bg-[#3F2E2C] hover:bg-[#2C2120] text-[#E8A8B8] px-7 py-3 text-xs rounded-full transition-colors whitespace-nowrap">
+                    Reserve your date
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                <!-- Left column -->
+                <div class="lg:col-span-5">
+                    <h2 class="font-serif text-[4.8rem] leading-none tracking-[-0.006em] mb-5">Let’s
+                        create<br>something<br>no one will<br>ever forget.</h2>
+
+                    <div class="text-[#C8B4AC] text-sm mb-10">
+                        Château de la Rose<br>
+                        Route de Saint-Rémy<br>
+                        13210 Saint-Rémy-de-Provence, France<br><br>
+                        <a href="mailto:studio@elitedecor.fr" class="underline">studio@elitedecor.fr</a><br>
+                        +33 4 90 88 21 09
                     </div>
 
-                    <div class="flex gap-6 mt-16">
-                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="instagram"></i></a>
-                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="facebook"></i></a>
-                        <a href="#" class="hover:text-[#C5A059] transition-colors"><i data-lucide="linkedin"></i></a>
+                    <div class="hidden lg:block">
+                        <div class="uppercase text-xs text-[#E8A8B8] tracking-[0.065em] mb-1">Featured in</div>
+                        <div class="flex flex-wrap gap-x-6 gap-y-1 text-xs text-[#67524D]">
+                            <span>VOGUE</span><span>BRIDES</span><span>The Knot</span><span>AD Italia</span><span>Tatler
+                                Weddings</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="lg:w-1/2 p-12 lg:p-20">
-                    <form id="contactForm" onsubmit="handleForm(event)" class="space-y-8">
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div class="space-y-2">
-                                <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Full
-                                    Name</label>
-                                <input type="text"
-                                    class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
-                                    placeholder="John Doe" required>
+                <!-- Contact Form -->
+                <div class="lg:col-span-7 bg-[#FFF8F5] rounded-3xl p-8 lg:p-11 text-[#3F2E2C]">
+                    <form id="contact-form" class="space-y-7">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs tracking-widest font-medium text-[#9F8E88] mb-2">FIRST
+                                    NAME</label>
+                                <input type="text" id="fname"
+                                    class="bg-transparent border-b border-[#D8C5BC] focus:border-[#E8A8B8] w-full py-3 outline-none text-sm placeholder:text-[#C8B4AC]"
+                                    placeholder="Amélie" required>
                             </div>
-                            <div class="space-y-2">
-                                <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Email
-                                    Address</label>
-                                <input type="email"
-                                    class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
-                                    placeholder="john@example.com" required>
+                            <div>
+                                <label class="block text-xs tracking-widest font-medium text-[#9F8E88] mb-2">LAST
+                                    NAME</label>
+                                <input type="text" id="lname"
+                                    class="bg-transparent border-b border-[#D8C5BC] focus:border-[#E8A8B8] w-full py-3 outline-none text-sm placeholder:text-[#C8B4AC]"
+                                    placeholder="Rousseau" required>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Event Type</label>
-                            <select
-                                class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent">
-                                <option>Wedding Celebration</option>
-                                <option>Corporate Gala</option>
-                                <option>Private Dinner</option>
-                                <option>Other Milestone</option>
-                            </select>
+
+                        <div>
+                            <label class="block text-xs tracking-widest font-medium text-[#9F8E88] mb-2">WEDDING
+                                DATE</label>
+                            <input type="date" id="wedding-date"
+                                class="bg-transparent border-b border-[#D8C5BC] focus:border-[#E8A8B8] w-full py-3 outline-none text-sm"
+                                required>
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs uppercase tracking-widest font-bold text-gray-400">Your
-                                Message</label>
-                            <textarea rows="4"
-                                class="w-full border-b border-gray-200 py-3 focus:border-[#C5A059] transition-colors bg-transparent"
-                                placeholder="Tell us about your event vision..."></textarea>
+
+                        <div>
+                            <label class="block text-xs tracking-widest font-medium text-[#9F8E88] mb-2">VENUE /
+                                CITY</label>
+                            <input type="text" id="venue" placeholder="Château de Vaux, Provence"
+                                class="bg-transparent border-b border-[#D8C5BC] focus:border-[#E8A8B8] w-full py-3 outline-none text-sm">
                         </div>
-                        <button type="submit"
-                            class="w-full btn-gold py-5 rounded-sm text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-3">
-                            Send Inquiry <i data-lucide="send" class="w-4 h-4"></i>
+
+                        <div>
+                            <label class="block text-xs tracking-widest font-medium text-[#9F8E88] mb-2">TELL US YOUR
+                                VISION</label>
+                            <textarea id="vision" rows="3"
+                                class="bg-transparent border-b border-[#D8C5BC] focus:border-[#E8A8B8] w-full py-3 outline-none text-sm resize-none"
+                                placeholder="We want the guests to feel they’ve walked into a painting by Monet at golden hour..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn"
+                            class="mt-4 w-full bg-[#E8A8B8] hover:bg-[#d88a9c] transition-colors py-4 text-white uppercase tracking-[0.065em] text-xs font-medium rounded-2xl flex items-center justify-center gap-3">
+                            Send to Élite Studio
+                            <span class="inline-block h-px bg-white w-4"></span>
+                            <span class="text-base">✉</span>
                         </button>
                     </form>
-                    <div id="formSuccess" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-center">
-                        Thank you! Our concierge will contact you within 24 hours.
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#0A0A0A] text-white py-12 border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <a href="#" class="flex items-center gap-2">
-                    <div class="w-8 h-8 gold-gradient rounded-full flex items-center justify-center">
-                        <i data-lucide="crown" class="text-white w-4 h-4"></i>
-                    </div>
-                    <span class="text-xl font-serif font-bold tracking-wider">ELITE <span
-                            class="text-[#C5A059]">DECOR</span></span>
-                </a>
-
-                <p class="text-white/40 text-sm">
-                    © 2023 Elite Decorations. All rights reserved. Designed for Excellence.
-                </p>
-
-                <div class="flex gap-8 text-sm uppercase tracking-widest text-white/60">
-                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+    <!-- FOOTER -->
+    <footer class="bg-[#3F2E2C] py-14 text-[#C8B4AC]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Top row -->
+            <div class="flex flex-col lg:flex-row justify-between items-center border-b border-[#67524D] pb-9 mb-7">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3 mb-6 lg:mb-0">
+                    <span class="inline-block h-px w-6 bg-[#E8A8B8]"></span>
+                    <span class="font-serif text-[#E8A8B8] text-xl tracking-widest">ÉLITE</span>
                 </div>
+
+                <!-- Socials -->
+                <div class="flex gap-7 text-xs uppercase tracking-[0.065em]">
+                    <a href="#" class="hover:text-[#E8A8B8] transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-[#E8A8B8] transition-colors">Pinterest</a>
+                    <a href="#" class="hover:text-[#E8A8B8] transition-colors">The Atelier Journal</a>
+                </div>
+            </div>
+
+            <!-- Bottom row -->
+            <div class="flex flex-col lg:flex-row items-center justify-between text-xs tracking-widest">
+                <div class="mb-4 lg:mb-0">© Élite Decorations. Handcrafted with reverence since 2019.</div>
+                <div class="text-[#67524D] text-[11px]">Privacy &amp; Client Confidentiality • Never rushed. Never
+                    repeated.</div>
             </div>
         </div>
     </footer>
 
+    <!-- Portfolio Modal -->
+    <div id="portfolioModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/70">
+        <div onclick="event.stopImmediatePropagation()" id="modalContent"
+            class="bg-white max-w-4xl w-full mx-4 rounded-3xl overflow-hidden relative max-h-[88vh] overflow-y-auto">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Tailwind script already injected via CDN
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', function () {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-3');
-                nav.classList.add('shadow-xl');
-            } else {
-                nav.classList.remove('py-3');
-                nav.classList.remove('shadow-xl');
+        // Fake portfolio data
+        const portfolioItems = [
+            {
+                id: 1,
+                title: "Lilas &amp; Moonlight",
+                location: "Château de Vaux, Provence",
+                date: "June 2024",
+                category: "garden",
+                img: "https://picsum.photos/id/870/800/1100",
+                description: "A midnight garden ceremony under 800 suspended glass orbs filled with French lilacs and fireflies. The bride walked through a tunnel of 12-foot tall white wisteria grown especially for the occasion.",
+                clients: "Sophie &amp; Henri Moreau",
+                photos: 42
+            },
+            {
+                id: 2,
+                title: "Rose Quartz Reverie",
+                location: "Villa Balbiano, Lake Como",
+                date: "October 2023",
+                category: "destination",
+                img: "https://picsum.photos/id/312/800/1100",
+                description: "A destination celebration where every table was crowned with a single 4-foot rose quartz geode overflowing with blush peonies and cascading Italian silk ribbons. The sunset reflected perfectly off the lake and the stone simultaneously.",
+                clients: "Isabella Santos &amp; Matteo Rossi",
+                photos: 68
+            },
+            {
+                id: 3,
+                title: "The Golden Hour Ballroom",
+                location: "Hôtel de Crillon, Paris",
+                date: "March 2025",
+                category: "ballroom",
+                img: "https://picsum.photos/id/106/800/1100",
+                description: "We transformed the historic ballroom into an endless golden sunset using 11,000 hand-dyed silk ribbons suspended from the ceiling and 240 antique brass lanterns filled with flickering candles.",
+                clients: "Clémentine Duval &amp; Louis Beaumont",
+                photos: 31
             }
-        });
+        ];
 
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            const isHidden = menu.classList.contains('hidden');
-
-            if (isHidden) {
-                menu.classList.remove('hidden');
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                menu.classList.add('hidden');
-                icon.setAttribute('data-lucide', 'menu');
+        // Fake testimonials
+        const testimonials = [
+            {
+                quote: "They didn’t decorate our wedding. They translated our love into something everyone could feel. Even my father, who never cries, said he felt like he was inside a poem.",
+                name: "Sophie Moreau",
+                role: "Bride • Château de Vaux",
+                avatar: "https://picsum.photos/id/64/32/32"
+            },
+            {
+                quote: "We wanted Lake Como to remember us. Élite made sure the lake itself blushed pink at 6:37pm exactly as we said our vows. I still cannot explain how they did it.",
+                name: "Isabella Santos",
+                role: "Bride • Villa Balbiano",
+                avatar: "https://picsum.photos/id/1009/32/32"
             }
-            lucide.createIcons();
+        ];
+
+        let currentTestimonialIndex = 0;
+
+        // Render portfolio grid
+        function renderPortfolio(filter = "all") {
+            let html = "";
+
+            portfolioItems.forEach(item => {
+                if (filter !== "all" && item.category !== filter) return;
+
+                html += `
+                    <div onclick="openPortfolioModal(${item.id})" 
+                         data-category="${item.category}"
+                         class="portfolio-card group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                        
+                        <!-- Image wrapper -->
+                        <div class="relative h-[380px] overflow-hidden">
+                            <img src="${item.img}" 
+                                 alt="${item.title}"
+                                 class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            
+                            <!-- Category badge -->
+                            <div class="absolute top-4 right-4 bg-white text-[#E8A8B8] text-[10px] uppercase tracking-[0.065em] font-medium px-3 py-px rounded-full">
+                                ${item.category}
+                            </div>
+                        </div>
+                        
+                        <!-- Info -->
+                        <div class="px-6 py-6">
+                            <div class="uppercase text-[#E8A8B8] text-xs font-medium tracking-[0.065em] mb-px">${item.date}</div>
+                            <h5 class="font-serif text-[#3F2E2C] text-[1.35rem] leading-tight tracking-[-0.005em]">${item.title}</h5>
+                            <p class="text-xs text-[#9F8E88]">${item.location}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById("portfolio-grid").innerHTML = html || `
+                <div class="col-span-full py-12 text-center">
+                    <p class="text-[#9F8E88] font-medium">No events found in this collection.</p>
+                </div>
+            `;
         }
 
-        // Contact Form Handling
-        function handleForm(e) {
-            e.preventDefault();
-            const form = document.getElementById('contactForm');
-            const success = document.getElementById('formSuccess');
+        // Open portfolio modal
+        function openPortfolioModal(id) {
+            const item = portfolioItems.find(i => i.id === id);
+            if (!item) return;
 
-            form.style.opacity = '0.5';
-            form.style.pointerEvents = 'none';
+            let modalHTML = `
+                <div class="relative">
+                    <!-- Close button -->
+                    <button onclick="closeModal()" id="modal-close-btn"
+                        class="absolute top-4 right-4 z-20 bg-white shadow text-[#3F2E2C] h-8 w-8 flex items-center justify-center rounded-full text-lg leading-none">✕</button>
+                    
+                    <!-- Hero image -->
+                    <div class="relative h-96 lg:h-[420px]">
+                        <img src="${item.img}" alt="${item.title}" 
+                             class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent"></div>
+                        
+                        <div class="absolute bottom-0 left-0 p-8 lg:p-10 text-white">
+                            <div class="uppercase tracking-[0.065em] text-xs text-[#E8A8B8]">${item.date}</div>
+                            <div class="font-serif text-[3.25rem] leading-none tracking-[-0.006em]">${item.title}</div>
+                            <div class="text-sm">${item.location}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="px-8 lg:px-11 py-8 lg:py-9">
+                        <div class="flex flex-wrap gap-7 items-center text-xs uppercase border-b border-[#EDE1DB] pb-6 mb-7">
+                            <div><span class="text-[#E8A8B8] font-medium">Clients:</span> ${item.clients}</div>
+                            <div><span class="text-[#E8A8B8] font-medium">Photographs:</span> ${item.photos}</div>
+                        </div>
+                        
+                        <p class="text-[#67524D] text-[15px] leading-relaxed">${item.description}</p>
+                        
+                        <!-- Gallery simulation -->
+                        <div class="mt-10">
+                            <div class="uppercase text-xs tracking-[0.065em] font-medium text-[#9F8E88] mb-3">Moments from the day</div>
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                                <img src="https://picsum.photos/id/870/280/170" alt="" 
+                                     class="aspect-video object-cover rounded-xl">
+                                <img src="https://picsum.photos/id/312/280/170" alt="" 
+                                     class="aspect-video object-cover rounded-xl">
+                                <img src="https://picsum.photos/id/106/280/170" alt="" 
+                                     class="aspect-video object-cover rounded-xl">
+                            </div>
+                            <div class="text-[#E8A8B8] text-xs mt-4 flex items-center justify-end cursor-pointer hover:underline">
+                                View all 42 images in the private gallery →
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
 
-            setTimeout(() => {
-                form.classList.add('hidden');
-                success.classList.remove('hidden');
-            }, 1000);
+            document.getElementById("modalContent").innerHTML = modalHTML;
+            document.getElementById("portfolioModal").classList.remove("hidden");
+
+            // Disable scroll on body
+            document.body.style.overflow = "hidden";
         }
 
-        // Animation on scroll observer (simple implementation)
-        const observerOptions = {
-            threshold: 0.1
-        };
+        function closeModal() {
+            document.getElementById("portfolioModal").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-up');
-                    entry.target.style.opacity = '1';
+        // Render testimonials
+        function renderTestimonials() {
+            let slidesHTML = '';
+            let dotsHTML = '';
+
+            testimonials.forEach((testimonial, i) => {
+                const isActive = i === 0 ? 'block' : 'hidden';
+
+                slidesHTML += `
+                    <div id="slide-${i}" class="testimonial-slide ${isActive} px-8 lg:px-16 py-12 lg:py-14 bg-[#FFF8F5] rounded-3xl min-h-[260px]">
+                        <div class="flex items-center gap-3 mb-5">
+                            <img src="${testimonial.avatar}" alt="${testimonial.name}" 
+                                 class="w-8 h-8 rounded-full object-cover ring-1 ring-[#E8A8B8]/40">
+                            <div>
+                                <div class="font-medium text-sm">${testimonial.name}</div>
+                                <div class="text-[#9F8E88] text-xs">${testimonial.role}</div>
+                            </div>
+                        </div>
+                        
+                        <blockquote class="font-serif text-[#3F2E2C] leading-relaxed text-[1.05rem] tracking-[-0.002em] italic">
+                            “${testimonial.quote}”
+                        </blockquote>
+                    </div>
+                `;
+
+                dotsHTML += `
+                    <button data-index="${i}" 
+                        id="dot-${i}"
+                        class="testimonial-dot w-2 h-px bg-[#D8C5BC] transition-all ${i === 0 ? 'bg-[#E8A8B8] w-6' : ''}">
+                    </button>
+                `;
+            });
+
+            document.getElementById("testimonial-slides").innerHTML = slidesHTML;
+            document.getElementById("testimonial-dots").innerHTML = dotsHTML;
+        }
+
+        // Switch testimonial
+        function switchTestimonial(index) {
+            document.querySelectorAll(".testimonial-slide").forEach(slide => {
+                slide.classList.add("hidden");
+            });
+
+            document.getElementById("slide-" + index).classList.remove("hidden");
+
+            // Update dots
+            document.querySelectorAll(".testimonial-dot").forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add("bg-[#E8A8B8]", "w-6");
+                } else {
+                    dot.classList.remove("bg-[#E8A8B8]", "w-6");
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
-        });
+            currentTestimonialIndex = index;
+        }
+
+        // Floating petals animation
+        function createPetals() {
+            const container = document.getElementById("petals-container");
+
+            for (let i = 0; i < 28; i++) {
+                const petal = document.createElement("div");
+                petal.className = `absolute text-[#E8A8B8] text-xl opacity-30`;
+                petal.style.left = Math.random() * 100 + "%";
+                petal.style.top = "-" + Math.random() * 80 + "px";
+                petal.textContent = "❀";
+                petal.style.animationDuration = (Math.random() * 14 + 18) + "s";
+                petal.style.animationDelay = Math.random() * -20 + "s";
+                petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                container.appendChild(petal);
+
+                // Animate falling petals
+                petal.animate([
+                    { transform: `translateY(0) rotate(0deg)` },
+                    { transform: `translateY(${window.innerHeight + 120}px) rotate(${Math.random() * 440}deg)` }
+                ], {
+                    duration: (Math.random() * 14000) + 18000,
+                    iterations: Infinity,
+                    easing: "linear"
+                });
+            }
+        }
+
+        // Handle filter clicks
+        function setupPortfolioFilters() {
+            document.querySelectorAll(".portfolio-filter").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    // Deactivate all
+                    document.querySelectorAll(".portfolio-filter").forEach(b => {
+                        b.classList.remove("border-b-2", "border-[#E8A8B8]", "text-[#E8A8B8]");
+                        b.classList.add("text-[#9F8E88]");
+                    });
+
+                    // Activate this
+                    btn.classList.add("border-b-2", "border-[#E8A8B8]", "text-[#E8A8B8]");
+                    btn.classList.remove("text-[#9F8E88]");
+
+                    const filter = btn.getAttribute("data-filter");
+                    renderPortfolio(filter);
+                });
+            });
+        }
+
+        // Scroll to portfolio
+        function scrollToPortfolio() {
+            document.getElementById("portfolio").scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll to contact
+        function scrollToContact() {
+            document.getElementById("contact").scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Fake form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById("submit-btn");
+            const originalText = btn.innerHTML;
+
+            btn.style.pointerEvents = "none";
+            btn.innerHTML = `<span class="inline-block animate-spin h-3 w-3 border-2 border-white border-t-transparent rounded-full"></span><span class="ml-2">Sent to Provence...</span>`;
+
+            setTimeout(() => {
+                btn.classList.remove("bg-[#E8A8B8]");
+                btn.classList.add("bg-emerald-500");
+                btn.innerHTML = `<span class="flex items-center justify-center gap-2">✓ Message received with reverence</span>`;
+
+                setTimeout(() => {
+                    alert("Amélie & Luca have received your note.\n\nThey will reply within three sunsets.\n\nWith love,\nÉlite Studio");
+
+                    // Reset form
+                    document.getElementById("contact-form").reset();
+
+                    btn.classList.remove("bg-emerald-500");
+                    btn.classList.add("bg-[#E8A8B8]");
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = "all";
+                }, 250);
+            }, 1650);
+        }
+
+        // Navbar scroll effect
+        function handleScroll() {
+            const navbar = document.getElementById("navbar");
+
+            if (window.scrollY > 80) {
+                navbar.classList.add("shadow-md");
+            } else {
+                navbar.classList.remove("shadow-md");
+            }
+        }
+
+        // Initialize everything
+        window.onload = () => {
+            // Render initial portfolio
+            renderPortfolio("all");
+
+            // Render testimonials
+            renderTestimonials();
+
+            // Carousel controls
+            document.getElementById("testimonial-prev").addEventListener("click", () => {
+                let index = currentTestimonialIndex - 1;
+                if (index < 0) index = testimonials.length - 1;
+                switchTestimonial(index);
+            });
+
+            document.getElementById("testimonial-next").addEventListener("click", () => {
+                let index = currentTestimonialIndex + 1;
+                if (index > testimonials.length - 1) index = 0;
+                switchTestimonial(index);
+            });
+
+            // Dots click handler
+            document.getElementById("testimonial-dots").addEventListener("click", function (e) {
+                if (e.target.classList.contains("testimonial-dot")) {
+                    const index = parseInt(e.target.getAttribute("data-index"));
+                    switchTestimonial(index);
+                }
+            });
+
+            // Portfolio modal close
+            document.getElementById("portfolioModal").addEventListener("click", function (e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // Form handling
+            document.getElementById("contact-form").addEventListener("submit", handleFormSubmit);
+
+            // Mobile menu
+            const mobileToggle = document.getElementById("mobile-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileToggle.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+
+                if (!mobileMenu.classList.contains("hidden")) {
+                    mobileToggle.textContent = "✕";
+                } else {
+                    mobileToggle.textContent = "☰";
+                }
+            });
+
+            // Nav link smooth scroll
+            document.querySelectorAll(".nav-link, .nav-link-mobile").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    const targetId = this.getAttribute("href").replace("#", "");
+
+                    if (targetId && document.getElementById(targetId)) {
+                        e.preventDefault();
+
+                        document.getElementById(targetId).scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                        // Close mobile menu if opened
+                        if (!mobileMenu.classList.contains("hidden")) {
+                            mobileMenu.classList.add("hidden");
+                            mobileToggle.textContent = "☰";
+                        }
+                    }
+                });
+            });
+
+            // Filter setup
+            setupPortfolioFilters();
+
+            // Create petals
+            createPetals();
+
+            // Scroll handler
+            window.addEventListener("scroll", handleScroll);
+
+            // Keyboard support for modal
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    const modal = document.getElementById("portfolioModal");
+                    if (!modal.classList.contains("hidden")) {
+                        closeModal();
+                    }
+                }
+            });
+
+            // Fake "enquire button" interaction
+            document.getElementById("enquire-button").addEventListener("click", function (e) {
+                e.preventDefault();
+                scrollToContact();
+            });
+
+            // Slight parallax on hero background
+            window.addEventListener("scroll", () => {
+                const scrollY = window.scrollY;
+                const heroBg = document.getElementById("hero-bg");
+
+                if (scrollY < 850) {
+                    heroBg.style.transform = `scale(${1 + scrollY / 400})`;
+                }
+            });
+
+            console.log("%cWelcome to Élite Decorations.\nEverything here was crafted with love, petals, and a touch of magic.\n\n— Amélie & Luca",
+                "font-family: Playfair Display; font-size: 14px; color:#E8A8B8");
+        }
     </script>
 </body>
-
-</html>
 
 </html>
