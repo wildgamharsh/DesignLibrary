@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Source Wedding — Luxury Décor & Event Design Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #E91E8C;
+  --purple: #7B2D8E;
+  --deep-purple: #2D0A3E;
+  --violet: #5C2D91;
+  --gold: #D4A853;
+  --gold-light: #F0D48A;
+  --off-white: #FBF7F4;
+  --light-pink: #FDF0F5;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  background: var(--off-white);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', serif;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-subtext {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0525 0%, #2D0A3E 30%, #5C2D91 60%, #E91E8C 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(233,30,140,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(92,45,145,0.2) 0%, transparent 50%);
+}
+
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  align-items: center;
+}
+
+.hero-text {
+  color: white;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  border-left: 2px solid var(--gold);
+  padding-left: 12px;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #f0d0e8 50%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-text p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8);
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 16px 36px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(233,30,140,0.4);
+}
+
+.btn-outline {
+  padding: 16px 36px;
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: rgba(212,168,83,0.1);
+  transform: translateY(-2px);
+}
+
+.hero-collage {
+  position: relative;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collage-img {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  transition: transform 0.6s ease;
+}
+
+.collage-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage-img-1 {
+  width: 280px;
+  height: 380px;
+  top: 10%;
+  left: 5%;
+  z-index: 3;
+  transform: rotate(-3deg);
+}
+
+.collage-img-2 {
+  width: 220px;
+  height: 300px;
+  top: 5%;
+  right: 5%;
+  z-index: 2;
+  transform: rotate(4deg);
+}
+
+.collage-img-3 {
+  width: 200px;
+  height: 250px;
+  bottom: 5%;
+  left: 20%;
+  z-index: 1;
+  transform: rotate(2deg);
+}
+
+.collage-decorator {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(212,168,83,0.3);
+  border-radius: 50%;
+  top: -20px;
+  right: 40%;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.collage-decorator-2 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(233,30,140,0.2), transparent);
+  border-radius: 50%;
+  bottom: 0;
+  right: 10%;
+  animation: floatSlow 8s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* ============ SHOWCASE STRIP ============ */
+.showcase {
+  padding: 6rem 2rem;
+  background: var(--off-white);
+  overflow: hidden;
+}
+
+.showcase .section-heading {
+  color: var(--deep-purple);
+}
+
+.showcase-track-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.showcase-track-wrapper::before,
+.showcase-track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.showcase-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--off-white), transparent);
+}
+
+.showcase-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--off-white), transparent);
+}
+
+.showcase-track {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  cursor: grab;
+  transition: transform 0.3s ease;
+}
+
+.showcase-card {
+  flex: 0 0 320px;
+  height: 420px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+
+.showcase-card:hover {
+  flex: 0 0 380px;
+  box-shadow: 0 20px 60px rgba(92,45,145,0.25);
+}
+
+.showcase-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.showcase-card:hover .showcase-card-img {
+  transform: scale(1.1);
+}
+
+.showcase-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(45,10,62,0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+.showcase-card h3 {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.showcase-card p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.showcase-card:hover p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ BRAND STATEMENT ============ */
+.brand-statement {
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2D0A3E 0%, #5C2D91 50%, #E91E8C 100%);
+}
+
+.brand-mesh {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(233,30,140,0.5), transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212,168,83,0.4), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(92,45,145,0.3), transparent 60%);
+  animation: meshMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes meshMove {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.1) rotate(2deg); }
+}
+
+.brand-statement-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.brand-statement-content h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.6;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 3rem;
+  color: rgba(255,255,255,0.95);
+}
+
+.brand-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.brand-highlight {
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+.brand-highlight:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--gold);
+  transform: translateY(-5px);
+}
+
+.brand-highlight .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.brand-highlight h4 {
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.brand-highlight p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ============ SERVICES ============ */
+.services {
+  padding: 8rem 2rem;
+  background: var(--off-white);
+}
+
+.services .section-heading {
+  color: var(--deep-purple);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 380px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+  group: true;
+}
+
+.service-card:nth-child(1) { grid-row: span 1; }
+.service-card:nth-child(2) { height: 420px; }
+.service-card:nth-child(4) { height: 420px; }
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(92,45,145,0.2);
+}
+
+.service-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-card-bg {
+  transform: scale(1.08);
+}
+
+.service-card-content {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(45,10,62,0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+
+.service-card-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.08);
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+.service-card h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card-desc {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.service-card:hover .service-card-desc {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.service-card-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.service-card:hover .service-card-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ PROCESS TIMELINE ============ */
+.process {
+  padding: 8rem 2rem;
+  background: linear-gradient(180deg, var(--light-pink) 0%, var(--off-white) 100%);
+}
+
+.process .section-heading {
+  color: var(--deep-purple);
+}
+
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--pink), var(--purple));
+  transform: translateX(-50%);
+  transform-origin: top;
+}
+
+.timeline-line-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--gold);
+  transition: height 0.3s ease;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  position: relative;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  text-align: right;
+  padding-right: 4rem;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  text-align: left;
+  padding-left: 4rem;
+}
+
+.timeline-dot {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 8px rgba(233,30,140,0.1), 0 0 30px rgba(233,30,140,0.2);
+  transition: all 0.4s ease;
+}
+
+.timeline-item.visible .timeline-dot {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 8px rgba(233,30,140,0.1), 0 0 30px rgba(233,30,140,0.2); }
+  50% { box-shadow: 0 0 0 15px rgba(233,30,140,0.05), 0 0 50px rgba(233,30,140,0.15); }
+}
+
+.timeline-spacer {
+  flex: 1;
+}
+
+.timeline-content h3 {
+  color: var(--deep-purple);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ============ PORTFOLIO FEATURE ============ */
+.portfolio-feature {
+  padding: 8rem 2rem;
+  background: var(--off-white);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.portfolio-image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 600px;
+  box-shadow: 0 30px 80px rgba(92,45,145,0.15);
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-image-accent {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--gold);
+  border-radius: 24px;
+  z-index: -1;
+}
+
+.portfolio-text {
+  padding: 2rem 0;
+}
+
+.portfolio-text .section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.portfolio-text h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--deep-purple);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-text p {
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.portfolio-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-dark {
+  padding: 14px 32px;
+  background: var(--deep-purple);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+.btn-dark:hover {
+  background: var(--purple);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(45,10,62,0.3);
+}
+
+.btn-outline-dark {
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--deep-purple);
+  border: 1.5px solid var(--purple);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+.btn-outline-dark:hover {
+  background: var(--purple);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============ INSPIRATION ============ */
+.inspiration {
+  padding: 8rem 2rem;
+  background: linear-gradient(180deg, var(--light-pink) 0%, var(--off-white) 100%);
+  overflow: hidden;
+}
+
+.inspiration .section-heading {
+  color: var(--deep-purple);
+}
+
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.inspiration-tile {
+  position: relative;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.inspiration-tile:nth-child(1) { grid-column: span 2; }
+.inspiration-tile:nth-child(4) { grid-column: span 2; }
+
+.inspiration-tile:hover {
+  transform: scale(1.03);
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(92,45,145,0.25);
+}
+
+.inspiration-tile-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+
+.inspiration-tile:hover .inspiration-tile-bg {
+  transform: scale(1.1);
+}
+
+.inspiration-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(45,10,62,0.85) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  transition: background 0.4s ease;
+}
+
+.inspiration-tile:hover .inspiration-tile-overlay {
+  background: linear-gradient(180deg, rgba(233,30,140,0.1) 0%, rgba(45,10,62,0.9) 100%);
+}
+
+.inspiration-tile h3 {
+  color: white;
+  font-size: 1.2rem;
+  transform: translateY(5px);
+  transition: transform 0.4s ease;
+}
+
+.inspiration-tile:hover h3 {
+  transform: translateY(0);
+}
+
+.inspiration-tile .tile-line {
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 0.5rem;
+  transition: width 0.4s ease 0.1s;
+}
+
+.inspiration-tile:hover .tile-line {
+  width: 60px;
+}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials {
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2D0A3E 0%, #5C2D91 50%, #7B2D8E 100%);
+}
+
+.testimonials .section-heading {
+  color: white;
+}
+
+.testimonials .section-subtext {
+  color: rgba(255,255,255,0.6);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  padding: 2.5rem;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-5px);
+  border-color: rgba(212,168,83,0.3);
+}
+
+.testimonial-card .quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.testimonial-author-info h4 {
+  color: white;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.testimonial-author-info span {
+  color: var(--gold-light);
+  font-size: 0.8rem;
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--deep-purple) 100%);
+  text-align: center;
+}
+
+.cta-light-sweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: lightSweep 4s ease-in-out infinite;
+}
+
+@keyframes lightSweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.cta-content p {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--deep-purple);
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.4s ease;
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(212,168,83,0.4);
+}
+
+.btn-white-outline {
+  padding: 16px 40px;
+  background: transparent;
+  color: white;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.4s ease;
+}
+
+.btn-white-outline:hover {
+  border-color: white;
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 5rem 2rem 2rem;
+  background: linear-gradient(180deg, #1a0525, #0d0215);
+  color: white;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-brand h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--pink), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-brand p {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  color: var(--gold-light);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+  color: var(--pink);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.footer-social a:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: white;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.85rem;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.navbar.scrolled {
+  background: rgba(45,10,62,0.95);
+  backdrop-filter: blur(20px);
+  padding: 0.8rem 2rem;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  left: 0;
+  right: 0;
+  max-width: 100%;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-logo span {
+  color: var(--gold-light);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  font-weight: 400;
+}
+
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+.nav-cta {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: white !important;
+  border-radius: 50px;
+  font-size: 0.85rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-cta:hover {
+  box-shadow: 0 5px 20px rgba(233,30,140,0.4);
+  transform: translateY(-1px);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.nav-toggle span {
+  width: 25px;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* ============ SCROLL ANIMATIONS ============ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.23,1,0.32,1);
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============ FLOATING SHAPES ============ */
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-collage {
+    display: none;
+  }
+  
+  .hero-text p {
+    margin: 0 auto 2.5rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .inspiration-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .inspiration-tile:nth-child(1),
+  .inspiration-tile:nth-child(4) {
+    grid-column: span 1;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .portfolio-image {
+    height: 400px;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(45,10,62,0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  .brand-highlights {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-card,
+  .service-card:nth-child(2),
+  .service-card:nth-child(4) {
+    height: 300px;
+  }
+  
+  .timeline-item {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  
+  .timeline-content {
+    padding: 1.5rem 0 !important;
+    text-align: center !important;
+  }
+  
+  .timeline-line {
+    display: none;
+  }
+  
+  .timeline-spacer {
+    display: none;
+  }
+  
+  .inspiration-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .inspiration-tile {
+    height: 250px;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .inspiration-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-purple);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--pink), var(--purple));
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">Source <span>Wedding</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#showcase">Portfolio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-tag">Luxury Event Design</span>
+      <h1>Designed Moments.<br>Staged to Perfection.</h1>
+      <p>Luxury wedding décor and event styling crafted with precision, emotion, and visual drama.</p>
+      <div class="hero-buttons">
+        <a href="#showcase" class="btn-primary">View Portfolio</a>
+        <a href="#contact" class="btn-outline">Book Consultation</a>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <div class="collage-decorator"></div>
+      <div class="collage-decorator-2"></div>
+      <div class="collage-img collage-img-1" data-speed="0.02">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=800&fit=crop" alt="Mandap décor" loading="lazy">
+      </div>
+      <div class="collage-img collage-img-2" data-speed="0.04">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&h=700&fit=crop" alt="Stage design" loading="lazy">
+      </div>
+      <div class="collage-img collage-img-3" data-speed="0.03">
+        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&h=600&fit=crop" alt="Floral arrangement" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Signature Showcase Strip -->
+<section class="showcase" id="showcase">
+  <h2 class="section-heading fade-in">Signature Setups</h2>
+  <p class="section-subtext fade-in">Each creation is a narrative expressed through texture, light, and form.</p>
+  <div class="showcase-track-wrapper">
+    <div class="showcase-track" id="showcaseTrack">
+      <div class="showcase-card">
+        <div class="showcase-card-img" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=700&h=900&fit=crop')"></div>
+        <div class="showcase-card-overlay">
+          <h3>Mandap Experiences</h3>
+          <p>Sacred structures reimagined with contemporary artistry and traditional soul.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&h=900&fit=crop')"></div>
+        <div class="showcase-card-overlay">
+          <h3>Reception Stage Design</h3>
+          <p>Dramatic focal points that command attention and frame every photograph.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&h=900&fit=crop')"></div>
+        <div class="showcase-card-overlay">
+          <h3>Floral Installations</h3>
+          <p>Living sculptures crafted from premium botanicals, suspended and grounded.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&h=900&fit=crop&q=80')"></div>
+        <div class="showcase-card-overlay">
+          <h3>Luxury Backdrops</h3>
+          <p>Immersive walls of wonder that transform any venue into a visual masterpiece.</p>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-card-img" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=700&h=900&fit=crop')"></div>
+        <div class="showcase-card-overlay">
+          <h3>Cultural Ceremonies</h3>
+          <p>Honoring heritage through design that respects tradition and elevates aesthetics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Statement -->
+<section class="brand-statement">
+  <div class="brand-mesh"></div>
+  <div class="brand-statement-content fade-in">
+    <h2>"Source Wedding is a full-service décor and event design studio specializing in immersive wedding environments. We don't decorate spaces. We build atmospheres that photograph, flow, and stay remembered."</h2>
+    <div class="brand-highlights">
+      <div class="brand-highlight fade-in">
+        <div class="icon">✦</div>
+        <h4>Custom Concepts</h4>
+        <p>Every design is born from your story — no templates, no repetition, only original creations.</p>
+      </div>
+      <div class="brand-highlight fade-in" style="transition-delay: 0.15s">
+        <div class="icon">◈</div>
+        <h4>Premium Materials</h4>
+        <p>We source only the finest fabrics, florals, and structural elements for uncompromising quality.</p>
+      </div>
+      <div class="brand-highlight fade-in" style="transition-delay: 0.3s">
+        <div class="icon">❋</div>
+        <h4>Full Setup & Teardown</h4>
+        <p>End-to-end execution so you can focus entirely on celebrating your special moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <h2 class="section-heading fade-in">What We Create</h2>
+  <p class="section-subtext fade-in">Six pillars of design excellence, each tailored to your unique celebration.</p>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=800&fit=crop')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">01</span>
+        <h3>Wedding Décor Design</h3>
+        <p class="service-card-desc">Complete visual identity for your wedding — color stories, material palettes, and spatial design.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay: 0.1s">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=800&fit=crop')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">02</span>
+        <h3>Stage & Mandap Setups</h3>
+        <p class="service-card-desc">Architectural installations that become the heart of your ceremony and celebrations.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay: 0.2s">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=800&fit=crop')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">03</span>
+        <h3>Floral Styling</h3>
+        <p class="service-card-desc">From suspended gardens to cascading centerpieces — botanical art at scale.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay: 0.1s">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&h=800&fit=crop')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">04</span>
+        <h3>Reception Environments</h3>
+        <p class="service-card-desc">Transform banquet halls into cinematic dining experiences with layered design.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay: 0.2s">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&q=80')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">05</span>
+        <h3>Event Rentals</h3>
+        <p class="service-card-desc">Curated collection of premium furniture, lighting, and decorative pieces.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+    <div class="service-card fade-in" style="transition-delay: 0.3s">
+      <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1478146059778-26028b07395a?w=600&h=800&fit=crop')"></div>
+      <div class="service-card-content">
+        <span class="service-card-number">06</span>
+        <h3>Full Styling Coordination</h3>
+        <p class="service-card-desc">Day-of design management ensuring every element is placed with intention.</p>
+        <a href="#" class="service-card-link">Explore →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Timeline -->
+<section class="process" id="process">
+  <h2 class="section-heading fade-in">From Concept to Celebration</h2>
+  <p class="section-subtext fade-in">A refined five-step journey from vision to reality.</p>
+  <div class="timeline">
+    <div class="timeline-line"><div class="timeline-line-fill" id="timelineFill"></div></div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>Consultation</h3>
+        <p>We begin by understanding your story, style, and vision through an in-depth creative conversation.</p>
+      </div>
+      <div class="timeline-dot">01</div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>Moodboard & Concept</h3>
+        <p>Our design team curates a bespoke visual direction — colors, textures, spatial flow, and atmosphere.</p>
+      </div>
+      <div class="timeline-dot">02</div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>Design Planning</h3>
+        <p>Detailed blueprints, material sourcing, vendor coordination, and spatial layouts come together.</p>
+      </div>
+      <div class="timeline-dot">03</div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>Setup & Execution</h3>
+        <p>Our crew transforms the venue with precision — every petal, drape, and light placed with care.</p>
+      </div>
+      <div class="timeline-dot">04</div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <h3>Event Day Styling</h3>
+        <p>On-site design management ensures everything stays perfect from first look to final dance.</p>
+      </div>
+      <div class="timeline-dot">05</div>
+      <div class="timeline-spacer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Feature -->
+<section class="portfolio-feature">
+  <div class="portfolio-grid">
+    <div class="portfolio-image fade-in-left">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&h=1100&fit=crop" alt="Featured portfolio piece" loading="lazy">
+    </div>
+    <div class="portfolio-text fade-in-right">
+      <span class="section-tag">Featured Work</span>
+      <h2>Crafted for Visual Impact</h2>
+      <p>Every installation is tailored to the venue, culture, and mood. Our work blends traditional elements with contemporary staging to create distinctive wedding environments that transcend expectation.</p>
+      <p>From intimate garden ceremonies to grand ballroom celebrations, each project receives the same level of creative devotion and meticulous execution.</p>
+      <div class="portfolio-buttons">
+        <a href="#" class="btn-dark">View Gallery</a>
+        <a href="#" class="btn-outline-dark">See Recent Events</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inspiration Section -->
+<section class="inspiration">
+  <h2 class="section-heading fade-in">Themes We Love Designing</h2>
+  <p class="section-subtext fade-in">Explore the aesthetic territories where our creativity thrives.</p>
+  <div class="inspiration-grid">
+    <div class="inspiration-tile fade-in">
+      <div class="inspiration-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop')"></div>
+      <div class="inspiration-tile-overlay">
+        <div>
+          <h3>Royal Floral</h3>
+          <div class="tile-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="inspiration-tile fade-in" style="transition-delay: 0.1s">
+      <div class="inspiration-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop')"></div>
+      <div class="inspiration-tile-overlay">
+        <div>
+          <h3>Modern Luxury</h3>
+          <div class="tile-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="inspiration-tile fade-in" style="transition-delay: 0.2s">
+      <div class="inspiration-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&h=600&fit=crop')"></div>
+      <div class="inspiration-tile-overlay">
+        <div>
+          <h3>Cultural Fusion</h3>
+          <div class="tile-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="inspiration-tile fade-in" style="transition-delay: 0.1s">
+      <div class="inspiration-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&h=600&fit=crop')"></div>
+      <div class="inspiration-tile-overlay">
+        <div>
+          <h3>Minimal Elegance</h3>
+          <div class="tile-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="inspiration-tile fade-in" style="transition-delay: 0.2s">
+      <div class="inspiration-tile-bg" style="background-image: url('https://images.unsplash.com/photo-1478146059778-26028b07395a?w=800&h=600&fit=crop')"></div>
+      <div class="inspiration-tile-overlay">
+        <div>
+          <h3>Statement Reception</h3>
+          <div class="tile-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <h2 class="section-heading fade-in">Client Experiences</h2>
+  <p class="section-subtext fade-in">Words from the couples whose celebrations we've had the privilege to design.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in">
+      <div class="stars">★★★★★</div>
+      <div class="quote-mark">"</div>
+      <p>Source Wedding transformed our venue into something out of a dream. Every guest was speechless. The mandap was a work of art — traditional yet completely fresh.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">P&R</div>
+        <div class="testimonial-author-info">
+          <h4>Priya & Rahul</h4>
+          <span>Mumbai, 2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in" style="transition-delay: 0.15s">
+      <div class="stars">★★★★★</div>
+      <div class="quote-mark">"</div>
+      <p>The attention to detail was extraordinary. From the floral installations to the lighting design, everything was cohesive and visually stunning. True professionals.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">A&S</div>
+        <div class="testimonial-author-info">
+          <h4>Ananya & Siddharth</h4>
+          <span>Delhi, 2024</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in" style="transition-delay: 0.3s">
+      <div class="stars">★★★★★</div>
+      <div class="quote-mark">"</div>
+      <p>They didn't just decorate — they created an entire experience. The way they understood our cultural needs while adding contemporary flair was remarkable.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">M&K</div>
+        <div class="testimonial-author-info">
+          <h4>Meera & Karan</h4>
+          <span>Jaipur, 2023</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section" id="contact">
+  <div class="cta-light-sweep"></div>
+  <div class="cta-content fade-in">
+    <h2>Let's Design Your Event</h2>
+    <p>Tell us your date, venue, and vision. We'll create the environment that makes your celebration unforgettable.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-gold">Start Consultation</a>
+      <a href="#" class="btn-white-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Source Wedding</h3>
+      <p>A full-service luxury décor and event design studio creating immersive wedding environments across India.</p>
+      <div class="footer-social">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">PI</a>
+        <a href="#">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Design Team</a>
+      <a href="#">Philosophy</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Wedding Décor</a>
+      <a href="#">Stage Design</a>
+      <a href="#">Floral Styling</a>
+      <a href="#">Event Rentals</a>
+    </div>
+    <div class="footer-col">
+      <h4>Gallery</h4>
+      <a href="#">Recent Work</a>
+      <a href="#">Mandap Collection</a>
+      <a href="#">Reception Design</a>
+      <a href="#">Behind the Scenes</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">hello@sourcewedding.com</a>
+      <a href="#">+91 98765 43210</a>
+      <a href="#">Mumbai, India</a>
+      <a href="#">Book a Call</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Source Wedding. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<script>
+// ============ PARTICLES CANVAS ============
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.parentElement.offsetHeight;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 3 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.pulse = Math.random() * Math.PI * 2;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.pulse += 0.02;
+    this.currentOpacity = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.reset();
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 200, 230, ${this.currentOpacity})`;
+    ctx.fill();
+    // Glow
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(233, 30, 140, ${this.currentOpacity * 0.15})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 60; i++) {
+  particles.push(new Particle());
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ============ NAVBAR SCROLL ============
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// ============ MOBILE NAV TOGGLE ============
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+
+// ============ SCROLL ANIMATIONS ============
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .timeline-item').forEach(el => {
+  observer.observe(el);
+});
+
+// ============ SHOWCASE HORIZONTAL SCROLL / DRAG ============
+const showcaseTrack = document.getElementById('showcaseTrack');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+showcaseTrack.addEventListener('mousedown', (e) => {
+  isDown = true;
+  showcaseTrack.style.cursor = 'grabbing';
+  startX = e.pageX - showcaseTrack.offsetLeft;
+  scrollLeft = showcaseTrack.parentElement.scrollLeft;
+});
+
+showcaseTrack.addEventListener('mouseleave', () => {
+  isDown = false;
+  showcaseTrack.style.cursor = 'grab';
+});
+
+showcaseTrack.addEventListener('mouseup', () => {
+  isDown = false;
+  showcaseTrack.style.cursor = 'grab';
+});
+
+showcaseTrack.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - showcaseTrack.offsetLeft;
+  const walk = (x - startX) * 2;
+  showcaseTrack.parentElement.scrollLeft = scrollLeft - walk;
+});
+
+// Make showcase scrollable
+showcaseTrack.parentElement.style.overflowX = 'auto';
+showcaseTrack.parentElement.style.scrollbarWidth = 'none';
+showcaseTrack.parentElement.style.msOverflowStyle = 'none';
+
+// Auto-scroll showcase
+let autoScrollDirection = 1;
+let autoScrollSpeed = 0.5;
+
+function autoScrollShowcase() {
+  const wrapper = showcaseTrack.parentElement;
+  if (!isDown) {
+    wrapper.scrollLeft += autoScrollSpeed * autoScrollDirection;
+    if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
+      autoScrollDirection = -1;
+    }
+    if (wrapper.scrollLeft <= 0) {
+      autoScrollDirection = 1;
+    }
+  }
+  requestAnimationFrame(autoScrollShowcase);
+}
+autoScrollShowcase();
+
+// ============ PARALLAX FOR COLLAGE ============
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const collageImgs = document.querySelectorAll('.collage-img');
+  collageImgs.forEach(img => {
+    const speed = parseFloat(img.dataset.speed) || 0.02;
+    img.style.transform = `translateY(${scrolled * speed * -10}px) rotate(${img.classList.contains('collage-img-1') ? -3 : img.classList.contains('collage-img-2') ? 4 : 2}deg)`;
+  });
+});
+
+// ============ TIMELINE FILL ============
+window.addEventListener('scroll', () => {
+  const timeline = document.querySelector('.timeline');
+  if (!timeline) return;
+  const rect = timeline.getBoundingClientRect();
+  const timelineFill = document.getElementById('timelineFill');
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (rect.height + window.innerHeight * 0.5)));
+    timelineFill.style.height = (progress * 100) + '%';
+  }
+});
+
+// ============ SMOOTH SCROLL ============
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

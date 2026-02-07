@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Wedding • Staged to Perfection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair_Display:wght@400&amp;family=Instrument_Serif:ital@0;1&amp;family=Inter:wght@400;500&amp;display=swap">
+</head>
+<body class="font-sans antialiased bg-[#f8f5f2]">
+    <!-- Navbar -->
+    <nav id="navbar" 
+         class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-[#e8e0d8] transition-all duration-300">
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <span class="h-px w-6 bg-[#c026d3]"></span>
+                    <span class="font-serif text-base tracking-[0.065em] text-[#4a0e3f] uppercase">Source</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-11 text-sm uppercase tracking-[0.065em] font-medium text-[#4a0e3f]">
+                    <a href="#" class="hover:text-[#c026d3] transition-colors">Work</a>
+                    <a href="#" class="hover:text-[#c026d3] transition-colors">Experiences</a>
+                    <a href="#" class="hover:text-[#c026d3] transition-colors">Process</a>
+                    <a href="#" class="hover:text-[#c026d3] transition-colors">Studio</a>
+                </div>
+                
+                <button onclick="scrollToConsultation()" 
+                    id="nav-cta"
+                    class="bg-[#4a0e3f] hover:bg-[#6b1f5d] text-white text-xs tracking-[0.065em] px-7 py-3 rounded-full transition-all flex-shrink-0">
+                    BOOK CONSULTATION
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div 
+            id="hero-bg"
+            class="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms]"
+            style="background-image: url('https://picsum.photos/id/870/2000/1400');">
+        </div>
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#3f0d36] via-[#7e2a7c]/70 to-transparent"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#c026d3_30%,transparent_60%)] opacity-40"></div>
+        
+        <!-- Canvas Bokeh / Particles -->
+        <canvas 
+            id="bokehCanvas" 
+            class="absolute inset-0 pointer-events-none z-10"
+            width="1920" 
+            height="1080"></canvas>
+        
+        <!-- Hero Content -->
+        <div class="relative z-20 text-center px-6 max-w-5xl mx-auto">
+            <div class="mb-3 inline-flex items-center gap-2 text-[#f5d1e1] text-xs tracking-[0.065em] uppercase">
+                <span class="h-px w-6 bg-[#f5d1e1]"></span>NEW DELHI • MUMBAI • UDAIPUR
+            </div>
+            
+            <h1 class="font-serif text-[8.5rem] md:text-[9.75rem] leading-[0.78] tracking-[-0.01em] text-white mb-4">
+                DESIGNED<br><span class="italic">Moments.</span>
+            </h1>
+            
+            <p class="font-medium text-[#f5d1e1] text-sm tracking-[0.065em] uppercase mb-8">Staged to Perfection</p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="scrollToPortfolio()" 
+                    id="hero-portfolio-btn"
+                    class="bg-transparent border border-white text-white px-8 py-4 rounded-full text-xs uppercase tracking-[0.065em] hover:bg-white hover:text-[#4a0e3f] transition-all">
+                    View Portfolio
+                </button>
+                
+                <button onclick="scrollToConsultation()" 
+                    class="bg-[#e83e8f] hover:bg-[#d12d78] text-white px-8 py-4 rounded-full text-xs uppercase tracking-[0.065em] transition-all shadow-xl shadow-[#c026d3]/30">
+                    Book Consultation
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-[#f5d1e1] text-[10px] tracking-[0.065em]">
+            <span class="mb-1">SCROLL TO ENTER</span>
+            <div class="h-px w-7 bg-[#f5d1e1]"></div>
+        </div>
+    </header>
+    
+    <!-- Signature Showcase Strip -->
+    <section class="py-12 bg-white">
+        <div class="max-w-screen-2xl mx-auto">
+            <!-- Header -->
+            <div class="px-8 lg:px-16 flex items-center justify-between mb-6 border-b border-[#e8e0d8] pb-5">
+                <div>
+                    <span class="inline-block text-[#c026d3] text-xs tracking-[0.065em] font-medium">— SIGNATURE —</span>
+                    <h2 class="font-serif text-5xl tracking-[-0.006em] leading-none">Setups</h2>
+                </div>
+                
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="scrollSignatureGallery('prev')" 
+                        id="gallery-prev"
+                        class="w-9 h-9 flex items-center justify-center border border-[#d8d0c8] rounded-full hover:border-[#c026d3] transition-colors">
+                        ←
+                    </button>
+                    <button onclick="scrollSignatureGallery('next')" 
+                        id="gallery-next"
+                        class="w-9 h-9 flex items-center justify-center bg-[#c026d3] text-white rounded-full hover:bg-[#9f1d9f] transition-colors">
+                        →
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Horizontal Scroll Gallery -->
+            <div id="signature-gallery" 
+                 class="flex overflow-x-auto snap-x scrollbar-hide scroll-smooth pb-8 px-8 lg:px-16 gap-6 lg:gap-8"
+                 style="scrollbar-width: none; -ms-overflow-style: none;">
+                
+                <!-- Mandap -->
+                <div class="signature-card min-w-[320px] lg:min-w-[380px] snap-center group relative overflow-hidden rounded-3xl h-96 bg-black">
+                    <img id="mandap-img" 
+                         src="https://picsum.photos/id/870/800/620" 
+                         alt="Mandap Experiences"
+                         class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/70 to-transparent 
+                                opacity-75 transition-opacity group-hover:opacity-90"></div>
+                    
+                    <!-- Reveal overlay -->
+                    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#c026d3] to-transparent 
+                                translate-y-4 group-hover:translate-y-0 transition-transform duration-300"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] uppercase mb-px">01</span>
+                        <span class="font-serif text-[2.15rem] leading-none tracking-[-0.005em]">Mandap<br>Experiences</span>
+                    </div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                        <span class="bg-white/10 text-white text-xs py-1 px-5 rounded-full backdrop-blur-sm">18 installations • 2024-25</span>
+                    </div>
+                </div>
+                
+                <!-- Reception Stage -->
+                <div class="signature-card min-w-[320px] lg:min-w-[380px] snap-center group relative overflow-hidden rounded-3xl h-96 bg-black">
+                    <img src="https://picsum.photos/id/106/800/620" 
+                         alt="Reception Stage Design"
+                         class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/70 to-transparent 
+                                opacity-75 transition-opacity group-hover:opacity-90"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#c026d3] to-transparent 
+                                translate-y-4 group-hover:translate-y-0 transition-transform duration-300"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] uppercase mb-px">02</span>
+                        <span class="font-serif text-[2.15rem] leading-none tracking-[-0.005em]">Reception<br>Stage Design</span>
+                    </div>
+                </div>
+                
+                <!-- Floral Installations -->
+                <div class="signature-card min-w-[320px] lg:min-w-[380px] snap-center group relative overflow-hidden rounded-3xl h-96 bg-black">
+                    <img src="https://picsum.photos/id/312/800/620" 
+                         alt="Floral Installations"
+                         class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/70 to-transparent 
+                                opacity-75 transition-opacity group-hover:opacity-90"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#c026d3] to-transparent 
+                                translate-y-4 group-hover:translate-y-0 transition-transform duration-300"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] uppercase mb-px">03</span>
+                        <span class="font-serif text-[2.15rem] leading-none tracking-[-0.005em]">Floral<br>Installations</span>
+                    </div>
+                </div>
+                
+                <!-- Luxury Backdrops -->
+                <div class="signature-card min-w-[320px] lg:min-w-[380px] snap-center group relative overflow-hidden rounded-3xl h-96 bg-black">
+                    <img src="https://picsum.photos/id/317/800/620" 
+                         alt="Luxury Backdrops"
+                         class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/70 to-transparent 
+                                opacity-75 transition-opacity group-hover:opacity-90"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#c026d3] to-transparent 
+                                translate-y-4 group-hover:translate-y-0 transition-transform duration-300"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] uppercase mb-px">04</span>
+                        <span class="font-serif text-[2.15rem] leading-none tracking-[-0.005em]">Luxury<br>Backdrops</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Brand Statement -->
+    <section class="relative py-24 lg:py-32 bg-[#3f0d36] overflow-hidden">
+        <!-- Gradient mesh background -->
+        <div class="absolute inset-0 bg-[linear-gradient(45deg,#c026d3_25%,transparent_25%,transparent_75%,#9f1d9f_75%)] 
+                    bg-[length:80px_80px] opacity-10"></div>
+        
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16 relative z-10">
+            <!-- Centered statement -->
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center text-[#f5c4dc] text-xs tracking-[0.065em] mb-3">
+                    EST. 2022 • CURATED BY ANIKA RAO
+                </div>
+                
+                <h2 class="font-serif text-white text-[4.75rem] lg:text-[5.75rem] leading-[1.05] tracking-[-0.008em] mb-8">
+                    We don’t decorate.<br><span class="text-[#f5a1c4] italic">We build atmospheres</span><br>that stay remembered.
+                </h2>
+                
+                <p class="text-[#e8d4df] text-[15px] leading-relaxed max-w-md mx-auto">
+                    A full-service décor studio creating immersive wedding environments 
+                    that blend heritage, drama, and contemporary elegance.
+                </p>
+            </div>
+            
+            <!-- Three highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-20">
+                <!-- Custom concepts -->
+                <div class="group">
+                    <div class="h-px bg-[#c026d3] w-7 mb-4 transition-all group-hover:w-12"></div>
+                    <span class="uppercase text-[#f5a1c4] text-xs tracking-[0.065em] block mb-1">01</span>
+                    <h4 class="font-serif text-white text-[1.75rem] leading-tight mb-3">Custom Concepts</h4>
+                    <p class="text-[#d8b4c9] text-sm">Each wedding begins with a blank canvas and your story. Never templates. Never repeats.</p>
+                </div>
+                
+                <!-- Premium materials -->
+                <div class="group">
+                    <div class="h-px bg-[#c026d3] w-7 mb-4 transition-all group-hover:w-12"></div>
+                    <span class="uppercase text-[#f5a1c4] text-xs tracking-[0.065em] block mb-1">02</span>
+                    <h4 class="font-serif text-white text-[1.75rem] leading-tight mb-3">Premium Materials</h4>
+                    <p class="text-[#d8b4c9] text-sm">Hand-selected Italian silk, real gold leaf, heirloom brass, and flowers flown in from the hills of Himachal.</p>
+                </div>
+                
+                <!-- Full setup &amp; teardown -->
+                <div class="group">
+                    <div class="h-px bg-[#c026d3] w-7 mb-4 transition-all group-hover:w-12"></div>
+                    <span class="uppercase text-[#f5a1c4] text-xs tracking-[0.065em] block mb-1">03</span>
+                    <h4 class="font-serif text-white text-[1.75rem] leading-tight mb-3">Invisible Hands</h4>
+                    <p class="text-[#d8b4c9] text-sm">We arrive before sunrise, depart after midnight. You experience only the magic, never the machinery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16">
+            <!-- Section header -->
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12 border-b border-[#e8e0d8] pb-6">
+                <div>
+                    <span class="inline-block px-4 py-px bg-[#f5d1e1] text-[#4a0e3f] text-xs tracking-[0.065em] rounded-3xl">WHAT WE CREATE</span>
+                    <h2 class="font-serif text-[4.5rem] lg:text-[5.25rem] leading-none tracking-[-0.006em] mt-2">Signature Services</h2>
+                </div>
+                <a href="#" id="services-all-link"
+                   class="hidden lg:flex items-center text-sm uppercase tracking-widest hover:text-[#c026d3] transition-colors group">
+                    Explore all offerings 
+                    <span class="inline-block ml-3 transition-transform group-hover:translate-x-1">→</span>
+                </a>
+            </div>
+            
+            <!-- Asymmetric service grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                <!-- Card 1 -->
+                <div class="lg:col-span-7 group relative h-96 lg:h-[420px] overflow-hidden rounded-3xl bg-[#4a0e3f] flex-shrink-0">
+                    <!-- Background -->
+                    <div class="absolute inset-0 bg-[url('https://picsum.photos/id/870/900/520')] bg-cover bg-center transition-all duration-500 group-hover:scale-105"></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#4a0e3f]/90 via-[#4a0e3f]/40 to-transparent"></div>
+                    
+                    <!-- Content -->
+                    <div class="absolute bottom-0 left-0 p-8 lg:p-10 text-white z-10">
+                        <div class="uppercase text-[#f5a1c4] text-xs tracking-[0.065em] mb-1">Signature</div>
+                        <h3 class="font-serif text-[3.15rem] leading-none tracking-[-0.006em] mb-1">Mandap &amp; Pheras</h3>
+                        <p class="text-xs opacity-75">Four bespoke structures • 11 weddings this season</p>
+                    </div>
+                    
+                    <!-- Hover reveal -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/30">
+                        <button onclick="openServiceModal(0)" 
+                            class="bg-white text-[#4a0e3f] text-xs px-7 py-3 rounded-full font-medium tracking-widest">Explore Mandaps →</button>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="lg:col-span-5 grid grid-rows-2 gap-6 lg:gap-8 h-96 lg:h-[420px]">
+                    <!-- Floral -->
+                    <div class="group relative overflow-hidden rounded-3xl bg-[#e83e8f] h-full flex-shrink-0">
+                        <img src="https://picsum.photos/id/312/420/190" 
+                             alt="Floral styling"
+                             class="absolute inset-0 w-full h-full object-cover brightness-[0.75] transition-all group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#4a0e3f]/90"></div>
+                        
+                        <div class="absolute bottom-5 left-5 text-white">
+                            <div class="uppercase text-[10px] tracking-[0.065em]">02</div>
+                            <h4 class="font-serif text-xl">Floral Sculptures</h4>
+                        </div>
+                        
+                        <button onclick="openServiceModal(1)" 
+                            class="absolute top-5 right-5 bg-white/90 hover:bg-white px-4 py-1 rounded-full text-xs text-[#4a0e3f] transition-all opacity-0 group-hover:opacity-100">
+                            View
+                        </button>
+                    </div>
+                    
+                    <!-- Stage &amp; Reception -->
+                    <div class="group relative overflow-hidden rounded-3xl bg-[#6b1f5d] h-full flex-shrink-0">
+                        <img src="https://picsum.photos/id/106/420/190" 
+                             alt="Stage design"
+                             class="absolute inset-0 w-full h-full object-cover brightness-[0.8] transition-all group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f]/90 to-transparent"></div>
+                        
+                        <div class="absolute inset-x-5 bottom-5 text-white">
+                            <div class="uppercase text-[10px] tracking-[0.065em]">03</div>
+                            <h4 class="font-serif text-xl leading-tight">Reception Stages<br>&amp; Entrances</h4>
+                        </div>
+                        
+                        <button onclick="openServiceModal(2)" 
+                            class="absolute top-5 right-5 bg-white/90 hover:bg-white px-4 py-1 rounded-full text-xs text-[#4a0e3f] transition-all opacity-0 group-hover:opacity-100">
+                            View
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="lg:col-span-5 group relative h-80 lg:h-[260px] overflow-hidden rounded-3xl bg-[#f3e9e4]">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="font-serif text-[#4a0e3f] text-[4.5rem] lg:text-[5.5rem] leading-none tracking-[-0.01em] rotate-[-8deg] opacity-10">Rentals</span>
+                    </div>
+                    
+                    <div class="absolute inset-x-6 bottom-6">
+                        <div class="uppercase text-[#c026d3] text-xs font-medium tracking-[0.065em]">04</div>
+                        <h4 class="font-serif text-[#4a0e3f] text-3xl">Luxury Furniture<br>&amp; Lighting</h4>
+                    </div>
+                    
+                    <button onclick="openServiceModal(3)" 
+                        class="absolute bottom-6 right-6 bg-[#c026d3] text-white text-xs px-6 py-2.5 rounded-full transition-colors hover:bg-[#9f1d9f]">
+                        Browse 180 pieces
+                    </button>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="lg:col-span-7 bg-[#4a0e3f] rounded-3xl overflow-hidden h-80 lg:h-[260px] flex items-center relative group">
+                    <!-- Background texture -->
+                    <div class="absolute inset-0 bg-[url('https://picsum.photos/id/317/900/300')] bg-cover mix-blend-luminosity opacity-30"></div>
+                    
+                    <div class="px-8 lg:px-12 relative z-10">
+                        <span class="block uppercase text-[#f5a1c4] text-xs tracking-[0.065em] mb-1">05 • Full Service</span>
+                        <h4 class="font-serif text-white text-[2.6rem] leading-tight tracking-[-0.006em]">End-to-End<br>Styling Direction</h4>
+                        <p class="text-[#f5d1e1] text-xs mt-4">From first sketch to final candle<br>extinguished at 3am</p>
+                    </div>
+                    
+                    <button onclick="openServiceModal(4)" 
+                        class="absolute bottom-7 right-7 text-xs bg-white text-[#4a0e3f] px-6 py-3 rounded-full font-medium lg:opacity-0 lg:group-hover:opacity-100 transition-all">Start collaboration</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process -->
+    <section class="bg-[#f8f5f2] py-16 lg:py-24">
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16">
+            <!-- Header -->
+            <div class="text-center mb-14">
+                <span class="px-6 py-1 bg-[#e83e8f]/10 text-[#c026d3] text-xs tracking-[0.065em] rounded-3xl">OUR RITUAL</span>
+                <h2 class="font-serif text-[#3f0d36] text-[4.5rem] lg:text-[5.25rem] leading-none tracking-[-0.01em] mt-4">From Concept<br>to Celebration</h2>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Connecting line -->
+                <div id="timeline-line" 
+                     class="hidden lg:block absolute top-10 left-[calc(16.66%-1px)] right-[calc(16.66%-1px)] h-px bg-[#e8e0d8]">
+                </div>
+                
+                <!-- Steps -->
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-0 relative">
+                    
+                    <!-- Step 1 -->
+                    <div class="process-step relative lg:pr-4" data-step="1">
+                        <!-- Icon -->
+                        <div class="w-20 h-20 mx-auto lg:mx-0 bg-[#c026d3] rounded-2xl flex items-center justify-center mb-5 relative z-10">
+                            <span class="text-white text-xs font-mono">01</span>
+                        </div>
+                        <!-- Content -->
+                        <div class="lg:pl-2 text-center lg:text-left">
+                            <div class="uppercase font-medium text-xs tracking-[0.065em] text-[#c026d3] mb-1">Week −12</div>
+                            <h5 class="font-serif text-[#3f0d36] text-[1.6rem] leading-tight tracking-[-0.003em]">Intimate<br>Consultation</h5>
+                            <p class="text-xs text-[#8f7a7a] mt-4 leading-relaxed text-balance">Two hours. One venue. Zero moodboards yet. Just stories, dreams, and your favourite song.</p>
+                        </div>
+                        
+                        <!-- Glow -->
+                        <div class="absolute -inset-x-4 top-6 h-px bg-gradient-to-r from-transparent via-[#c026d3]/40 to-transparent hidden lg:block"></div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="process-step relative lg:px-4" data-step="2">
+                        <div class="w-20 h-20 mx-auto lg:mx-0 bg-[#e83e8f] rounded-2xl flex items-center justify-center mb-5 relative z-10">
+                            <span class="text-white text-xs font-mono">02</span>
+                        </div>
+                        <div class="lg:pl-2 text-center lg:text-left">
+                            <div class="uppercase font-medium text-xs tracking-[0.065em] text-[#e83e8f] mb-1">Week −9</div>
+                            <h5 class="font-serif text-[#3f0d36] text-[1.6rem] leading-tight tracking-[-0.003em]">Living<br>Moodboard</h5>
+                            <p class="text-xs text-[#8f7a7a] mt-4 leading-relaxed">We build a physical moodboard with fabric swatches, pressed flowers, vintage brass, and Polaroids of your venue.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="process-step relative lg:px-4" data-step="3">
+                        <div class="w-20 h-20 mx-auto lg:mx-0 bg-[#9f1d9f] rounded-2xl flex items-center justify-center mb-5 relative z-10">
+                            <span class="text-white text-xs font-mono">03</span>
+                        </div>
+                        <div class="lg:pl-2 text-center lg:text-left">
+                            <div class="uppercase font-medium text-xs tracking-[0.065em] text-[#9f1d9f] mb-1">Week −5</div>
+                            <h5 class="font-serif text-[#3f0d36] text-[1.6rem] leading-tight tracking-[-0.003em]">Technical<br>Drawings</h5>
+                            <p class="text-xs text-[#8f7a7a] mt-4 leading-relaxed">Scale models, 3D renders, and lighting plots are presented under candlelight so you can truly feel the atmosphere.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="process-step relative lg:px-4" data-step="4">
+                        <div class="w-20 h-20 mx-auto lg:mx-0 bg-[#c026d3] rounded-2xl flex items-center justify-center mb-5 relative z-10">
+                            <span class="text-white text-xs font-mono">04</span>
+                        </div>
+                        <div class="lg:pl-2 text-center lg:text-left">
+                            <div class="uppercase font-medium text-xs tracking-[0.065em] text-[#c026d3] mb-1">Day −3</div>
+                            <h5 class="font-serif text-[#3f0d36] text-[1.6rem] leading-tight tracking-[-0.003em]">Arrival &amp;<br>Build</h5>
+                            <p class="text-xs text-[#8f7a7a] mt-4 leading-relaxed">Two 40-foot containers arrive. 34 artisans begin constructing your mandap on site with hand-carved teak and fresh marigolds.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="process-step relative lg:pl-4" data-step="5">
+                        <div class="w-20 h-20 mx-auto lg:mx-0 bg-[#e83e8f] rounded-2xl flex items-center justify-center mb-5 relative z-10">
+                            <span class="text-white text-xs font-mono">05</span>
+                        </div>
+                        <div class="lg:pl-2 text-center lg:text-left">
+                            <div class="uppercase font-medium text-xs tracking-[0.065em] text-[#e83e8f] mb-1">Day 0</div>
+                            <h5 class="font-serif text-[#3f0d36] text-[1.6rem] leading-tight tracking-[-0.003em]">The Moment<br>of Stillness</h5>
+                            <p class="text-xs text-[#8f7a7a] mt-4 leading-relaxed">30 minutes before guests arrive. The lights dim. The final candle is lit. We step back and disappear.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Feature -->
+    <section id="portfolio" class="relative bg-[#3f0d36]">
+        <!-- Large split section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[640px]">
+            <!-- Left: Image -->
+            <div class="relative h-96 lg:h-auto overflow-hidden">
+                <!-- Image -->
+                <img id="featured-portfolio-img"
+                     src="https://picsum.photos/id/870/900/1100" 
+                     alt="Mehta &amp; Singh Wedding — Udaipur"
+                     class="absolute inset-0 w-full h-full object-cover grayscale-[0.15]">
+                
+                <!-- Overlay label -->
+                <div class="absolute top-8 left-8 bg-white/95 text-[#4a0e3f] px-5 py-1 text-xs font-medium tracking-widest rounded-2xl">
+                    Udaipur • March 2025
+                </div>
+                
+                <!-- Gold line accent -->
+                <div class="absolute bottom-8 left-8 h-px w-12 bg-[#e8b923]"></div>
+            </div>
+            
+            <!-- Right: Editorial text -->
+            <div class="flex flex-col justify-center px-8 lg:px-14 py-14 lg:py-0 bg-white">
+                <div class="max-w-md">
+                    <span class="inline-flex items-center gap-2 text-xs text-[#c026d3] tracking-[0.065em]">
+                        <span class="bg-[#c026d3] h-px w-6"></span>RECENT INSTALLATION
+                    </span>
+                    
+                    <h2 class="font-serif text-[#3f0d36] text-[4.1rem] leading-[1.05] tracking-[-0.007em] mt-3 mb-6">The<br>Mehta–Singh<br>Mandap</h2>
+                    
+                    <p class="text-[#766c6c] text-sm leading-relaxed mb-7">
+                        11-foot mirrored archways framed in real gold foil. 2800 stems of antique blush 
+                        roses suspended in a 22-foot floral chandelier. 180 custom hand-blown glass lanterns 
+                        that changed hue with the sunset.
+                    </p>
+                    
+                    <div class="flex items-center gap-6 text-xs uppercase tracking-[0.065em]">
+                        <span class="border-b border-[#c026d3] pb-px">168 hours</span>
+                        <span class="border-b border-[#c026d3] pb-px">42 artisans</span>
+                        <span class="border-b border-[#c026d3] pb-px">Zero waste</span>
+                    </div>
+                    
+                    <button onclick="viewFullGallery()" 
+                        id="view-gallery-btn"
+                        class="mt-9 bg-[#4a0e3f] hover:bg-[#6b1f5d] transition-colors text-white px-9 py-4 text-xs font-medium tracking-[0.065em] rounded-full flex items-center gap-4 group">
+                        SEE ENTIRE STORY
+                        <span class="inline-block transition-transform group-hover:rotate-45">↗</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Decorative Inspiration -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="max-w-screen-2xl mx-auto">
+            <!-- Header -->
+            <div class="px-8 lg:px-16 mb-8 flex items-end justify-between border-b border-[#e8e0d8] pb-6">
+                <div>
+                    <span class="text-[#c026d3] text-xs tracking-[0.065em] font-medium">THEMES WE OBSESS OVER</span>
+                    <h2 class="font-serif text-[#3f0d36] text-[3.75rem] leading-none tracking-[-0.006em]">Themes We Love<br>Designing</h2>
+                </div>
+                <a href="#" class="hidden sm:inline-flex text-xs uppercase items-center gap-2 hover:text-[#c026d3]">
+                    Browse full archive <span class="text-base">→</span>
+                </a>
+            </div>
+            
+            <!-- Layered collage grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-[#e8e0d8]">
+                <!-- Theme 1 -->
+                <div onclick="toggleThemeOverlay(0)" id="theme-0" 
+                     class="theme-tile lg:col-span-2 relative h-80 lg:h-[380px] bg-cover bg-center cursor-pointer overflow-hidden group"
+                     style="background-image: url('https://picsum.photos/id/312/600/380')">
+                    
+                    <!-- Gradient mask -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/30 to-transparent transition-all duration-300 group-hover:via-[#c026d3]/60"></div>
+                    
+                    <!-- Content -->
+                    <div class="absolute inset-x-0 bottom-0 p-7 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] opacity-75">01</span>
+                        <span class="font-serif text-4xl leading-none">Royal<br>Floral</span>
+                    </div>
+                    
+                    <!-- Overlay info -->
+                    <div id="theme-overlay-0" 
+                         class="theme-overlay hidden absolute inset-0 bg-[#4a0e3f]/90 flex flex-col justify-center items-center px-6 text-center text-white">
+                        <span class="uppercase text-xs tracking-[0.065em] text-[#f5a1c4]">17 weddings • 2024</span>
+                        <p class="text-sm mt-5">100,000 roses. 22 chandeliers.<br>A ceiling completely concealed by<br>flowers.</p>
+                    </div>
+                </div>
+                
+                <!-- Theme 2 -->
+                <div onclick="toggleThemeOverlay(1)" id="theme-1"
+                     class="theme-tile relative h-80 lg:h-[380px] bg-cover bg-center cursor-pointer overflow-hidden group"
+                     style="background-image: url('https://picsum.photos/id/870/300/380')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/40 to-transparent transition-all duration-300 group-hover:via-[#c026d3]/60"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-7 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] opacity-75">02</span>
+                        <span class="font-serif text-[2.1rem] leading-none">Modern<br>Luxury</span>
+                    </div>
+                    
+                    <div id="theme-overlay-1" class="theme-overlay hidden absolute inset-0 bg-[#4a0e3f]/90 flex flex-col justify-center items-center px-6 text-center text-white">
+                        <span class="uppercase text-xs tracking-[0.065em] text-[#f5a1c4]">9 private estates</span>
+                        <p class="text-sm mt-4">Black marble mandaps, neon calligraphy,<br>smoked crystal.</p>
+                    </div>
+                </div>
+                
+                <!-- Theme 3 -->
+                <div onclick="toggleThemeOverlay(2)" id="theme-2"
+                     class="theme-tile lg:col-span-1 relative h-80 lg:h-[380px] bg-cover bg-center cursor-pointer overflow-hidden group"
+                     style="background-image: url('https://picsum.photos/id/317/300/380')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f]/90 to-transparent transition-all"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-7 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] opacity-75">03</span>
+                        <span class="font-serif text-[2.1rem] leading-none">Cultural<br>Fusion</span>
+                    </div>
+                    
+                    <div id="theme-overlay-2" class="theme-overlay hidden absolute inset-0 bg-[#4a0e3f]/90 flex flex-col justify-center items-center px-6 text-center text-white">
+                        <span class="uppercase text-xs tracking-[0.065em] text-[#f5a1c4]">Rajput + Japanese minimalism</span>
+                        <p class="text-xs mt-6">Saffron threads meet ikebana in the<br>most unexpected wedding of 2024.</p>
+                    </div>
+                </div>
+                
+                <!-- Theme 4 -->
+                <div onclick="toggleThemeOverlay(3)" id="theme-3"
+                     class="theme-tile relative h-80 lg:h-[380px] bg-cover bg-center cursor-pointer overflow-hidden group"
+                     style="background-image: url('https://picsum.photos/id/966/300/190')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4a0e3f] via-[#4a0e3f]/40 to-transparent transition-all duration-300 group-hover:via-[#c026d3]/60"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-7 text-white">
+                        <span class="block text-[11px] tracking-[0.065em] opacity-75">04</span>
+                        <span class="font-serif text-[2.1rem] leading-none">Minimal<br>Elegance</span>
+                    </div>
+                    
+                    <div id="theme-overlay-3" class="theme-overlay hidden absolute inset-0 bg-[#4a0e3f]/90 flex flex-col justify-center items-center px-6 text-center text-white">
+                        <span class="uppercase text-xs tracking-[0.065em] text-[#f5a1c4]">A single 40-ft floral arch</span>
+                        <p class="text-xs">No drapes. No stage lights.<br>Just ivory blooms and candlelight.</p>
+                    </div>
+                </div>
+                
+                <!-- Theme 5 -->
+                <div onclick="toggleThemeOverlay(4)" id="theme-4"
+                     class="theme-tile lg:col-span-1 relative h-80 lg:h-[380px] bg-cover bg-center cursor-pointer overflow-hidden group bg-[#3f0d36]"
+                     style="background-image: url('https://picsum.photos/id/106/300/190')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#e83e8f] to-transparent opacity-70"></div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                        <span class="font-serif text-5xl leading-none mb-1 tracking-[-0.01em]">Statement</span>
+                        <span class="uppercase text-xs tracking-[0.065em] font-medium">Reception</span>
+                    </div>
+                    
+                    <div id="theme-overlay-4" class="theme-overlay hidden absolute inset-0 bg-[#4a0e3f]/95 flex flex-col justify-center items-center px-6 text-center text-white">
+                        <span class="uppercase text-xs">Floating mirrored tables over water</span>
+                        <div class="h-px bg-[#f5a1c4] my-4 w-10"></div>
+                        <span class="text-[13px]">Lake Pichola, 11:47pm</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="bg-[#3f0d36] py-16 lg:py-24 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16">
+            <!-- Header -->
+            <div class="flex flex-wrap items-center justify-between mb-12">
+                <h2 class="font-serif text-[4.25rem] leading-none tracking-[-0.01em]">Voices from<br>the aisle</h2>
+                
+                <!-- Carousel controls -->
+                <div class="flex items-center gap-4">
+                    <button id="testimonial-prev" 
+                        class="rounded-full border border-[#c9a7c3] w-9 h-9 flex items-center justify-center text-sm hover:border-[#f5a1c4] transition-colors">‹</button>
+                    <button id="testimonial-next"
+                        class="rounded-full bg-[#c026d3] w-9 h-9 flex items-center justify-center text-sm">›</button>
+                </div>
+            </div>
+            
+            <!-- Testimonial Carousel -->
+            <div id="testimonial-slider" class="overflow-hidden">
+                <!-- Slides will be injected by JS -->
+            </div>
+            
+            <!-- Dots -->
+            <div id="testimonial-dots" class="flex justify-center gap-3 mt-10"></div>
+        </div>
+    </section>
+    
+    <!-- CTA / Consultation -->
+    <section id="consultation-section" class="relative bg-[#4a0e3f] py-20 lg:py-28 overflow-hidden">
+        <!-- Animated sweep -->
+        <div id="light-sweep"
+             class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] transition-transform duration-[1800ms]">
+        </div>
+        
+        <div class="relative max-w-screen-2xl mx-auto px-8 lg:px-16 text-center">
+            <span class="inline-block bg-[#e83e8f] text-xs py-px px-8 rounded-3xl text-white mb-4 tracking-widest">NEXT AVAILABLE CONSULTATION</span>
+            
+            <h2 class="font-serif text-white text-[4.75rem] lg:text-[6rem] leading-none tracking-[-0.007em] mb-4">Let’s design<br>your forever.</h2>
+            
+            <p class="max-w-md mx-auto text-[#f5d1e1] text-sm mb-9">Tell us your date, your venue, and one detail that matters most to you.<br>We’ll reply within 48 hours.</p>
+            
+            <button onclick="triggerConsultationModal()" 
+                id="cta-primary"
+                class="bg-[#e83e8f] hover:bg-[#ff5d9e] transition-colors text-white font-medium tracking-[0.065em] px-14 py-[17px] rounded-full text-sm inline-flex items-center gap-3 shadow-[0_10px_30px_-10px] shadow-[#e83e8f]">
+                START CONSULTATION <span class="inline-block h-px w-5 bg-white"></span> <span class="font-serif italic">→</span>
+            </button>
+            
+            <div class="mt-14 text-[10px] uppercase text-[#c9a7c3] tracking-[0.065em]">
+                38 weddings booked for 2025 • 4 dates remain in Q3
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-[#2c0827] text-[#d8b4c9]">
+        <div class="max-w-screen-2xl mx-auto px-8 lg:px-16 pt-16 pb-6">
+            <!-- Top footer grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-y-12">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="h-px w-5 bg-[#e83e8f]"></span><span class="uppercase text-xs font-medium tracking-[0.065em]">Source Wedding</span>
+                    </div>
+                    <p class="text-xs leading-relaxed">A décor atelier by Anika Rao.<br>Creating atmospheres, not just arrangements.</p>
+                    
+                    <!-- Gold seal -->
+                    <div class="mt-6 text-[#e8b923] text-[10px] font-serif border border-[#e8b923]/30 rounded py-px px-3 inline-block">Est. 2022</div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <span class="uppercase text-xs font-medium tracking-widest block mb-4">Studio</span>
+                    <ul class="space-y-3 text-xs">
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">About Anika</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">The Atelier</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Journal</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Press &amp; Features</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <span class="uppercase text-xs font-medium tracking-widest block mb-4">Experiences</span>
+                    <ul class="space-y-3 text-xs">
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Mandap Collection</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Reception Sculptures</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Floral Installations</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Heritage Rentals</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <span class="uppercase text-xs font-medium tracking-widest block mb-4">Connect</span>
+                    <ul class="space-y-3 text-xs">
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Instagram @sourcewedding</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Pinterest</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Contact Anika</a></li>
+                        <li><a href="#" class="hover:text-[#f5a1c4] transition-colors">Private WhatsApp</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 5 -->
+                <div class="lg:col-span-1 col-span-2 lg:text-right">
+                    <div class="bg-[#3f0d36] rounded-3xl p-6 text-xs">
+                        <p class="uppercase text-[#e83e8f] text-[10px] tracking-[0.065em] mb-px">Next open house</p>
+                        <p class="font-serif text-base leading-tight">18 May 2025<br><span class="text-[#c9a7c3]">Jaipur Atelier</span></p>
+                        <button onclick="scrollToConsultation()" 
+                            class="mt-6 text-[#e83e8f] text-xs hover:underline">Request invitation →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom row -->
+            <div class="mt-16 pt-8 border-t border-[#46253f] flex flex-wrap items-center justify-between text-[10px] uppercase tracking-widest">
+                <div>© Source Wedding Studio 2025</div>
+                <div class="flex gap-7 text-[#8d667e]">
+                    <span>Privacy</span>
+                    <span>Client Portal</span>
+                </div>
+                <div class="text-[#8d667e]">Crafted as a single immersive experience</div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Service Modal -->
+    <div id="serviceModal" class="hidden fixed inset-0 z-[999] flex items-center justify-center bg-black/70">
+        <div onclick="event.stopImmediatePropagation()" 
+             id="modalContent"
+             class="bg-white max-w-lg w-full mx-4 rounded-3xl overflow-hidden">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+    
+    <!-- Consultation Success Modal -->
+    <div id="consultModal" class="hidden fixed inset-0 z-[1000] flex items-center justify-center bg-black/60">
+        <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-5 overflow-hidden">
+            <!-- Header -->
+            <div class="bg-[#4a0e3f] py-6 px-6 text-center">
+                <div class="inline-flex h-px bg-[#e83e8f] w-6 mb-2"></div>
+                <p class="uppercase text-[#f5a1c4] text-xs tracking-[0.065em]">Received with love</p>
+            </div>
+            
+            <div class="p-8 text-center">
+                <span class="block text-6xl mb-3">🌸</span>
+                <h4 class="font-serif text-[#3f0d36] text-3xl mb-2">Thank you, Priyanka.</h4>
+                <p class="text-sm text-[#766c6c]">Anika will personally reply within<br>48 hours with three possible dates.</p>
+                
+                <button onclick="closeConsultModal()" 
+                    id="close-consult-btn"
+                    class="mt-8 w-full py-4 bg-[#e83e8f] hover:bg-[#d12d78] transition-colors rounded-2xl text-white text-xs tracking-widest">
+                    BACK TO THE BEAUTIFUL CHAOS
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tailwind script already injected via CDN
+        
+        // Variables
+        let currentTestimonialIndex = 0;
+        
+        // Fake testimonial data
+        const testimonials = [
+            {
+                quote: "Source didn’t just decorate our wedding — they translated every memory I had of my grandmother’s garden into a living ceiling of roses and marigolds. I cried when the lights came on. Everyone did.",
+                author: "Meghna Kapoor",
+                role: "Bride, Jaipur Palace Wedding • Feb 2025",
+                avatar: "https://picsum.photos/id/64/32/32"
+            },
+            {
+                quote: "They built a 40-foot mirrored tunnel entrance that reflected the lake and the sky simultaneously. Guests literally stopped talking when they walked through it. That’s how powerful their work is.",
+                author: "Aarav &amp; Sanya Malhotra",
+                role: "Couple, Udaipur Lake Palace • Jan 2025",
+                avatar: "https://picsum.photos/id/870/32/32"
+            }
+        ];
+        
+        // Fake services data
+        const servicesData = [
+            {
+                title: "Mandap &amp; Pheras",
+                subtitle: "Structures that become legends",
+                desc: "We design, sculpt and install completely bespoke mandaps. Each one is drawn from your family’s stories and the energy of the chosen venue. Never rented. Never repeated.",
+                stats: "11 unique mandaps • 4.3 tonnes of brass • 1 reused every time",
+                img: "https://picsum.photos/id/870/600/340"
+            },
+            {
+                title: "Floral Styling",
+                subtitle: "Living architecture",
+                desc: "We treat flowers as sculpture. Suspended arches, cascading floral walls, and 18-foot tall chandeliers made entirely of seasonal Indian blooms and imported garden roses.",
+                stats: "2800 stems avg • Zero plastic • Sourced from 7 farms",
+                img: "https://picsum.photos/id/312/600/340"
+            }
+        ];
+        
+        // Canvas particle system (bokeh)
+        function initBokehCanvas() {
+            const canvas = document.getElementById("bokehCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
+            
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.radius = Math.random() * 3.5 + 1.5;
+                    this.alpha = Math.random() * 0.5 + 0.25;
+                    this.speed = Math.random() * 0.018 + 0.008;
+                    this.hue = Math.random() > 0.6 ? 330 : 275; // pink to violet
+                }
+                
+                update() {
+                    this.y -= this.speed;
+                    this.alpha -= 0.0008;
+                    
+                    if (this.alpha <= 0) {
+                        this.y = canvas.height + 20;
+                        this.alpha = Math.random() * 0.5 + 0.35;
+                    }
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    // Soft bokeh glow
+                    const gradient = ctx.createRadialGradient(
+                        this.x - 0.8, 
+                        this.y - 1.5, 
+                        0.1, 
+                        this.x, 
+                        this.y, 
+                        this.radius * 2.8
+                    );
+                    gradient.addColorStop(0, `hsla(${this.hue}, 88%, 92%, 0.9)`);
+                    gradient.addColorStop(1, `hsla(${this.hue}, 70%, 68%, 0)`);
+                    
+                    ctx.beginPath();
+                    ctx.fillStyle = gradient;
+                    ctx.arc(this.x, this.y, this.radius * 3.2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Core
+                    ctx.beginPath();
+                    ctx.fillStyle = `hsla(${this.hue}, 92%, 94%, 0.95)`;
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            
+            let particles = [];
+            
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < 62; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            
+            function animateBokeh() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                
+                // Occasionally spawn new particle at bottom
+                if (Math.random() < 0.1) {
+                    const p = new Particle();
+                    p.y = canvas.height;
+                    p.alpha = 0.6;
+                    particles.push(p);
+                    
+                    // Remove dead particles
+                    if (particles.length > 75) {
+                        particles.shift();
+                    }
+                }
+                
+                requestAnimationFrame(animateBokeh);
+            }
+            
+            createParticles();
+            animateBokeh();
+            
+            // Gentle parallax interaction with mouse
+            let mouseX = canvas.width / 2;
+            window.addEventListener("mousemove", (e) => {
+                mouseX = e.clientX;
+            });
+            
+            // Very subtle drift on particles based on mouse
+            setInterval(() => {
+                particles.forEach(p => {
+                    const dx = (mouseX - p.x) * 0.00018;
+                    p.x += dx;
+                });
+            }, 16);
+        }
+        
+        // Signature gallery horizontal scroll
+        function scrollSignatureGallery(direction) {
+            const gallery = document.getElementById("signature-gallery");
+            const scrollAmount = 340;
+            
+            if (direction === "next") {
+                gallery.scrollBy({
+                    left: scrollAmount,
+                    behavior:'smooth'
+                });
+            } else {
+                gallery.scrollBy({
+                    left: -scrollAmount,
+                    behavior:'smooth'
+                });
+            }
+        }
+        
+        // Render testimonials
+        function renderTestimonials() {
+            let html = ``;
+            
+            testimonials.forEach(testimonial => {
+                html += `
+                    <div class="testimonial-slide min-w-full px-1 lg:px-4 transition-all">
+                        <div class="bg-[#46253f] rounded-3xl px-8 py-9 lg:px-10 lg:py-11 relative">
+                            <!-- Quote mark -->
+                            <span class="block text-[#e83e8f] text-[8.5rem] leading-none font-serif absolute -top-4 left-6">“</span>
+                            
+                            <p class="text-[#e8d4df] text-[17px] lg:text-[1.05rem] leading-relaxed mb-7">"${testimonial.quote}"</p>
+                            
+                            <div class="flex items-center gap-3">
+                                <img src="${testimonial.avatar}" alt="${testimonial.author}" 
+                                     class="w-7 h-7 rounded-full ring-1 ring-[#e83e8f]/40">
+                                <div>
+                                    <span class="block font-medium text-sm">${testimonial.author}</span>
+                                    <span class="text-[#9c7a8e] text-xs">${testimonial.role}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById("testimonial-slider").innerHTML = `
+                <div id="testimonial-track" class="flex transition-transform duration-500 ease-out">
+                    ${html}
+                </div>
+            `;
+            
+            renderDots();
+        }
+        
+        // Render carousel dots
+        function renderDots() {
+            let dotsHTML = '';
+            testimonials.forEach((_, index) => {
+                dotsHTML += `
+                    <button data-index="${index}" 
+                        class="testimonial-dot h-px w-6 bg-[#c9a7c3] hover:bg-[#f5a1c4] transition-colors ${index === 0 ? '!bg-[#f5a1c4] w-9' : ''}">
+                    </button>
+                `;
+            });
+            document.getElementById("testimonial-dots").innerHTML = dotsHTML;
+            
+            document.querySelectorAll(".testimonial-dot").forEach(dot => {
+                dot.addEventListener("click", () => {
+                    currentTestimonialIndex = parseInt(dot.getAttribute("data-index"));
+                    slideToTestimonial(currentTestimonialIndex);
+                });
+            });
+        }
+        
+        function slideToTestimonial(index) {
+            currentTestimonialIndex = index;
+            const track = document.getElementById("testimonial-track");
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update active dots
+            document.querySelectorAll(".testimonial-dot").forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add("!bg-[#f5a1c4]", "w-9");
+                } else {
+                    dot.classList.remove("!bg-[#f5a1c4]", "w-9");
+                }
+            });
+        }
+        
+        // Carousel navigation
+        function initTestimonialCarousel() {
+            document.getElementById("testimonial-prev").addEventListener("click", () => {
+                currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+                slideToTestimonial(currentTestimonialIndex);
+            });
+            
+            document.getElementById("testimonial-next").addEventListener("click", () => {
+                currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+                slideToTestimonial(currentTestimonialIndex);
+            });
+        }
+        
+        // Service modal
+        function openServiceModal(index) {
+            const data = index === 0 ? servicesData[0] : servicesData[1];
+            
+            document.getElementById("modalContent").innerHTML = `
+                <div class="relative">
+                    <img src="${data.img}" alt="${data.title}" 
+                        class="h-56 w-full object-cover">
+                        
+                    <div class="absolute top-4 right-4 bg-white text-[#3f0d36] text-[10px] py-px px-4 rounded-full font-mono tracking-widest">0${index+1}</div>
+                </div>
+                
+                <div class="p-7">
+                    <span class="uppercase text-[#c026d3] text-xs tracking-[0.065em]">${data.subtitle}</span>
+                    <h3 class="font-serif text-[#3f0d36] text-[2.3rem] leading-none tracking-[-0.006em] mt-1 mb-4">${data.title}</h3>
+                    <p class="text-sm text-[#675a5f]">${data.desc}</p>
+                    
+                    <div class="h-px bg-[#e8e0d8] my-6"></div>
+                    
+                    <div class="flex items-center justify-between text-xs uppercase text-[#9a7f8a]">
+                        <span>${data.stats}</span>
+                    </div>
+                    
+                    <button onclick="closeServiceModal()" id="modal-close-btn"
+                        class="mt-8 block w-full bg-[#4a0e3f] text-white py-4 rounded-2xl text-xs tracking-[0.065em]">
+                        Close window
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById("serviceModal").classList.remove("hidden");
+        }
+        
+        function closeServiceModal() {
+            document.getElementById("serviceModal").classList.add("hidden");
+        }
+        
+        // Theme overlay toggle
+        function toggleThemeOverlay(n) {
+            const overlays = document.querySelectorAll(".theme-overlay");
+            
+            overlays.forEach((overlay, i) => {
+                if (i === n) {
+                    overlay.classList.toggle("hidden");
+                } else {
+                    overlay.classList.add("hidden");
+                }
+            });
+        }
+        
+        // Fake full gallery modal
+        function viewFullGallery() {
+            const btn = document.getElementById("view-gallery-btn");
+            const originalText = btn.innerHTML;
+            
+            btn.style.pointerEvents = "none";
+            btn.innerHTML = `<span class="inline-block animate-spin h-3 w-3 border-2 border-white border-r-transparent rounded-full"></span><span class="ml-2">Opening archive...</span>`;
+            
+            setTimeout(() => {
+                alert("Portfolio gallery opened in new tab.\n\n(Imagine an expansive, cinematic grid of 27 breathtaking weddings by Source Wedding.)");
+                btn.innerHTML = originalText;
+                btn.style.pointerEvents = "all";
+            }, 780);
+        }
+        
+        // Consultation modal
+        function triggerConsultationModal() {
+            document.getElementById("consultModal").classList.remove("hidden");
+            
+            // Fake light sweep animation
+            document.getElementById("light-sweep").style.transitionDuration = '1400ms';
+            document.getElementById("light-sweep").style.transform = 'translateX(220%)';
+            
+            setTimeout(() => {
+                document.getElementById("light-sweep").style.transitionDuration = '50ms';
+                document.getElementById("light-sweep").style.transform = 'translateX(-150%)';
+            }, 700);
+        }
+        
+        function closeConsultModal() {
+            document.getElementById("consultModal").classList.add("hidden");
+        }
+        
+        // Scroll helper functions
+        function scrollToPortfolio() {
+            document.getElementById("portfolio").scrollIntoView({
+                behavior:'smooth'
+            });
+        }
+        
+        function scrollToConsultation() {
+            document.getElementById("consultation-section").scrollIntoView({
+                behavior:'smooth'
+            });
+        }
+        
+        // Navbar scroll effect
+        function initNavbarScroll() {
+            const navbar = document.getElementById("navbar");
+            
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 180) {
+                    navbar.classList.add("shadow-lg");
+                } else {
+                    navbar.classList.remove("shadow-lg");
+                }
+            });
+        }
+        
+        // Intersection observer for process steps
+        function animateProcessSteps() {
+            const steps = document.querySelectorAll(".process-step");
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, {
+                threshold: 0.6
+            });
+            
+            steps.forEach((step, index) => {
+                step.style.transition = `all 420ms ease-out ${index * 90}ms`;
+                step.style.opacity = 0;
+                step.style.transform = "translateY(25px)";
+                observer.observe(step);
+            });
+        }
+        
+        // Initialize everything
+        window.onload = () => {
+            // Canvas bokeh
+            initBokehCanvas();
+            
+            // Testimonials
+            renderTestimonials();
+            initTestimonialCarousel();
+            
+            // Modal listeners
+            document.getElementById("serviceModal").addEventListener("click", function(e) {
+                if (e.target === this) closeServiceModal();
+            });
+            
+            // Fake "scroll to next" functionality on hero button already handled
+            
+            // Process animation
+            animateProcessSteps();
+            
+            // Navbar
+            initNavbarScroll();
+            
+            // Keyboard support for carousel
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+                    slideToTestimonial(currentTestimonialIndex);
+                }
+                if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+                    slideToTestimonial(currentTestimonialIndex);
+                }
+            });
+            
+            // Close consult modal on background click
+            document.getElementById("consultModal").addEventListener("click", function(e){
+                if (e.target === this) closeConsultModal();
+            });
+            
+            // Subtle hero image parallax
+            window.addEventListener("scroll", () => {
+                const scrollY = window.scrollY;
+                const heroBg = document.getElementById("hero-bg");
+                heroBg.style.transform = `scale(${1 + scrollY / 650})`;
+            });
+            
+            console.log("%cSource Wedding — Every detail is intentional.\nBuilt as a love letter to immersive wedding design.", 
+                "color:#c026d3;font-weight:500;font-family:Playfair Display");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Source Wedding — Services Marketplace</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sw: {
+              pink: "#ff4fd8",
+              fuchsia: "#c026d3",
+              purple: "#7c3aed",
+              ink: "#0b1020",
+              gold: "#d9b25f"
+            }
+          },
+          boxShadow: {
+            glow: "0 18px 60px rgba(255,79,216,.18), 0 10px 26px rgba(124,58,237,.18)",
+            lift: "0 24px 70px rgba(17, 24, 39, .25), 0 10px 28px rgba(124,58,237,.22)",
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,600,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#070816;
+      --bg1:#0b1020;
+      --glass: rgba(255,255,255,.08);
+      --glass2: rgba(255,255,255,.12);
+      --stroke: rgba(255,255,255,.16);
+      --stroke2: rgba(255,255,255,.22);
+      --pink:#ff4fd8;
+      --purple:#7c3aed;
+      --gold:#d9b25f;
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 15% -10%, rgba(255,79,216,.24), transparent 65%),
+                  radial-gradient(900px 600px at 95% 10%, rgba(124,58,237,.22), transparent 60%),
+                  radial-gradient(900px 650px at 50% 105%, rgba(255,79,216,.14), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1) 45%, #070815 100%);
+      color: #e9e9ff;
+      overflow-x: hidden;
+    }
+
+    /* Premium mesh hero */
+    .mesh {
+      position: relative;
+      isolation: isolate;
+      background:
+        radial-gradient(900px 380px at 15% 35%, rgba(255,79,216,.28), transparent 60%),
+        radial-gradient(850px 360px at 85% 5%, rgba(124,58,237,.26), transparent 60%),
+        radial-gradient(700px 420px at 55% 105%, rgba(255,79,216,.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,79,216,.12), rgba(124,58,237,.10));
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .mesh::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.16) 55%, transparent 60%),
+        radial-gradient(2px 2px at 40% 20%, rgba(255,255,255,.12) 55%, transparent 60%),
+        radial-gradient(2px 2px at 60% 35%, rgba(255,255,255,.10) 55%, transparent 60%),
+        radial-gradient(2px 2px at 70% 15%, rgba(255,255,255,.12) 55%, transparent 60%),
+        radial-gradient(2px 2px at 85% 40%, rgba(255,255,255,.10) 55%, transparent 60%),
+        radial-gradient(2px 2px at 25% 65%, rgba(255,255,255,.10) 55%, transparent 60%),
+        radial-gradient(2px 2px at 55% 70%, rgba(255,255,255,.12) 55%, transparent 60%),
+        radial-gradient(2px 2px at 80% 75%, rgba(255,255,255,.10) 55%, transparent 60%);
+      opacity:.55;
+      mix-blend-mode: screen;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,.55) 65%, rgba(0,0,0,0));
+    }
+
+    .floaty {
+      position:absolute;
+      filter: blur(.2px);
+      opacity:.9;
+      pointer-events:none;
+      transform: translate3d(0,0,0);
+      animation: drift 10s ease-in-out infinite;
+    }
+    .floaty:nth-child(2){ animation-duration: 12s; animation-delay: -2s; }
+    .floaty:nth-child(3){ animation-duration: 14s; animation-delay: -5s; }
+    .floaty:nth-child(4){ animation-duration: 16s; animation-delay: -8s; }
+    @keyframes drift{
+      0%,100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,-10px,0) scale(1.03); }
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.14);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .chip {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,79,216,.45);
+      box-shadow: 0 14px 40px rgba(255,79,216,.10), inset 0 1px 0 rgba(255,255,255,.16);
+    }
+    .chip.active{
+      background: linear-gradient(135deg, rgba(255,79,216,.22), rgba(124,58,237,.18));
+      border-color: rgba(255,79,216,.55);
+      box-shadow: 0 18px 55px rgba(255,79,216,.14), inset 0 1px 0 rgba(255,255,255,.20);
+    }
+
+    .h-title { font-family: Fraunces, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; letter-spacing: -0.02em; }
+    .goldline {
+      background: linear-gradient(90deg, rgba(217,178,95,0), rgba(217,178,95,.85), rgba(217,178,95,0));
+      height: 1px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 55px rgba(0,0,0,.22);
+      transform: translate3d(0,0,0);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,79,216,.75), rgba(124,58,237,.65), rgba(217,178,95,.35));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity:.35;
+      pointer-events:none;
+      transition: opacity .22s ease;
+    }
+    .card:hover{
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.18);
+      box-shadow: var(--tw-shadow), 0 0 0 1px rgba(255,79,216,.10);
+      box-shadow: 0 28px 78px rgba(0,0,0,.36), 0 18px 60px rgba(255,79,216,.10), 0 18px 60px rgba(124,58,237,.10);
+    }
+    .card:hover::before{ opacity:.7; }
+
+    .card-img {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+      background: #0f1228;
+    }
+    .card-img img{
+      width:100%; height:100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
+      filter: saturate(1.08) contrast(1.03);
+    }
+    .card:hover .card-img img{ transform: scale(1.09); filter: saturate(1.15) contrast(1.08); }
+    .scrim{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,16,32,0) 40%, rgba(11,16,32,.78) 100%);
+    }
+
+    .overlay {
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,16,32,.10), rgba(11,16,32,.85) 70%);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .card:hover .overlay{ opacity: 1; }
+
+    .pill {
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn {
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,79,216,.45);
+      box-shadow: 0 18px 48px rgba(255,79,216,.12), inset 0 1px 0 rgba(255,255,255,.16);
+    }
+    .btn-primary{
+      border-color: rgba(255,79,216,.40);
+      background: linear-gradient(135deg, rgba(255,79,216,.95), rgba(124,58,237,.85));
+      color: #0b1020;
+      font-weight: 700;
+    }
+    .btn-primary:hover{
+      box-shadow: 0 22px 65px rgba(255,79,216,.22), 0 22px 65px rgba(124,58,237,.18);
+      border-color: rgba(255,79,216,.55);
+    }
+
+    .fade-in{
+      animation: fadeIn .35s ease both;
+    }
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(8px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .stickybar{
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,8,22,.70), rgba(7,8,22,.45));
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+
+    .scroll-x{
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,79,216,.35) rgba(255,255,255,.06);
+    }
+    .scroll-x::-webkit-scrollbar{ height: 10px; }
+    .scroll-x::-webkit-scrollbar-track{ background: rgba(255,255,255,.06); border-radius: 999px;}
+    .scroll-x::-webkit-scrollbar-thumb{ background: linear-gradient(90deg, rgba(255,79,216,.45), rgba(124,58,237,.45)); border-radius: 999px;}
+
+    /* Inquiry panel */
+    .inquiry-panel{
+      position: fixed;
+      right: 18px;
+      top: 92px;
+      width: 360px;
+      max-height: calc(100vh - 120px);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+    }
+    .inquiry-panel .content { overflow: auto; }
+    @media (max-width: 1024px){
+      .inquiry-panel{
+        right: 14px; left: 14px;
+        top: auto; bottom: 14px;
+        width: auto;
+        max-height: 72vh;
+      }
+      .inquiry-collapsed{
+        max-height: 64px !important;
+        overflow: hidden;
+      }
+    }
+
+    .dropzone{
+      border: 1px dashed rgba(255,255,255,.22);
+      background: rgba(255,255,255,.06);
+    }
+    .dropzone.dragover{
+      border-color: rgba(255,79,216,.55);
+      background: linear-gradient(135deg, rgba(255,79,216,.16), rgba(124,58,237,.10));
+      box-shadow: 0 18px 55px rgba(255,79,216,.10);
+    }
+
+    .kbd{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,.9);
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <header class="mesh">
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- floating decor -->
+      <div class="floaty absolute -top-8 left-6 h-28 w-28 rounded-full" style="background: radial-gradient(circle at 30% 30%, rgba(255,79,216,.55), rgba(124,58,237,.15) 60%, transparent 70%);"></div>
+      <div class="floaty absolute top-6 right-10 h-20 w-20 rotate-12 rounded-2xl" style="background: linear-gradient(135deg, rgba(217,178,95,.42), rgba(255,79,216,.20), rgba(124,58,237,.18)); border: 1px solid rgba(255,255,255,.14);"></div>
+      <div class="floaty absolute -bottom-8 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full" style="background: radial-gradient(circle at 60% 40%, rgba(124,58,237,.50), rgba(255,79,216,.12) 55%, transparent 72%);"></div>
+      <div class="floaty absolute bottom-8 right-1/3 h-16 w-16 -rotate-6 rounded-full" style="background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.22), rgba(255,79,216,.18) 55%, transparent 72%);"></div>
+
+      <div class="py-10 sm:py-12">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 rounded-full pill px-3 py-1 text-xs text-white/85">
+            <span class="h-2 w-2 rounded-full" style="background: linear-gradient(135deg, rgba(255,79,216,1), rgba(124,58,237,1)); box-shadow: 0 0 0 3px rgba(255,79,216,.12);"></span>
+            Source Wedding Marketplace
+            <span class="mx-1 text-white/40">•</span>
+            Curated décor & installations
+          </div>
+          <h1 class="h-title mt-4 text-3xl sm:text-4xl lg:text-5xl text-white">
+            Explore Services &amp; Setups
+          </h1>
+          <p class="mt-2 text-sm sm:text-base text-white/80">
+            Browse décor, styling, and event installations. Select items to request a custom quote.
+          </p>
+
+          <div class="mt-5">
+            <div class="glass rounded-2xl p-2 sm:p-2.5">
+              <div class="flex flex-col sm:flex-row gap-2 sm:gap-2.5">
+                <div class="relative flex-1">
+                  <input id="searchInput" type="text" placeholder="Search: mandap, stage, floral wall, lighting…" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/45 outline-none focus:border-pink-400/50 focus:ring-2 focus:ring-pink-400/20" />
+                  <div class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/45 text-xs hidden sm:flex items-center gap-2">
+                    <span class="kbd">⌘</span><span class="kbd">K</span>
+                  </div>
+                </div>
+                <button id="clearBtn" class="btn px-4 py-3 text-sm text-white/85">Clear</button>
+                <button id="viewSelectedBtn" class="btn btn-primary px-5 py-3 text-sm">View Inquiry</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 goldline"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FILTER + SORT (STICKY) -->
+  <section class="stickybar">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-2 text-xs text-white/75">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-white/40"></span>
+              Filters
+            </span>
+            <span id="activeCount" class="rounded-full pill px-2 py-0.5 text-[11px] text-white/85 border border-white/10">0 active</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-white/70 hidden sm:block">Sort</label>
+            <select id="sortSelect" class="rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-sm text-white outline-none focus:border-pink-400/50 focus:ring-2 focus:ring-pink-400/20">
+              <option value="popular">Popular</option>
+              <option value="new">New</option>
+              <option value="priceLow">Price: Low → High</option>
+              <option value="priceHigh">Price: High → Low</option>
+              <option value="featured">Featured</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex gap-2 overflow-x-auto scroll-x pb-1">
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Mandap">Category: Mandap</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Stage">Category: Stage</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Floral">Category: Floral</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Backdrop">Category: Backdrop</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Lighting">Category: Lighting</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="category" data-value="Rentals">Category: Rentals</button>
+          <span class="mx-1 w-px bg-white/10"></span>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="event" data-value="Wedding">Event: Wedding</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="event" data-value="Reception">Event: Reception</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="event" data-value="Sangeet">Event: Sangeet</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="event" data-value="Engagement">Event: Engagement</button>
+          <span class="mx-1 w-px bg-white/10"></span>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="style" data-value="Luxury">Style: Luxury</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="style" data-value="Modern">Style: Modern</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="style" data-value="Classic">Style: Classic</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="style" data-value="Minimal">Style: Minimal</button>
+          <span class="mx-1 w-px bg-white/10"></span>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="color" data-value="Blush">Color: Blush</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="color" data-value="Ivory">Color: Ivory</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="color" data-value="Lavender">Color: Lavender</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="color" data-value="Gold">Color: Gold</button>
+          <span class="mx-1 w-px bg-white/10"></span>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="availability" data-value="Available">Availability: Available</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="availability" data-value="Limited">Availability: Limited</button>
+          <span class="mx-1 w-px bg-white/10"></span>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="price" data-value="under2500">Price: Under $2,500</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="price" data-value="2500to5000">Price: $2,500–$5,000</button>
+          <button class="chip rounded-full px-3 py-2 text-sm text-white/85" data-filter="price" data-value="over5000">Price: $5,000+</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY BLOCKS (HORIZONTAL SCROLLER) -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="h-title text-2xl text-white">Browse Categories</h2>
+        <p class="mt-1 text-sm text-white/70">Tap a category to refine the catalog instantly.</p>
+      </div>
+      <button id="resetFiltersBtn" class="btn text-sm text-white/85">Reset filters</button>
+    </div>
+
+    <div class="mt-4 flex gap-3 overflow-x-auto scroll-x pb-2">
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Mandap">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(255,79,216,.42), rgba(124,58,237,.18) 60%, rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Mandap setups
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Stage">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(217,178,95,.42), rgba(255,79,216,.16) 60%, rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Stage décor
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Floral">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.20), rgba(255,79,216,.18) 55%, rgba(124,58,237,.12)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Floral installations
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Reception">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(124,58,237,.40), rgba(255,79,216,.16) 60%, rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Reception styling
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Backdrop">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(255,79,216,.32), rgba(255,255,255,.12) 55%, rgba(124,58,237,.12)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Backdrops
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Rentals">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(217,178,95,.34), rgba(124,58,237,.12) 60%, rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Rentals
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Lighting">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.20), rgba(217,178,95,.22) 55%, rgba(124,58,237,.12)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Lighting
+      </button>
+      <button class="chip rounded-2xl px-4 py-3 text-sm text-white/85 flex items-center gap-3" data-filter="category" data-value="Package">
+        <span class="h-10 w-10 rounded-xl" style="background: radial-gradient(circle at 35% 30%, rgba(255,79,216,.26), rgba(217,178,95,.20) 55%, rgba(124,58,237,.12)); border: 1px solid rgba(255,255,255,.14);"></span>
+        Full packages
+      </button>
+    </div>
+  </section>
+
+  <!-- MAIN MARKETPLACE -->
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 pt-8">
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+      <div>
+        <h2 class="h-title text-2xl text-white">Marketplace</h2>
+        <p class="mt-1 text-sm text-white/70"><span id="resultsCount">0</span> items matching your selection.</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="masonryToggle" class="btn text-sm text-white/85">Masonry: Off</button>
+        <button id="saveAllBtn" class="btn text-sm text-white/85">Save visible</button>
+      </div>
+    </div>
+
+    <div id="gridWrap" class="mt-6">
+      <div id="servicesGrid" class="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+    </div>
+
+    <!-- FEATURED STRIP -->
+    <section class="mt-12">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="h-title text-2xl text-white">Signature Installations</h2>
+          <p class="mt-1 text-sm text-white/70">Premium highlights — cinematic scale, flawless finishing.</p>
+        </div>
+        <div class="text-xs text-white/55 hidden sm:block">Scroll →</div>
+      </div>
+
+      <div id="featuredStrip" class="mt-5 flex gap-4 overflow-x-auto scroll-x pb-3"></div>
+    </section>
+
+    <!-- INSPIRATION BUILDER -->
+    <section class="mt-12">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <div>
+          <h2 class="h-title text-2xl text-white">Build Your Setup</h2>
+          <p class="mt-1 text-sm text-white/70">Drag cards into your board or use “Add to moodboard”.</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-white/60">
+          <span class="hidden sm:inline">Tip:</span>
+          <span class="kbd">Drag</span>
+          <span>or</span>
+          <span class="kbd">Add</span>
+          <span class="hidden sm:inline">to curate your look.</span>
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div class="lg:col-span-2 glass rounded-2xl p-4 sm:p-5">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="text-sm font-semibold text-white/90">Moodboard</div>
+              <div class="text-xs text-white/60">Drop items here to preview your selection aesthetic.</div>
+            </div>
+            <button id="clearBoardBtn" class="btn text-sm text-white/85">Clear board</button>
+          </div>
+
+          <div id="boardDropzone" class="dropzone mt-4 rounded-2xl p-4 min-h-[190px]">
+            <div id="boardEmpty" class="text-center py-10">
+              <div class="h-title text-lg text-white/90">Start building</div>
+              <div class="mt-1 text-sm text-white/60">Your board will reflect items you love.</div>
+            </div>
+            <div id="boardItems" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-4 sm:p-5">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <div class="text-sm font-semibold text-white/90">Board Notes</div>
+              <div class="text-xs text-white/60">Share venue, vibe, and must-haves.</div>
+            </div>
+          </div>
+
+          <textarea id="boardNotes" class="mt-4 w-full min-h-[160px] rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45 outline-none focus:border-pink-400/50 focus:ring-2 focus:ring-pink-400/20" placeholder="Example: Outdoor sunset ceremony, blush + ivory florals, modern acrylic stage, warm candlelight."></textarea>
+
+          <div class="mt-4 flex gap-2">
+            <button id="addBoardToInquiryBtn" class="btn btn-primary flex-1 text-sm py-3">Add board to inquiry</button>
+            <button id="exportBoardBtn" class="btn text-sm py-3">Copy list</button>
+          </div>
+
+          <div class="mt-3 text-xs text-white/55">
+            Your notes and selected items will be included in your quote request.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mt-14">
+      <div class="glass rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 h-64 w-64 rounded-full" style="background: radial-gradient(circle at 35% 30%, rgba(255,79,216,.30), rgba(124,58,237,.12) 60%, transparent 70%);"></div>
+        <div class="absolute -bottom-28 -left-24 h-72 w-72 rounded-full" style="background: radial-gradient(circle at 65% 35%, rgba(217,178,95,.22), rgba(255,79,216,.10) 60%, transparent 75%);"></div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+          <div class="lg:col-span-2">
+            <h2 class="h-title text-2xl sm:text-3xl text-white">Need a Full Custom Design?</h2>
+            <p class="mt-2 text-sm sm:text-base text-white/75">Tell us your venue and theme. We’ll design the entire setup.</p>
+            <div class="mt-4 goldline"></div>
+          </div>
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+            <button id="consultBtn" class="btn btn-primary py-3">Request Consultation</button>
+            <button id="contactBtn" class="btn py-3 text-white/90">Contact</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- INQUIRY PANEL -->
+  <aside id="inquiryPanel" class="inquiry-panel glass rounded-2xl">
+    <div class="p-4 sm:p-4.5 border-b border-white/10 flex items-center justify-between gap-3">
+      <div>
+        <div class="text-sm font-semibold text-white/90">Inquiry</div>
+        <div id="inquirySub" class="text-xs text-white/60">0 selected • est. $0–$0</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="collapseInquiryBtn" class="btn text-xs px-3 py-2 text-white/85 lg:hidden">Collapse</button>
+        <button id="clearInquiryBtn" class="btn text-xs px-3 py-2 text-white/85">Clear</button>
+      </div>
+    </div>
+
+    <div class="content p-4 sm:p-4.5 space-y-3">
+      <div id="inquiryEmpty" class="rounded-2xl bg-white/5 border border-white/10 p-4">
+        <div class="h-title text-lg text-white/90">Select items to begin</div>
+        <div class="mt-1 text-sm text-white/60">Add services to build a quote-ready shortlist.</div>
+      </div>
+
+      <div id="inquiryList" class="space-y-2"></div>
+
+      <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+        <div class="flex items-center justify-between gap-2">
+          <div class="text-sm font-semibold text-white/90">Budget range</div>
+          <div class="text-xs text-white/55">Auto-estimate</div>
+        </div>
+
+        <div class="mt-3">
+          <div class="h-2 rounded-full bg-white/10 overflow-hidden">
+            <div id="budgetBar" class="h-full w-0" style="background: linear-gradient(90deg, rgba(255,79,216,.95), rgba(124,58,237,.85), rgba(217,178,95,.65)); transition: width .35s ease;"></div>
+          </div>
+          <div class="mt-2 text-xs text-white/70" id="budgetText">Add items to see estimate.</div>
+        </div>
+
+        <textarea id="inquiryNotes" class="mt-3 w-full min-h-[90px] rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/45 outline-none focus:border-pink-400/50 focus:ring-2 focus:ring-pink-400/20" placeholder="Optional: venue, date, guest count, theme details…"></textarea>
+
+        <button id="requestQuoteBtn" class="mt-3 btn btn-primary w-full py-3">Request Quote</button>
+        <div class="mt-2 text-[11px] text-white/55">
+          Your selections + notes will be packaged into a ready-to-send request.
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MODAL -->
+  <div id="modalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden"></div>
+  <div id="detailsModal" class="fixed z-50 inset-0 hidden">
+    <div class="min-h-full flex items-end sm:items-center justify-center p-4">
+      <div class="glass rounded-3xl w-full max-w-3xl overflow-hidden border border-white/10 shadow-glow">
+        <div class="p-4 sm:p-5 border-b border-white/10 flex items-start justify-between gap-3">
+          <div>
+            <div id="modalTitle" class="h-title text-2xl text-white">Details</div>
+            <div id="modalMeta" class="mt-1 text-sm text-white/70"></div>
+          </div>
+          <button id="closeModalBtn" class="btn text-sm text-white/85">Close</button>
+        </div>
+        <div class="p-4 sm:p-5">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+              <img id="modalImg" alt="" class="w-full h-56 sm:h-64 object-cover" />
+            </div>
+            <div class="space-y-3">
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <div class="text-sm font-semibold text-white/90">Overview</div>
+                <p id="modalDesc" class="mt-2 text-sm text-white/70"></p>
+                <div class="mt-3 flex flex-wrap gap-2" id="modalTags"></div>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                <div class="text-sm font-semibold text-white/90">What’s included</div>
+                <ul id="modalIncludes" class="mt-2 text-sm text-white/70 list-disc ml-5 space-y-1"></ul>
+              </div>
+              <div class="flex gap-2">
+                <button id="modalAddBtn" class="btn btn-primary flex-1 py-3 text-sm">Add to inquiry</button>
+                <button id="modalSaveBtn" class="btn flex-1 py-3 text-sm text-white/90">Save</button>
+              </div>
+              <div class="text-[11px] text-white/55">Final pricing varies by venue, scale, access, and floral availability.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Data
+    const services = [
+      {
+        id: "royal-floral-mandap",
+        name: "Royal Floral Mandap",
+        descriptor: "Venue-tailored • Premium materials",
+        priceFrom: 6800,
+        customQuote: false,
+        category: "Mandap",
+        event: ["Wedding"],
+        style: ["Luxury", "Classic"],
+        color: ["Blush", "Ivory", "Gold"],
+        availability: "Available",
+        featured: true,
+        popularScore: 98,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523438097201-512ae7d59c66?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A floral-forward mandap with layered depth, luxe textures, and gold detailing—crafted for dramatic aisle-to-altar moments.",
+        includes: ["Mandap structure + drape styling", "Floral layering (seasonal mix)", "Stage carpet + finishing details", "Setup & strike crew"]
+      },
+      {
+        id: "crystal-stage-setup",
+        name: "Crystal Stage Setup",
+        descriptor: "Modern glam • Includes setup",
+        priceFrom: 5400,
+        customQuote: false,
+        category: "Stage",
+        event: ["Reception", "Sangeet"],
+        style: ["Modern", "Luxury"],
+        color: ["Lavender", "Gold"],
+        availability: "Limited",
+        featured: true,
+        popularScore: 92,
+        isNew: true,
+        images: [
+          "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523440204439-2b2b0c821d2d?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523528283115-9bf9b1699245?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A high-shine stage with crystal accents, dimensional panels, and controlled lighting—clean, cinematic, and photo-perfect.",
+        includes: ["Stage cladding + premium panels", "Crystal accent design", "Warm spotlighting", "On-site install"]
+      },
+      {
+        id: "luxury-reception-backdrop",
+        name: "Luxury Reception Backdrop",
+        descriptor: "Statement wall • Package available",
+        priceFrom: 3200,
+        customQuote: false,
+        category: "Backdrop",
+        event: ["Reception", "Engagement"],
+        style: ["Luxury", "Modern"],
+        color: ["Ivory", "Gold"],
+        availability: "Available",
+        featured: false,
+        popularScore: 86,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1523528283115-9bf9b1699245?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523438097201-512ae7d59c66?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A layered reception backdrop with subtle shimmer, floral moments, and balanced symmetry that frames the stage beautifully.",
+        includes: ["Backdrop structure", "Panel styling + trims", "Selective floral accents", "Setup & strike"]
+      },
+      {
+        id: "led-entrance-tunnel",
+        name: "LED Entrance Tunnel",
+        descriptor: "Immersive arrival • Customizable",
+        priceFrom: null,
+        customQuote: true,
+        category: "Lighting",
+        event: ["Reception", "Sangeet"],
+        style: ["Modern"],
+        color: ["Lavender"],
+        availability: "Limited",
+        featured: true,
+        popularScore: 90,
+        isNew: true,
+        images: [
+          "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520975958225-eefb7980f61a?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A programmable LED tunnel to transform entrances—dynamic patterns, soft diffusion, and controlled intensity for premium footage.",
+        includes: ["Modular LED tunnel frames", "Programmed scenes", "On-site technician", "Safety + cable management"]
+      },
+      {
+        id: "wedding-floral-wall",
+        name: "Wedding Floral Wall",
+        descriptor: "Full bloom • Photo-ready",
+        priceFrom: 2100,
+        customQuote: false,
+        category: "Floral",
+        event: ["Wedding", "Reception", "Engagement"],
+        style: ["Classic", "Luxury"],
+        color: ["Blush", "Ivory"],
+        availability: "Available",
+        featured: false,
+        popularScore: 84,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1523438097201-512ae7d59c66?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523440204439-2b2b0c821d2d?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A lush floral wall built for portraits, entrances, and stage framing—balanced palette, consistent density, premium finish.",
+        includes: ["Wall base + coverage", "Color-matched blooms (seasonal)", "Accent lighting (optional)", "Install + removal"]
+      },
+      {
+        id: "premium-sofa-stage",
+        name: "Premium Sofa Stage",
+        descriptor: "Comfort + elegance • Venue-fit",
+        priceFrom: 1800,
+        customQuote: false,
+        category: "Rentals",
+        event: ["Reception", "Engagement", "Sangeet"],
+        style: ["Classic", "Minimal"],
+        color: ["Ivory", "Gold"],
+        availability: "Available",
+        featured: false,
+        popularScore: 78,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1523440204439-2b2b0c821d2d?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1542317854-009650d02b7b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1545161296-d9c2c241f2ad?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A premium seating moment for the couple—clean silhouettes, luxe upholstery, and photogenic styling options.",
+        includes: ["Sofa + 2 accent chairs (optional)", "Coffee table styling", "Delivery + pickup", "On-site placement"]
+      },
+      {
+        id: "floral-tunnel-installation",
+        name: "Floral Tunnel Installation",
+        descriptor: "Signature walkway • Ultra premium",
+        priceFrom: 8900,
+        customQuote: false,
+        category: "Floral",
+        event: ["Wedding", "Reception"],
+        style: ["Luxury"],
+        color: ["Blush", "Lavender", "Ivory"],
+        availability: "Limited",
+        featured: true,
+        popularScore: 96,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1542317854-009650d02b7b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520975958225-eefb7980f61a?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A fully immersive floral tunnel built with layered blooms and refined lighting—designed for a couture, editorial arrival.",
+        includes: ["Tunnel framework + drape", "High-density floral canopy", "Integrated lighting", "Install team + logistics"]
+      },
+      {
+        id: "reception-styling-package",
+        name: "Reception Styling Package",
+        descriptor: "Cohesive design • Full-room polish",
+        priceFrom: null,
+        customQuote: true,
+        category: "Package",
+        event: ["Reception"],
+        style: ["Luxury", "Modern", "Classic"],
+        color: ["Blush", "Ivory", "Gold", "Lavender"],
+        availability: "Available",
+        featured: true,
+        popularScore: 88,
+        isNew: true,
+        images: [
+          "https://images.unsplash.com/photo-1545161296-d9c2c241f2ad?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523528283115-9bf9b1699245?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A full-room styling approach—stage, entrance, table moments, and lighting direction—crafted as a unified premium look.",
+        includes: ["Stage + backdrop concept", "Entrance moment", "Key florals + accents", "Design coordination"]
+      },
+      {
+        id: "golden-candle-aisle",
+        name: "Golden Candle Aisle",
+        descriptor: "Warm ambience • Elegant minimal",
+        priceFrom: 2400,
+        customQuote: false,
+        category: "Lighting",
+        event: ["Wedding"],
+        style: ["Minimal", "Classic"],
+        color: ["Gold", "Ivory"],
+        availability: "Available",
+        featured: false,
+        popularScore: 80,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520975958225-eefb7980f61a?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A candle-forward aisle designed for warmth and depth—balanced spacing, refined holders, and safe, elegant finishing.",
+        includes: ["Candle holders + guards", "LED candles (venue-safe)", "Aisle placement", "Strike & pack-down"]
+      },
+      {
+        id: "soft-drape-backdrop",
+        name: "Soft Drape Backdrop",
+        descriptor: "Timeless drape • Budget-friendly luxe",
+        priceFrom: 1500,
+        customQuote: false,
+        category: "Backdrop",
+        event: ["Engagement", "Reception", "Sangeet"],
+        style: ["Classic", "Minimal"],
+        color: ["Ivory", "Blush"],
+        availability: "Available",
+        featured: false,
+        popularScore: 74,
+        isNew: true,
+        images: [
+          "https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1542317854-009650d02b7b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1545161296-d9c2c241f2ad?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A soft, tailored drape backdrop with optional floral clusters—clean lines, premium fabric, and flattering stage presence.",
+        includes: ["Backdrop pipe & drape", "Fabric steaming + finishing", "Optional floral add-ons", "Install + removal"]
+      },
+      {
+        id: "luxury-mandap-minimal",
+        name: "Modern Minimal Mandap",
+        descriptor: "Clean geometry • Elevated restraint",
+        priceFrom: 4700,
+        customQuote: false,
+        category: "Mandap",
+        event: ["Wedding"],
+        style: ["Modern", "Minimal"],
+        color: ["Ivory", "Gold", "Lavender"],
+        availability: "Available",
+        featured: false,
+        popularScore: 82,
+        isNew: true,
+        images: [
+          "https://images.unsplash.com/photo-1523440204439-2b2b0c821d2d?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523528283115-9bf9b1699245?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A minimal mandap with architectural lines and refined floral placements—designed for modern venues and crisp photography.",
+        includes: ["Geometric mandap structure", "Selective florals", "Aisle accents", "Install crew"]
+      },
+      {
+        id: "stage-dancefloor-package",
+        name: "Stage + Dancefloor Glow",
+        descriptor: "Reception energy • Photogenic shine",
+        priceFrom: 6100,
+        customQuote: false,
+        category: "Stage",
+        event: ["Reception", "Sangeet"],
+        style: ["Modern", "Luxury"],
+        color: ["Lavender", "Gold", "Blush"],
+        availability: "Limited",
+        featured: true,
+        popularScore: 89,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1523528283115-9bf9b1699245?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520975958225-eefb7980f61a?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "A reception-ready stage paired with a controlled glow dancefloor—designed to elevate entrances, speeches, and first dances.",
+        includes: ["Stage design + backdrop", "Glow dancefloor panels", "Lighting direction", "Install + strike"]
+      },
+      {
+        id: "backdrop-arch-rentals",
+        name: "Backdrop Arches (Set of 3)",
+        descriptor: "Versatile rentals • Mix & match",
+        priceFrom: 900,
+        customQuote: false,
+        category: "Rentals",
+        event: ["Engagement", "Sangeet", "Reception"],
+        style: ["Modern", "Minimal"],
+        color: ["Ivory", "Lavender"],
+        availability: "Available",
+        featured: false,
+        popularScore: 70,
+        isNew: false,
+        images: [
+          "https://images.unsplash.com/photo-1520975958225-eefb7980f61a?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1545161296-d9c2c241f2ad?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1542317854-009650d02b7b?auto=format&fit=crop&w=1600&q=80"
+        ],
+        description: "Three modular arches for stages, photo corners, and entrances—great for layering drape, florals, or signage.",
+        includes: ["Set of 3 arches", "Delivery + pickup (local)", "Setup placement", "Optional add-ons"]
+      }
+    ];
+
+    // State
+    const state = {
+      filters: {
+        category: new Set(),
+        event: new Set(),
+        style: new Set(),
+        color: new Set(),
+        availability: new Set(),
+        price: new Set(),
+      },
+      sort: "popular",
+      search: "",
+      masonry: false,
+      inquiry: new Map(), // id -> {qty:1}
+      saved: new Set(),
+      board: new Set(), // moodboard ids
+    };
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    const money = (n) => {
+      if (n == null) return "Custom quote";
+      return new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+    };
+
+    const priceBucketMatch = (svc, bucket) => {
+      const p = svc.priceFrom;
+      if (bucket === "under2500") return p != null && p < 2500;
+      if (bucket === "2500to5000") return p != null && p >= 2500 && p <= 5000;
+      if (bucket === "over5000") return p != null && p > 5000;
+      return true;
+    };
+
+    const matchesFilters = (svc) => {
+      const f = state.filters;
+
+      const setMatch = (set, value) => set.size === 0 || set.has(value);
+      const arraySetMatch = (set, arr) => set.size === 0 || arr.some(v => set.has(v));
+
+      if (!setMatch(f.category, svc.category) && !(f.category.size === 0)) return false;
+
+      // For "Reception styling" category button mapping, allow category "Reception" as pseudo-category
+      if (f.category.has("Reception") && svc.category !== "Package") {
+        // treat Reception category chip as "services commonly used for reception"
+        const isReceptionRelevant = svc.event.includes("Reception") || svc.category === "Stage" || svc.category === "Backdrop" || svc.category === "Lighting";
+        if (!isReceptionRelevant) return false;
+      } else if (f.category.size > 0 && !f.category.has("Reception")) {
+        // normal check already performed by setMatch; handle special values separately
+        // (noop)
+      }
+
+      if (!arraySetMatch(f.event, svc.event)) return false;
+      if (!arraySetMatch(f.style, svc.style)) return false;
+      if (!arraySetMatch(f.color, svc.color)) return false;
+      if (!setMatch(f.availability, svc.availability)) return false;
+
+      if (f.price.size > 0) {
+        let ok = false;
+        for (const bucket of f.price) {
+          if (priceBucketMatch(svc, bucket)) { ok = true; break; }
+        }
+        if (!ok) return false;
+      }
+
+      if (state.search.trim()) {
+        const q = state.search.trim().toLowerCase();
+        const hay = [
+          svc.name, svc.descriptor, svc.category,
+          svc.event.join(" "), svc.style.join(" "), svc.color.join(" "),
+          svc.customQuote ? "custom quote" : "",
+        ].join(" ").toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    };
+
+    const sortServices = (arr) => {
+      const copy = [...arr];
+      switch (state.sort) {
+        case "popular":
+          copy.sort((a,b) => (b.popularScore||0) - (a.popularScore||0));
+          break;
+        case "new":
+          copy.sort((a,b) => (b.isNew?1:0) - (a.isNew?1:0) || (b.popularScore||0) - (a.popularScore||0));
+          break;
+        case "priceLow":
+          copy.sort((a,b) => (a.priceFrom ?? 1e12) - (b.priceFrom ?? 1e12));
+          break;
+        case "priceHigh":
+          copy.sort((a,b) => (b.priceFrom ?? -1) - (a.priceFrom ?? -1));
+          break;
+        case "featured":
+          copy.sort((a,b) => (b.featured?1:0) - (a.featured?1:0) || (b.popularScore||0)-(a.popularScore||0));
+          break;
+      }
+      return copy;
+    };
+
+    const activeFilterCount = () => {
+      let n = 0;
+      for (const k in state.filters) n += state.filters[k].size;
+      return n;
+    };
+
+    const serviceTag = (text) => `<span class="rounded-full pill px-2.5 py-1 text-[11px] text-white/85 border border-white/10">${text}</span>`;
+
+    const renderCard = (svc) => {
+      const isSaved = state.saved.has(svc.id);
+      const inInquiry = state.inquiry.has(svc.id);
+
+      const extraThumbs = svc.images.slice(1, 4).map(src => `
+        <div class="h-12 w-12 rounded-xl overflow-hidden border border-white/15 bg-white/5">
+          <img src="${src}" alt="" class="h-full w-full object-cover" />
+        </div>
+      `).join("");
+
+      const priceLabel = svc.customQuote ? "Custom quote" : `Starting from ${money(svc.priceFrom)}`;
+
+      const badge = svc.featured ? `<span class="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: linear-gradient(135deg, rgba(217,178,95,.95), rgba(255,79,216,.35)); color: #0b1020; border: 1px solid rgba(255,255,255,.18);">Featured</span>`
+                    : svc.isNew ? `<span class="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: linear-gradient(135deg, rgba(255,79,216,.92), rgba(124,58,237,.82)); color: #0b1020; border: 1px solid rgba(255,255,255,.18);">New</span>`
+                    : "";
+
+      const availabilityPill = svc.availability === "Limited"
+        ? `<span class="rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(255,79,216,.14); border: 1px solid rgba(255,79,216,.28); color: rgba(255,255,255,.92);">Limited</span>`
+        : `<span class="rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.88);">Available</span>`;
+
+      return `
+        <article class="card fade-in" draggable="true" data-id="${svc.id}" aria-label="${svc.name}">
+          <div class="card-img">
+            <img src="${svc.images[0]}" alt="${svc.name}">
+            <div class="scrim"></div>
+            ${badge}
+
+            <div class="absolute right-3 top-3 flex items-center gap-2">
+              ${availabilityPill}
+            </div>
+
+            <div class="overlay flex flex-col justify-between p-3">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  ${extraThumbs}
+                </div>
+                <button class="btn text-xs px-3 py-2 text-white/90 border-white/15 bg-white/10" data-action="quote" data-id="${svc.id}">Request Quote</button>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                <div class="text-sm font-semibold text-white/95">${svc.name}</div>
+                <div class="mt-1 text-xs text-white/70 line-clamp-2">${svc.description}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-base font-semibold text-white/95 leading-snug">${svc.name}</h3>
+                <p class="mt-1 text-sm text-white/70">${svc.descriptor}</p>
+              </div>
+              <button class="btn text-xs px-3 py-2 ${isSaved ? 'border-pink-400/40' : ''}" data-action="save" data-id="${svc.id}">
+                ${isSaved ? 'Saved' : 'Save'}
+              </button>
+            </div>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              ${serviceTag(svc.category)}
+              ${svc.style.slice(0,1).map(s => serviceTag(s)).join("")}
+              ${svc.color.slice(0,1).map(c => serviceTag(c)).join("")}
+            </div>
+
+            <div class="mt-3 flex items-center justify-between gap-3">
+              <div class="text-sm font-semibold text-white/90">${priceLabel}</div>
+              <div class="text-xs text-white/55">Popularity: ${svc.popularScore}</div>
+            </div>
+
+            <div class="mt-4 flex gap-2">
+              <button class="btn flex-1 text-sm text-white/90" data-action="details" data-id="${svc.id}">View details</button>
+              <button class="btn flex-1 text-sm ${inInquiry ? 'btn-primary' : 'text-white/90'}" data-action="add" data-id="${svc.id}">
+                ${inInquiry ? 'Added' : 'Add to inquiry'}
+              </button>
+            </div>
+
+            <button class="mt-2 btn w-full text-sm text-white/85" data-action="board" data-id="${svc.id}">Add to moodboard</button>
+          </div>
+        </article>
+      `;
+    };
+
+    const renderGrid = () => {
+      const filtered = services.filter(matchesFilters);
+      const sorted = sortServices(filtered);
+
+      $("#resultsCount").textContent = sorted.length;
+
+      const grid = $("#servicesGrid");
+      grid.innerHTML = sorted.map(renderCard).join("");
+
+      // Masonry-ish: vary image heights via CSS class toggling
+      const cards = $$(".card", grid);
+      cards.forEach((c, idx) => {
+        const img = $(".card-img", c);
+        if (!img) return;
+        if (!state.masonry) {
+          img.style.height = "190px";
+          return;
+        }
+        const heights = [190, 220, 250, 210];
+        img.style.height = heights[idx % heights.length] + "px";
+      });
+    };
+
+    const featuredItems = () => services.filter(s => s.featured).sort((a,b) => (b.popularScore||0)-(a.popularScore||0));
+
+    const renderFeatured = () => {
+      const strip = $("#featuredStrip");
+      strip.innerHTML = featuredItems().map(svc => `
+        <article class="card min-w-[280px] sm:min-w-[340px] lg:min-w-[420px]" data-id="${svc.id}">
+          <div class="relative h-44 sm:h-52 lg:h-56 overflow-hidden">
+            <img src="${svc.images[0]}" alt="${svc.name}" class="w-full h-full object-cover transition-transform duration-500" style="transform: scale(1.03);">
+            <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(11,16,32,.05), rgba(11,16,32,.84) 80%);"></div>
+            <div class="absolute left-4 top-4 rounded-full px-2.5 py-1 text-[11px] font-semibold" style="background: linear-gradient(135deg, rgba(217,178,95,.95), rgba(255,79,216,.35)); color: #0b1020; border: 1px solid rgba(255,255,255,.18);">
+              Signature
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="h-title text-xl text-white">${svc.name}</div>
+                  <div class="mt-1 text-sm text-white/75">${svc.descriptor}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-sm font-semibold text-white/90">${svc.customQuote ? "Custom quote" : money(svc.priceFrom) + "+"}</div>
+                  <button class="btn mt-2 text-xs px-3 py-2 text-white/90" data-action="details" data-id="${svc.id}">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      // Hover zoom effect
+      $$(".card", strip).forEach(card => {
+        const img = card.querySelector("img");
+        card.addEventListener("mouseenter", () => img && (img.style.transform = "scale(1.10)"));
+        card.addEventListener("mouseleave", () => img && (img.style.transform = "scale(1.03)"));
+      });
+    };
+
+    // Inquiry
+    const estimateRange = () => {
+      const selected = Array.from(state.inquiry.keys()).map(id => services.find(s => s.id === id)).filter(Boolean);
+      let min = 0, max = 0;
+      let hasCustom = false;
+      for (const s of selected) {
+        if (s.customQuote || s.priceFrom == null) {
+          hasCustom = true;
+          continue;
+        }
+        // Premium decor variance: model range as 1.0x to 1.35x of starting price
+        min += s.priceFrom;
+        max += Math.round(s.priceFrom * 1.35);
+      }
+      return { min, max, hasCustom, count: selected.length };
+    };
+
+    const updateInquiryUI = () => {
+      const list = $("#inquiryList");
+      const empty = $("#inquiryEmpty");
+
+      const items = Array.from(state.inquiry.keys()).map(id => services.find(s => s.id === id)).filter(Boolean);
+
+      empty.classList.toggle("hidden", items.length > 0);
+      list.innerHTML = items.map(s => `
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-3 flex items-start justify-between gap-3">
+          <div class="flex items-start gap-3">
+            <div class="h-12 w-12 rounded-xl overflow-hidden border border-white/10 bg-white/5 flex-shrink-0">
+              <img src="${s.images[0]}" alt="" class="h-full w-full object-cover">
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white/90 leading-snug">${s.name}</div>
+              <div class="mt-1 text-xs text-white/60">${s.customQuote ? "Custom quote" : "From " + money(s.priceFrom)} • ${s.category}</div>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <button class="btn text-xs px-3 py-2 text-white/85" data-action="details" data-id="${s.id}">Details</button>
+                <button class="btn text-xs px-3 py-2 text-white/85" data-action="board" data-id="${s.id}">Moodboard</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn text-xs px-3 py-2 text-white/85" data-action="remove" data-id="${s.id}">Remove</button>
+        </div>
+      `).join("");
+
+      const est = estimateRange();
+      const subtitle = `${est.count} selected • est. ${money(est.min)}–${money(est.max)}${est.hasCustom ? " + custom" : ""}`;
+      $("#inquirySub").textContent = subtitle;
+
+      // budget bar normalized to 0..25k
+      const cap = 25000;
+      const pct = Math.min(100, Math.round((est.max / cap) * 100));
+      $("#budgetBar").style.width = (est.count === 0 ? 0 : Math.max(12, pct)) + "%";
+      $("#budgetText").textContent = est.count === 0
+        ? "Add items to see estimate."
+        : `${money(est.min)}–${money(est.max)}${est.hasCustom ? " + custom quote items" : ""}`;
+    };
+
+    const addToInquiry = (id) => {
+      state.inquiry.set(id, { qty: 1 });
+      updateInquiryUI();
+      renderGrid();
+    };
+
+    const removeFromInquiry = (id) => {
+      state.inquiry.delete(id);
+      updateInquiryUI();
+      renderGrid();
+    };
+
+    // Moodboard
+    const renderBoard = () => {
+      const itemsWrap = $("#boardItems");
+      const empty = $("#boardEmpty");
+      const ids = Array.from(state.board);
+      empty.classList.toggle("hidden", ids.length > 0);
+
+      const items = ids.map(id => services.find(s => s.id === id)).filter(Boolean);
+
+      itemsWrap.innerHTML = items.map(s => `
+        <div class="rounded-2xl bg-white/5 border border-white/10 p-3 flex items-start justify-between gap-3">
+          <div class="flex items-start gap-3">
+            <div class="h-12 w-12 rounded-xl overflow-hidden border border-white/10 bg-white/5 flex-shrink-0">
+              <img src="${s.images[0]}" alt="" class="h-full w-full object-cover">
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white/90 leading-snug">${s.name}</div>
+              <div class="mt-1 text-xs text-white/60">${s.category} • ${s.customQuote ? "Custom quote" : "From " + money(s.priceFrom)}</div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button class="btn text-xs px-3 py-2 text-white/85" data-board-action="addInquiry" data-id="${s.id}">Inquiry</button>
+            <button class="btn text-xs px-3 py-2 text-white/85" data-board-action="remove" data-id="${s.id}">Remove</button>
+          </div>
+        </div>
+      `).join("");
+    };
+
+    const addToBoard = (id) => {
+      state.board.add(id);
+      renderBoard();
+    };
+
+    // Modal
+    let modalActiveId = null;
+
+    const openModal = (id) => {
+      const s = services.find(x => x.id === id);
+      if (!s) return;
+      modalActiveId = id;
+
+      $("#modalTitle").textContent = s.name;
+      $("#modalMeta").textContent = `${s.category} • ${s.event.join(", ")} • ${s.customQuote ? "Custom quote" : "Starting from " + money(s.priceFrom)}`;
+      $("#modalImg").src = s.images[0];
+      $("#modalImg").alt = s.name;
+      $("#modalDesc").textContent = s.description;
+
+      const tags = [
+        serviceTag("Style: " + s.style.join(" / ")),
+        serviceTag("Color: " + s.color.join(" / ")),
+        serviceTag("Availability: " + s.availability),
+      ];
+      $("#modalTags").innerHTML = tags.join("");
+
+      $("#modalIncludes").innerHTML = s.includes.map(i => `<li>${i}</li>`).join("");
+
+      $("#modalAddBtn").textContent = state.inquiry.has(id) ? "Added to inquiry" : "Add to inquiry";
+      $("#modalAddBtn").classList.toggle("btn-primary", !state.inquiry.has(id));
+      $("#modalSaveBtn").textContent = state.saved.has(id) ? "Saved" : "Save";
+
+      $("#modalBackdrop").classList.remove("hidden");
+      $("#detailsModal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modalActiveId = null;
+      $("#modalBackdrop").classList.add("hidden");
+      $("#detailsModal").classList.add("hidden");
+      document.body.style.overflow = "";
+    };
+
+    // Filter chip toggles
+    const toggleFilter = (key, value, chipEl=null) => {
+      const set = state.filters[key];
+      if (!set) return;
+
+      if (set.has(value)) set.delete(value);
+      else {
+        // Single-select for availability + price to keep UX clean, but allow multi via shift
+        const singleKeys = new Set(["availability"]);
+        if (singleKeys.has(key)) set.clear();
+        // For category, allow multi but keep "Reception" pseudo-category exclusive
+        if (key === "category" && value === "Reception") set.clear();
+        if (key === "category" && value !== "Reception" && set.has("Reception")) set.delete("Reception");
+        set.add(value);
+      }
+
+      updateChipsUI();
+      renderGrid();
+    };
+
+    const updateChipsUI = () => {
+      const chips = $$("[data-filter]");
+      chips.forEach(chip => {
+        const key = chip.getAttribute("data-filter");
+        const val = chip.getAttribute("data-value");
+        const active = state.filters[key]?.has(val) || false;
+        chip.classList.toggle("active", active);
+      });
+
+      const n = activeFilterCount();
+      $("#activeCount").textContent = `${n} active`;
+    };
+
+    // Save
+    const toggleSave = (id) => {
+      if (state.saved.has(id)) state.saved.delete(id);
+      else state.saved.add(id);
+      renderGrid();
+      updateInquiryUI();
+      if (modalActiveId === id) openModal(id);
+    };
+
+    // Actions router
+    const onActionClick = (e) => {
+      const btn = e.target.closest("[data-action]");
+      if (!btn) return;
+      const action = btn.getAttribute("data-action");
+      const id = btn.getAttribute("data-id");
+
+      if (action === "details") openModal(id);
+      if (action === "add") addToInquiry(id);
+      if (action === "remove") removeFromInquiry(id);
+      if (action === "save") toggleSave(id);
+      if (action === "quote") {
+        addToInquiry(id);
+        focusInquiry();
+      }
+      if (action === "board") {
+        addToBoard(id);
+        // soft nudge
+        const dz = $("#boardDropzone");
+        dz.classList.add("dragover");
+        setTimeout(()=>dz.classList.remove("dragover"), 220);
+      }
+    };
+
+    const focusInquiry = () => {
+      const panel = $("#inquiryPanel");
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (window.matchMedia("(max-width: 1024px)").matches) {
+        panel.classList.remove("inquiry-collapsed");
+      }
+    };
+
+    // Drag & drop to moodboard
+    const initDnD = () => {
+      const grid = $("#servicesGrid");
+      const dz = $("#boardDropzone");
+
+      grid.addEventListener("dragstart", (e) => {
+        const card = e.target.closest(".card[data-id]");
+        if (!card) return;
+        e.dataTransfer.setData("text/plain", card.getAttribute("data-id"));
+        e.dataTransfer.effectAllowed = "copy";
+      });
+
+      const setOver = (on) => dz.classList.toggle("dragover", on);
+
+      dz.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        setOver(true);
+        e.dataTransfer.dropEffect = "copy";
+      });
+      dz.addEventListener("dragleave", () => setOver(false));
+      dz.addEventListener("drop", (e) => {
+        e.preventDefault();
+        setOver(false);
+        const id = e.dataTransfer.getData("text/plain");
+        if (id) addToBoard(id);
+      });
+    };
+
+    // Masonry toggle
+    const setMasonry = (on) => {
+      state.masonry = on;
+      $("#masonryToggle").textContent = `Masonry: ${on ? "On" : "Off"}`;
+      renderGrid();
+    };
+
+    // Keyboard: Cmd/Ctrl+K
+    const initKeyboard = () => {
+      document.addEventListener("keydown", (e) => {
+        const isMac = navigator.platform.toLowerCase().includes("mac");
+        const mod = isMac ? e.metaKey : e.ctrlKey;
+        if (mod && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          $("#searchInput").focus();
+        }
+        if (e.key === "Escape") closeModal();
+      });
+    };
+
+    // Mobile inquiry collapse
+    const toggleInquiryCollapse = () => {
+      const panel = $("#inquiryPanel");
+      panel.classList.toggle("inquiry-collapsed");
+      $("#collapseInquiryBtn").textContent = panel.classList.contains("inquiry-collapsed") ? "Expand" : "Collapse";
+    };
+
+    const resetAllFilters = () => {
+      for (const k in state.filters) state.filters[k].clear();
+      state.search = "";
+      $("#searchInput").value = "";
+      updateChipsUI();
+      renderGrid();
+    };
+
+    const saveVisible = () => {
+      const ids = services.filter(matchesFilters).map(s => s.id);
+      ids.forEach(id => state.saved.add(id));
+      renderGrid();
+    };
+
+    // Inquiry request payload (demo)
+    const buildRequestPayload = () => {
+      const items = Array.from(state.inquiry.keys()).map(id => {
+        const s = services.find(x => x.id === id);
+        if (!s) return null;
+        return {
+          id: s.id,
+          name: s.name,
+          category: s.category,
+          price: s.customQuote ? "Custom quote" : `From ${money(s.priceFrom)}`
+        };
+      }).filter(Boolean);
+
+      const est = estimateRange();
+      const payload = {
+        brand: "Source Wedding",
+        selectedItems: items,
+        estimate: {
+          min: est.min,
+          max: est.max,
+          hasCustom: est.hasCustom
+        },
+        inquiryNotes: $("#inquiryNotes").value.trim(),
+        moodboard: {
+          items: Array.from(state.board).map(id => services.find(x => x.id === id)?.name).filter(Boolean),
+          notes: $("#boardNotes").value.trim()
+        },
+        createdAt: new Date().toISOString()
+      };
+      return payload;
+    };
+
+    const copyText = async (text) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } finally { ta.remove(); }
+        return true;
+      }
+    };
+
+    // Init
+    const init = () => {
+      // click filters
+      document.addEventListener("click", (e) => {
+        const chip = e.target.closest("[data-filter]");
+        if (chip) {
+          const key = chip.getAttribute("data-filter");
+          const val = chip.getAttribute("data-value");
+          toggleFilter(key, val, chip);
+          return;
+        }
+        onActionClick(e);
+      });
+
+      $("#sortSelect").addEventListener("change", (e) => {
+        state.sort = e.target.value;
+        renderGrid();
+      });
+
+      $("#searchInput").addEventListener("input", (e) => {
+        state.search = e.target.value;
+        renderGrid();
+      });
+
+      $("#clearBtn").addEventListener("click", () => {
+        state.search = "";
+        $("#searchInput").value = "";
+        renderGrid();
+      });
+
+      $("#resetFiltersBtn").addEventListener("click", resetAllFilters);
+
+      $("#masonryToggle").addEventListener("click", () => setMasonry(!state.masonry));
+
+      $("#saveAllBtn").addEventListener("click", saveVisible);
+
+      $("#clearInquiryBtn").addEventListener("click", () => {
+        state.inquiry.clear();
+        updateInquiryUI();
+        renderGrid();
+      });
+
+      $("#collapseInquiryBtn").addEventListener("click", toggleInquiryCollapse);
+
+      $("#viewSelectedBtn").addEventListener("click", focusInquiry);
+
+      $("#modalBackdrop").addEventListener("click", closeModal);
+      $("#closeModalBtn").addEventListener("click", closeModal);
+
+      $("#modalAddBtn").addEventListener("click", () => {
+        if (!modalActiveId) return;
+        addToInquiry(modalActiveId);
+        $("#modalAddBtn").textContent = "Added to inquiry";
+        $("#modalAddBtn").classList.remove("btn-primary");
+      });
+
+      $("#modalSaveBtn").addEventListener("click", () => {
+        if (!modalActiveId) return;
+        toggleSave(modalActiveId);
+      });
+
+      // Board actions
+      $("#boardItems").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-board-action]");
+        if (!btn) return;
+        const action = btn.getAttribute("data-board-action");
+        const id = btn.getAttribute("data-id");
+        if (action === "remove") {
+          state.board.delete(id);
+          renderBoard();
+        }
+        if (action === "addInquiry") addToInquiry(id);
+      });
+
+      $("#clearBoardBtn").addEventListener("click", () => {
+        state.board.clear();
+        renderBoard();
+      });
+
+      $("#addBoardToInquiryBtn").addEventListener("click", () => {
+        Array.from(state.board).forEach(id => state.inquiry.set(id, { qty: 1 }));
+        updateInquiryUI();
+        renderGrid();
+        focusInquiry();
+      });
+
+      $("#exportBoardBtn").addEventListener("click", async () => {
+        const names = Array.from(state.board).map(id => services.find(s => s.id === id)?.name).filter(Boolean);
+        const text = [
+          "Source Wedding — Moodboard",
+          ...names.map((n,i)=>`${i+1}. ${n}`),
+          $("#boardNotes").value.trim() ? "\nNotes:\n" + $("#boardNotes").value.trim() : ""
+        ].filter(Boolean).join("\n");
+        await copyText(text);
+        const btn = $("#exportBoardBtn");
+        const prev = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(()=>btn.textContent = prev, 900);
+      });
+
+      // Inquiry list actions
+      $("#inquiryList").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-action]");
+        if (!btn) return;
+        const action = btn.getAttribute("data-action");
+        const id = btn.getAttribute("data-id");
+        if (action === "remove") removeFromInquiry(id);
+        if (action === "details") openModal(id);
+        if (action === "board") addToBoard(id);
+      });
+
+      $("#requestQuoteBtn").addEventListener("click", async () => {
+        const payload = buildRequestPayload();
+        const pretty = JSON.stringify(payload, null, 2);
+        await copyText(pretty);
+
+        const btn = $("#requestQuoteBtn");
+        const prev = btn.textContent;
+        btn.textContent = "Request copied (demo)";
+        setTimeout(()=>btn.textContent = prev, 1200);
+
+        // lightweight confirmation feel
+        const panel = $("#inquiryPanel");
+        panel.style.boxShadow = "0 28px 78px rgba(0,0,0,.36), 0 18px 60px rgba(255,79,216,.16), 0 18px 60px rgba(124,58,237,.14)";
+        setTimeout(()=>panel.style.boxShadow="", 650);
+      });
+
+      $("#consultBtn").addEventListener("click", () => {
+        $("#inquiryNotes").value = ($("#inquiryNotes").value.trim() ? $("#inquiryNotes").value.trim() + "\n\n" : "") +
+          "Requesting full custom design consultation. Venue: ___ Date: ___ Guest count: ___ Theme: ___";
+        focusInquiry();
+      });
+
+      $("#contactBtn").addEventListener("click", async () => {
+        const text = "Contact Source Wedding — Please share your venue, date, and theme. (Demo)";
+        await copyText(text);
+        const btn = $("#contactBtn");
+        const prev = btn.textContent;
+        btn.textContent = "Contact info copied (demo)";
+        setTimeout(()=>btn.textContent = prev, 1100);
+      });
+
+      // Click featured "View" buttons
+      $("#featuredStrip").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-action='details']");
+        if (btn) openModal(btn.getAttribute("data-id"));
+      });
+
+      initDnD();
+      initKeyboard();
+
+      // Initial render
+      updateChipsUI();
+      renderGrid();
+      renderFeatured();
+      updateInquiryUI();
+      renderBoard();
+
+      // Mobile default collapse
+      if (window.matchMedia("(max-width: 1024px)").matches) {
+        $("#inquiryPanel").classList.add("inquiry-collapsed");
+        $("#collapseInquiryBtn").textContent = "Expand";
+      }
+    };
+
+    init();
+  </script>
+</body>
+</html>

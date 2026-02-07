@@ -1,0 +1,981 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Wedding - Explore Services & Setups</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf5ff 0%, #fff5f7 100%);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mesh-bg {
+            background: 
+                radial-gradient(at 20% 30%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 20%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 40% 70%, rgba(244, 114, 182, 0.1) 0px, transparent 50%);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent);
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.1); }
+        }
+        
+        .glass-filter {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .filter-chip {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .filter-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
+        }
+        
+        .filter-chip.active {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+        }
+        
+        .service-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(139, 92, 246, 0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.25);
+        }
+        
+        .service-card:hover .card-overlay {
+            opacity: 1;
+        }
+        
+        .service-card:hover .card-image {
+            transform: scale(1.08);
+        }
+        
+        .card-image {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-overlay {
+            opacity: 0;
+            transition: opacity 0.4s;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+        
+        .inquiry-panel {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .inquiry-panel.collapsed {
+            transform: translateX(400px);
+        }
+        
+        .floating-particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            50% { transform: translate(30px, -30px); opacity: 0.6; }
+        }
+        
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+        
+        .search-bar {
+            transition: all 0.3s;
+        }
+        
+        .search-bar:focus-within {
+            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.2);
+        }
+        
+        .featured-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .featured-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .sticky-bar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            transition: all 0.3s;
+        }
+        
+        .price-badge {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        
+        .gold-accent {
+            color: #d4af37;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="relative mesh-bg py-20 overflow-hidden">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">
+                    Explore Services & Setups
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Browse décor, styling, and event installations. Select items to request a custom quote.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="search-bar glass-filter rounded-full p-2 max-w-2xl mx-auto flex items-center gap-4">
+                    <svg class="w-6 h-6 text-gray-400 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" placeholder="Search for mandaps, stages, floral walls..." 
+                           class="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-400 py-2">
+                    <button class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Blocks -->
+    <section class="py-8 bg-white bg-opacity-60">
+        <div class="container mx-auto px-6">
+            <div class="category-scroll flex gap-4 overflow-x-auto pb-4">
+                <button onclick="filterCategory('all')" class="category-btn filter-chip active glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    All Services
+                </button>
+                <button onclick="filterCategory('mandap')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Mandap Setups
+                </button>
+                <button onclick="filterCategory('stage')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Stage Décor
+                </button>
+                <button onclick="filterCategory('floral')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Floral Installations
+                </button>
+                <button onclick="filterCategory('reception')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Reception Styling
+                </button>
+                <button onclick="filterCategory('backdrop')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Backdrops
+                </button>
+                <button onclick="filterCategory('lighting')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Lighting
+                </button>
+                <button onclick="filterCategory('package')" class="category-btn filter-chip glass-filter px-6 py-3 rounded-full whitespace-nowrap font-medium text-sm">
+                    Full Packages
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter + Sort Bar -->
+    <section class="sticky-bar glass-filter border-b border-gray-200 py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="text-sm font-medium text-gray-600">Filter by:</span>
+                    <select class="filter-chip glass-filter px-4 py-2 rounded-full text-sm outline-none cursor-pointer">
+                        <option>Event Type</option>
+                        <option>Wedding</option>
+                        <option>Reception</option>
+                        <option>Sangeet</option>
+                        <option>Mehendi</option>
+                    </select>
+                    <select class="filter-chip glass-filter px-4 py-2 rounded-full text-sm outline-none cursor-pointer">
+                        <option>Price Range</option>
+                        <option>Under ₹50k</option>
+                        <option>₹50k - ₹1L</option>
+                        <option>₹1L - ₹3L</option>
+                        <option>₹3L+</option>
+                    </select>
+                    <select class="filter-chip glass-filter px-4 py-2 rounded-full text-sm outline-none cursor-pointer">
+                        <option>Style</option>
+                        <option>Traditional</option>
+                        <option>Modern</option>
+                        <option>Luxury</option>
+                        <option>Minimal</option>
+                    </select>
+                    <select class="filter-chip glass-filter px-4 py-2 rounded-full text-sm outline-none cursor-pointer">
+                        <option>Color Theme</option>
+                        <option>Pink & Gold</option>
+                        <option>Red & White</option>
+                        <option>Purple & Silver</option>
+                        <option>Pastels</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-gray-600">Sort by:</span>
+                    <select class="filter-chip glass-filter px-4 py-2 rounded-full text-sm outline-none cursor-pointer">
+                        <option>Popular</option>
+                        <option>New Arrivals</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Featured</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="servicesGrid">
+                <!-- Service Card 1 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="mandap">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" 
+                             alt="Royal Floral Mandap" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Royal Floral Mandap', '₹2,50,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Mandap</span>
+                            <span class="text-xs gold-accent">★ Premium</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Royal Floral Mandap</h3>
+                        <p class="text-gray-600 text-sm mb-4">Customizable design • Includes setup</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹2,50,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="stage">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" 
+                             alt="Crystal Stage Setup" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Crystal Stage Setup', '₹1,80,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Stage Décor</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Crystal Stage Setup</h3>
+                        <p class="text-gray-600 text-sm mb-4">Venue-tailored • Premium materials</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹1,80,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="reception">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800" 
+                             alt="Luxury Reception Backdrop" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Luxury Reception Backdrop', 'Custom Quote')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Reception</span>
+                            <span class="text-xs gold-accent">★ Featured</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Luxury Reception Backdrop</h3>
+                        <p class="text-gray-600 text-sm mb-4">Customizable design • Full setup</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Custom quote</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="floral">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800" 
+                             alt="LED Entrance Tunnel" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('LED Entrance Tunnel', '₹95,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Entrance</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">LED Entrance Tunnel</h3>
+                        <p class="text-gray-600 text-sm mb-4">Package available • Includes setup</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹95,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="floral">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800" 
+                             alt="Wedding Floral Wall" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Wedding Floral Wall', '₹1,20,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Floral</span>
+                            <span class="text-xs gold-accent">★ Popular</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Wedding Floral Wall</h3>
+                        <p class="text-gray-600 text-sm mb-4">Premium materials • Customizable</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹1,20,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="stage">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1522413452208-996ff3f3e740?w=800" 
+                             alt="Premium Sofa Stage" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Premium Sofa Stage', '₹1,50,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Stage Décor</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Premium Sofa Stage</h3>
+                        <p class="text-gray-600 text-sm mb-4">Venue-tailored • Luxury setup</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹1,50,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 7 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="backdrop">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f29da8c2f0?w=800" 
+                             alt="Floral Canopy Setup" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Floral Canopy Setup', '₹2,00,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-pink-100 text-pink-600">Backdrop</span>
+                            <span class="text-xs gold-accent">★ Premium</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Floral Canopy Setup</h3>
+                        <p class="text-gray-600 text-sm mb-4">Premium materials • Full design</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹2,00,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 8 -->
+                <div class="service-card glass-filter rounded-3xl overflow-hidden" data-category="lighting">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800" 
+                             alt="Ambient Lighting Package" class="card-image w-full h-full object-cover">
+                        <div class="card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <div class="flex gap-2 mb-4">
+                                <button onclick="addToInquiry('Ambient Lighting Package', '₹75,000')" 
+                                        class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">
+                                    Request Quote
+                                </button>
+                                <button onclick="saveItem(this)" class="glass-filter p-2 rounded-full">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-600">Lighting</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Ambient Lighting Package</h3>
+                        <p class="text-gray-600 text-sm mb-4">Package available • Professional setup</p>
+                        <div class="flex items-center justify-between">
+                            <div class="price-badge px-4 py-2 rounded-full">
+                                <span class="text-sm font-semibold gradient-text">Starting from ₹75,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Installations Strip -->
+    <section class="py-16 bg-white bg-opacity-40">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Signature Installations</h2>
+                <p class="text-gray-600 text-lg">Our most premium and sought-after setups</p>
+            </div>
+            
+            <div class="category-scroll flex gap-8 overflow-x-auto pb-8">
+                <!-- Featured Card 1 -->
+                <div class="featured-card flex-shrink-0 w-[500px] glass-filter rounded-3xl overflow-hidden">
+                    <div class="relative h-80">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200" 
+                             alt="Luxury Mandap" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white bg-opacity-20 text-white mb-3 inline-block">Premium Mandap</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Luxury Mandap Collection</h3>
+                            <p class="text-white text-opacity-90 mb-4">Handcrafted elegance with royal aesthetics</p>
+                            <button onclick="addToInquiry('Luxury Mandap Collection', 'Custom')" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                                Explore & Request
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Card 2 -->
+                <div class="featured-card flex-shrink-0 w-[500px] glass-filter rounded-3xl overflow-hidden">
+                    <div class="relative h-80">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1200" 
+                             alt="Floral Tunnel" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white bg-opacity-20 text-white mb-3 inline-block">Floral Design</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Enchanting Floral Tunnel</h3>
+                            <p class="text-white text-opacity-90 mb-4">Create magical entrances with fresh florals</p>
+                            <button onclick="addToInquiry('Enchanting Floral Tunnel', 'Custom')" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                                Explore & Request
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Card 3 -->
+                <div class="featured-card flex-shrink-0 w-[500px] glass-filter rounded-3xl overflow-hidden">
+                    <div class="relative h-80">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200" 
+                             alt="Reception Stage" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-white bg-opacity-20 text-white mb-3 inline-block">Reception</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Grand Reception Stage</h3>
+                            <p class="text-white text-opacity-90 mb-4">Make your entrance unforgettable</p>
+                            <button onclick="addToInquiry('Grand Reception Stage', 'Custom')" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                                Explore & Request
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration Builder Section -->
+    <section class="py-16 mesh-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Build Your Setup</h2>
+                <p class="text-gray-600 text-lg">Combine services to visualize your perfect event</p>
+            </div>
+            
+            <div class="glass-filter rounded-3xl p-8 max-w-4xl mx-auto">
+                <div id="moodboard" class="min-h-[300px] border-2 border-dashed border-gray-300 rounded-2xl p-8 mb-6 flex flex-wrap gap-4 items-center justify-center">
+                    <div class="text-center text-gray-400">
+                        <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <p class="text-lg">Add services to your moodboard</p>
+                        <p class="text-sm mt-2">Click "Add to inquiry" on any service to start building</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center gap-4">
+                    <button onclick="clearMoodboard()" class="glass-filter px-6 py-3 rounded-full font-medium">
+                        Clear Board
+                    </button>
+                    <button onclick="requestFullQuote()" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                        Request Full Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 mesh-bg opacity-50"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="glass-filter rounded-3xl p-12 text-center max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">
+                    Need a Full Custom Design?
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Tell us your venue and theme. We'll design the entire setup tailored to your vision and space.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button onclick="requestConsultation()" class="btn-primary text-white px-10 py-4 rounded-full font-medium text-lg">
+                        Request Consultation
+                    </button>
+                    <button class="glass-filter px-10 py-4 rounded-full font-medium text-lg">
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry Panel (Sticky) -->
+    <div id="inquiryPanel" class="inquiry-panel collapsed fixed right-0 top-1/2 -translate-y-1/2 z-50 w-96">
+        <div class="glass-filter rounded-l-3xl shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold gradient-text">Your Inquiry</h3>
+                    <button onclick="toggleInquiryPanel()" class="glass-filter p-2 rounded-full">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <span id="itemCount">0</span> items selected
+                </div>
+            </div>
+            
+            <div id="inquiryItems" class="p-6 max-h-96 overflow-y-auto">
+                <p class="text-gray-400 text-center py-8">No items added yet</p>
+            </div>
+            
+            <div class="p-6 border-t border-gray-200">
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-600">Estimated Range:</span>
+                        <span id="estimatedBudget" class="font-bold gradient-text">₹0</span>
+                    </div>
+                </div>
+                <button onclick="submitInquiry()" class="btn-primary w-full text-white py-4 rounded-full font-medium text-lg">
+                    Request Detailed Quote
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toggle Button for Inquiry Panel -->
+    <button id="inquiryToggle" onclick="toggleInquiryPanel()" class="fixed right-0 top-1/2 -translate-y-1/2 btn-primary text-white p-4 rounded-l-2xl shadow-2xl z-40">
+        <div class="flex items-center gap-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span id="toggleBadge" class="bg-white text-pink-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">0</span>
+        </div>
+    </button>
+
+    <script>
+        let inquiryItems = [];
+        let savedItems = new Set();
+
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // Update active button
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.classList.add('animate-slide-up');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function addToInquiry(name, price) {
+            const existingItem = inquiryItems.find(item => item.name === name);
+            if (existingItem) {
+                alert('This item is already in your inquiry!');
+                return;
+            }
+            
+            inquiryItems.push({ name, price });
+            updateInquiryPanel();
+            
+            // Show panel if hidden
+            const panel = document.getElementById('inquiryPanel');
+            panel.classList.remove('collapsed');
+            
+            // Show success animation
+            const badge = document.getElementById('toggleBadge');
+            badge.classList.add('animate-pulse');
+            setTimeout(() => badge.classList.remove('animate-pulse'), 1000);
+        }
+
+        function updateInquiryPanel() {
+            const itemsContainer = document.getElementById('inquiryItems');
+            const itemCount = document.getElementById('itemCount');
+            const toggleBadge = document.getElementById('toggleBadge');
+            const estimatedBudget = document.getElementById('estimatedBudget');
+            
+            itemCount.textContent = inquiryItems.length;
+            toggleBadge.textContent = inquiryItems.length;
+            
+            if (inquiryItems.length === 0) {
+                itemsContainer.innerHTML = '<p class="text-gray-400 text-center py-8">No items added yet</p>';
+                estimatedBudget.textContent = '₹0';
+                return;
+            }
+            
+            let totalMin = 0;
+            itemsContainer.innerHTML = inquiryItems.map((item, index) => {
+                // Extract numeric value from price
+                const priceMatch = item.price.match(/[\d,]+/);
+                if (priceMatch) {
+                    totalMin += parseInt(priceMatch[0].replace(/,/g, ''));
+                }
+                
+                return `
+                    <div class="glass-filter rounded-2xl p-4 mb-3">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h4 class="font-semibold mb-1">${item.name}</h4>
+                                <p class="text-sm gradient-text font-medium">${item.price}</p>
+                            </div>
+                            <button onclick="removeFromInquiry(${index})" class="text-gray-400 hover:text-red-500">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            if (totalMin > 0) {
+                estimatedBudget.textContent = `₹${totalMin.toLocaleString('en-IN')}+`;
+            } else {
+                estimatedBudget.textContent = 'Custom Quote';
+            }
+        }
+
+        function removeFromInquiry(index) {
+            inquiryItems.splice(index, 1);
+            updateInquiryPanel();
+        }
+
+        function toggleInquiryPanel() {
+            const panel = document.getElementById('inquiryPanel');
+            panel.classList.toggle('collapsed');
+        }
+
+        function submitInquiry() {
+            if (inquiryItems.length === 0) {
+                alert('Please add at least one service to your inquiry.');
+                return;
+            }
+            
+            alert(`Thank you for your inquiry!\n\nYou've selected ${inquiryItems.length} service(s):\n${inquiryItems.map(item => `• ${item.name}`).join('\n')}\n\nOur team will contact you shortly with a detailed quote.`);
+            
+            // Clear inquiry after submission
+            inquiryItems = [];
+            updateInquiryPanel();
+            toggleInquiryPanel();
+        }
+
+        function saveItem(button) {
+            button.classList.toggle('saved');
+            const svg = button.querySelector('svg');
+            
+            if (button.classList.contains('saved')) {
+                svg.setAttribute('fill', 'currentColor');
+                button.style.color = '#ec4899';
+            } else {
+                svg.setAttribute('fill', 'none');
+                button.style.color = 'white';
+            }
+        }
+
+        function clearMoodboard() {
+            const moodboard = document.getElementById('moodboard');
+            moodboard.innerHTML = `
+                <div class="text-center text-gray-400">
+                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <p class="text-lg">Add services to your moodboard</p>
+                    <p class="text-sm mt-2">Click "Add to inquiry" on any service to start building</p>
+                </div>
+            `;
+        }
+
+        function requestFullQuote() {
+            if (inquiryItems.length === 0) {
+                alert('Please add services to your moodboard first.');
+                return;
+            }
+            submitInquiry();
+        }
+
+        function requestConsultation() {
+            alert('Thank you for your interest!\n\nOur design team will reach out to schedule a consultation where we can discuss:\n\n• Your venue details\n• Theme preferences\n• Budget requirements\n• Timeline\n• Special requests\n\nWe look forward to creating your dream setup!');
+        }
+
+        // Add scroll effect to sticky bar
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const stickyBar = document.querySelector('.sticky-bar');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                stickyBar.style.transform = 'translateY(-100%)';
+            } else {
+                stickyBar.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const hero = document.querySelector('section');
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-particle';
+                particle.style.width = Math.random() * 100 + 50 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                hero.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
+```

@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services • Source Wedding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair_Display:wght@400&amp;family=Inter:wght@400;500&amp;display=swap">
+</head>
+<body class="font-sans bg-[#f8f5f3]">
+    <!-- Navbar -->
+    <nav id="navbar" 
+         class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-[#f0e6e1]">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-3">
+                <span class="h-px w-6 bg-[#c9a16b]"></span>
+                <span class="font-serif text-xl tracking-[0.065em] text-[#9f5d7f] uppercase">Source</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
+                <a href="#" class="font-medium text-[#9f5d7f] border-b border-[#9f5d7f] pb-px">Services</a>
+                <a href="#" class="hover:text-[#9f5d7f] transition-colors">Inspiration</a>
+                <a href="#" class="hover:text-[#9f5d7f] transition-colors">Portfolio</a>
+                <a href="#" class="hover:text-[#9f5d7f] transition-colors">Our Story</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="toggleInquiryPanel()" 
+                    id="inquiry-btn"
+                    class="relative flex items-center px-5 py-2 bg-[#9f5d7f] hover:bg-[#8a4a6a] text-white text-xs uppercase tracking-[0.065em] rounded-full transition-all">
+                    <span class="mr-2">Inquiry</span>
+                    <span id="inquiry-count-badge"
+                        class="bg-[#f5d8a0] text-[#6b3d52] text-[10px] font-mono h-4 w-4 flex items-center justify-center rounded-full text-xs">0</span>
+                </button>
+                
+                <button class="md:hidden text-[#9f5d7f]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Gradient Mesh Background -->
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#c026d3_30%,#db2777_70%)] opacity-90"></div>
+        
+        <!-- Subtle mesh overlay -->
+        <div id="mesh-overlay"
+             class="absolute inset-0 bg-[linear-gradient(#ffffff08_1px,transparent_1px),linear-gradient(90deg,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]">
+        </div>
+        
+        <!-- Floating decorative shapes -->
+        <div id="floating-shapes" class="absolute inset-0 pointer-events-none"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-2 text-[#f5d8a0] text-xs tracking-[0.065em] mb-3 uppercase font-medium">
+                <span class="h-px w-8 bg-[#f5d8a0]"></span> CURATED FOR YOU
+            </div>
+            
+            <h1 class="font-serif text-[7.5rem] md:text-[9rem] leading-[0.75] tracking-[-0.01em] text-white mb-4">
+                Services &amp;<br><span class="bg-clip-text text-transparent bg-gradient-to-r from-[#f5d8a0] to-[#f8c1e0]">Setups</span>
+            </h1>
+            
+            <p class="text-white/80 text-base md:text-lg tracking-widest mb-8">Browse 142 hand-selected décor installations<br>by India’s finest floral &amp; styling ateliers</p>
+            
+            <!-- Search -->
+            <div class="max-w-xl mx-auto relative">
+                <div class="bg-white rounded-3xl shadow-xl flex items-center px-5 py-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#c9a16b] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input 
+                        id="hero-search"
+                        type="text" 
+                        class="flex-1 bg-transparent outline-none text-sm placeholder:text-[#a38f7d]" 
+                        placeholder="Search mandaps, floral tunnels, stages...">
+                    <button onclick="scrollToServices()" 
+                        id="hero-search-btn"
+                        class="bg-[#9f5d7f] hover:bg-[#7f4763] transition-colors text-xs text-white px-6 py-2 rounded-2xl text-sm tracking-widest">
+                        Explore
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll prompt -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+            <span class="text-[10px] tracking-[0.065em] text-white/60 mb-1">SCROLL TO DISCOVER</span>
+            <div class="h-px w-7 bg-white/40"></div>
+        </div>
+    </header>
+    
+    <!-- Filter Bar -->
+    <div id="filter-bar" 
+         class="sticky top-[73px] z-40 bg-white border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <!-- Desktop filters -->
+            <div class="hidden lg:flex items-center justify-between">
+                <!-- Category chips -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="category-filters">
+                    <!-- JS populated -->
+                </div>
+                
+                <!-- Right side controls -->
+                <div class="flex items-center gap-6 text-sm">
+                    <!-- Event Type -->
+                    <div class="relative group">
+                        <button onclick="toggleDropdown('event-dropdown')" 
+                                id="event-trigger"
+                                class="flex items-center gap-2 text-[#67514a] hover:text-[#9f5d7f] transition-colors text-xs uppercase tracking-widest">
+                            <span>All Events</span>
+                            <span class="inline-block transition-transform">▼</span>
+                        </button>
+                        
+                        <!-- Dropdown -->
+                        <div id="event-dropdown"
+                             class="hidden absolute top-full right-0 mt-3 bg-white shadow-xl rounded-2xl py-4 w-48 text-sm z-50">
+                            <button data-event="all" class="event-filter-item block w-full text-left px-6 py-2 hover:bg-[#f8f5f3] text-[#67514a] active">All Weddings</button>
+                            <button data-event="destination" class="event-filter-item block w-full text-left px-6 py-2 hover:bg-[#f8f5f3] text-[#67514a]">Destination</button>
+                            <button data-event="intimate" class="event-filter-item block w-full text-left px-6 py-2 hover:bg-[#f8f5f3] text-[#67514a]">Intimate</button>
+                            <button data-event="grand" class="event-filter-item block w-full text-left px-6 py-2 hover:bg-[#f8f5f3] text-[#67514a]">Grand Celebration</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="h-4 w-px bg-[#e8dfda]"></div>
+                    
+                    <select id="price-sort" 
+                        onchange="applyFilters()" 
+                        class="bg-transparent text-xs uppercase tracking-widest focus:outline-none cursor-pointer">
+                        <option value="popular">Popular first</option>
+                        <option value="new">Newly added</option>
+                        <option value="low">Price: Low to High</option>
+                        <option value="high">Price: High to Low</option>
+                    </select>
+                    
+                    <button onclick="resetFilters()" 
+                        id="reset-filters-btn"
+                        class="text-xs text-[#c9a16b] hover:underline flex-shrink-0">Clear all filters</button>
+                </div>
+            </div>
+            
+            <!-- Mobile filter bar -->
+            <div class="lg:hidden flex items-center justify-between">
+                <button onclick="toggleMobileFilterModal()" 
+                    id="mobile-filter-btn"
+                    class="flex items-center gap-2 text-sm text-[#9f5d7f] font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 8h18M3 12h18M3 16h18" />
+                    </svg> 
+                    Filters &amp; Sort
+                </button>
+                
+                <select id="mobile-price-sort" onchange="applyFilters()" class="bg-transparent text-xs text-[#67514a]">
+                    <option value="popular">Popular</option>
+                    <option value="new">New</option>
+                    <option value="low">Low → High</option>
+                    <option value="high">High → Low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Category Horizontal Scroll -->
+    <section class="py-8 border-b bg-white">
+        <div class="max-w-7xl mx-auto">
+            <!-- Heading -->
+            <div class="px-6 flex items-center justify-between mb-4">
+                <h2 class="font-serif text-xl tracking-widest text-[#67514a]">Categories</h2>
+                <a href="#" class="text-xs uppercase text-[#9f5d7f] hover:underline flex items-center gap-1 text-sm">Browse all 8<span class="inline-block h-px bg-[#9f5d7f] w-6"></span>→</a>
+            </div>
+            
+            <!-- Horizontal scroll -->
+            <div class="overflow-x-auto scrollbar-hide snap-x" id="category-scroll">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content Area -->
+    <div class="flex max-w-7xl mx-auto">
+        
+        <!-- Services Grid -->
+        <div class="flex-1 min-w-0">
+            <!-- Grid Header -->
+            <div class="px-6 py-7 border-b flex items-center justify-between bg-[#f8f5f3]">
+                <div>
+                    <span class="uppercase text-xs tracking-[0.065em] text-[#a38f7d]">Showing</span>
+                    <span id="results-count" class="font-serif text-3xl text-[#67514a] leading-none">142</span><span class="text-xs text-[#a38f7d] ml-1">installations</span>
+                </div>
+                
+                <div class="hidden sm:flex items-center gap-1 text-[#9f5d7f] text-xs uppercase">
+                    <span class="inline-block h-px bg-[#9f5d7f] w-5"></span>Handpicked by our atelier curators
+                </div>
+            </div>
+            
+            <!-- Services Masonry Grid -->
+            <div id="services-grid" 
+                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-5 py-8 lg:px-6">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </div>
+        
+        <!-- Sticky Inquiry Panel -->
+        <div class="hidden lg:block w-80 bg-white border-l border-[#f0e6e1] h-screen sticky top-[73px] overflow-auto" 
+             style="height: calc(100vh - 73px)">
+            
+            <!-- Inquiry Sidebar -->
+            <div class="p-6 h-full flex flex-col">
+                <!-- Header -->
+                <div class="pb-5 border-b border-[#f0e6e1]">
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="bg-[#f5d8a0] text-[#6b3d52] text-[11px] px-3 py-px rounded-full tracking-widest">3 items selected</span>
+                    </div>
+                    <h3 class="font-serif text-[#67514a] text-[21px] leading-tight">Your Dream Setup</h3>
+                    <p class="text-xs text-[#a38f7d]">3 services • Estimated total</p>
+                </div>
+                
+                <!-- Selected Items -->
+                <div id="selected-items-list" class="flex-1 py-6 space-y-6 overflow-auto">
+                    <!-- JS populated -->
+                    <!-- Empty state populated by JS -->
+                </div>
+                
+                <!-- Estimate -->
+                <div class="mt-auto pt-6 border-t border-[#f0e6e1]">
+                    <div class="flex justify-between text-xs uppercase mb-1 text-[#a38f7d]">
+                        <span>Estimated range</span><span id="estimate-range">$12,400 — $17,800</span>
+                    </div>
+                    <div class="h-1 bg-[#f0e6e1] rounded-full overflow-hidden mb-5">
+                        <div class="bg-gradient-to-r from-[#f06292] to-[#9f5d7f] h-full w-[65%]" style="width: 68%;"></div>
+                    </div>
+                    
+                    <button onclick="requestQuote()" 
+                        id="request-quote-btn"
+                        class="bg-[#9f5d7f] hover:bg-[#7f4763] w-full py-4 rounded-3xl text-white text-sm tracking-[0.065em] uppercase transition-all flex items-center justify-center gap-3">
+                        Request Custom Quote
+                        <span class="inline-block text-xs bg-white/20 px-1.5 rounded">→</span>
+                    </button>
+                    
+                    <p class="text-center text-[10px] text-[#c9a16b] mt-4">Typically answered within 6 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Signature Installations -->
+    <section class="bg-[#67514a] py-16 text-white">
+        <!-- Section header -->
+        <div class="max-w-7xl mx-auto px-6 mb-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+                <div>
+                    <span class="inline-flex items-center text-[#f5d8a0] text-xs tracking-[0.065em] font-medium">SOURCE SIGNATURE</span>
+                    <h2 class="font-serif text-[3.75rem] leading-none tracking-[-0.006em]">Installations</h2>
+                </div>
+                <a href="#" class="text-xs uppercase border border-[#f5d8a0]/50 hover:border-[#f5d8a0] transition-all px-7 py-3 rounded-full flex-shrink-0 inline-flex items-center gap-3">
+                    View complete collection 
+                    <span class="bg-[#f5d8a0] h-px w-6"></span><span class="text-[#f5d8a0]">12</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Horizontal Scroll Carousel -->
+        <div class="overflow-x-auto scrollbar-hide snap-x pl-6" id="signature-scroll">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+    
+    <!-- Interactive Inspiration Builder -->
+    <section class="py-16 bg-white" id="inspiration-builder">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <span class="bg-[#f5d8a0] text-[#6b3d52] px-6 py-px rounded-3xl text-xs tracking-[0.065em] inline-block">MOODBOARD STUDIO</span>
+                <h2 class="font-serif text-5xl tracking-tight text-[#67514a] mt-3 mb-2">Build Your Setup</h2>
+                <p class="text-[#a38f7d] text-sm">Drag pieces from the library or click to add to the live moodboard</p>
+            </div>
+            
+            <!-- Builder Container -->
+            <div class="bg-[#f8f5f3] rounded-3xl overflow-hidden shadow-inner border border-[#f0e6e1]">
+                <!-- Toolbar -->
+                <div class="bg-white flex items-center justify-between border-b px-6 py-4">
+                    <div class="flex items-center gap-6 text-xs uppercase">
+                        <button onclick="switchBuilderTab(0)" id="builder-tab-0" class="builder-tab font-medium border-b-2 border-[#9f5d7f] pb-px text-[#9f5d7f]">Library</button>
+                        <button onclick="switchBuilderTab(1)" id="builder-tab-1" class="builder-tab text-[#a38f7d]">Florals</button>
+                        <button onclick="switchBuilderTab(2)" id="builder-tab-2" class="builder-tab text-[#a38f7d]">Structure</button>
+                        <button onclick="switchBuilderTab(3)" id="builder-tab-3" class="builder-tab text-[#a38f7d]">Lighting</button>
+                    </div>
+                    
+                    <button onclick="clearMoodboard()" 
+                        id="clear-moodboard-btn"
+                        class="text-xs text-[#c9a16b] flex items-center gap-px hover:underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.595 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.595-1.858L5 7" />
+                        </svg> Clear board
+                    </button>
+                </div>
+                
+                <!-- Split view -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 h-[420px]">
+                    
+                    <!-- Library sidebar -->
+                    <div class="lg:col-span-4 bg-white border-r border-[#f0e6e1] flex flex-col h-full overflow-hidden">
+                        <!-- Library items -->
+                        <div class="flex-1 p-5 overflow-auto" id="builder-library">
+                            <!-- JS populated -->
+                        </div>
+                        
+                        <div class="p-4 border-t text-[10px] text-[#a38f7d] text-center bg-[#f8f5f3]">
+                            18 elements • 4 already added
+                        </div>
+                    </div>
+                    
+                    <!-- Moodboard canvas -->
+                    <div class="lg:col-span-8 relative bg-[#ede6e0] flex flex-col h-full">
+                        <!-- Canvas header -->
+                        <div class="bg-[#67514a]/5 px-5 py-3 text-xs font-medium flex items-center justify-between border-b">
+                            <span class="flex items-center gap-2">
+                                <span class="bg-[#9f5d7f] h-px w-6"></span> RAJASTHAN ROYAL WEDDING • 17 MAR
+                            </span>
+                            <span class="bg-[#f5d8a0] text-[#67514a] text-[10px] px-3 py-px rounded">Live preview</span>
+                        </div>
+                        
+                        <!-- Canvas area -->
+                        <div id="moodboard-canvas" 
+                             class="flex-1 relative p-6 min-h-[260px] flex items-center justify-center bg-[repeating-linear-gradient(45deg,#f5f0eb,#f5f0eb_12px,#ede6e0_12px,#ede6e0_14px)] overflow-hidden">
+                            
+                            <!-- Default empty state -->
+                            <div id="moodboard-empty" class="text-center">
+                                <div class="mx-auto w-14 h-px bg-[#c9a16b] mb-4"></div>
+                                <p class="uppercase text-[#a38f7d] text-xs tracking-[0.065em]">Your moodboard is empty</p>
+                                <p class="text-[#67514a] text-xs">Add pieces from the library →</p>
+                            </div>
+                            
+                            <!-- Placed items populated by JS -->
+                            <div id="moodboard-items" class="absolute inset-0 pointer-events-none"></div>
+                        </div>
+                        
+                        <!-- Canvas footer controls -->
+                        <div class="bg-white px-5 py-3 flex items-center justify-between text-xs border-t">
+                            <button onclick="randomizeMoodboard()" id="randomize-btn"
+                                class="flex items-center text-[#9f5d7f] hover:text-[#7f4763]">
+                                <span class="mr-2">✦</span>Surprise me
+                            </button>
+                            
+                            <div class="flex items-center gap-2 text-[#c9a16b]">
+                                <span class="inline-block h-px bg-[#c9a16b] w-5"></span>
+                                <span id="moodboard-count">0 / 7 elements</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom hint -->
+            <div class="flex justify-center mt-4">
+                <span onclick="addRandomToInquiryFromBuilder()" 
+                      class="cursor-pointer text-xs bg-[#f5d8a0] hover:bg-[#e9c57d] transition-colors px-6 py-2 rounded-full text-[#67514a] flex items-center gap-3 text-sm">
+                    <span>Add entire moodboard to inquiry</span> 
+                    <span class="bg-[#67514a] text-white rounded h-px w-3"></span> 
+                    <span class="inline-block">→</span>
+                </span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="bg-[#9f5d7f] py-20">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+            <!-- Gold accent -->
+            <div class="inline-flex mb-2 items-center text-[#f5d8a0] text-xs tracking-[0.065em]">
+                — ONE CONVERSATION —
+            </div>
+            
+            <h2 class="font-serif text-white text-[4.75rem] leading-none tracking-[-0.005em] mb-4">Need an entire<br>custom design?</h2>
+            
+            <p class="max-w-md mx-auto text-white/75 text-sm mb-8">Share your venue, guest count &amp; love story.<br>Our creative director will reply within 24 hours.</p>
+            
+            <div class="flex flex-wrap gap-4 justify-center">
+                <button onclick="fakeConsultationClick()" 
+                    id="consult-btn"
+                    class="bg-[#f5d8a0] hover:bg-[#e9c57d] transition-colors px-9 py-4 font-medium text-[#67514a] rounded-3xl text-sm uppercase tracking-widest">
+                    Schedule Atelier Call
+                </button>
+                
+                <button onclick="fakeContactClick()" 
+                    class="border border-white/50 hover:border-white text-white px-9 py-4 rounded-3xl text-sm uppercase tracking-widest transition-colors">
+                    Message our team
+                </button>
+            </div>
+            
+            <div class="text-[#f5d8a0]/50 text-xs mt-12">Last custom mandap designed for Udaipur • 4 days ago</div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-[#67514a] text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-y-10">
+            <!-- Column 1 -->
+            <div>
+                <div class="flex items-center gap-x-3 mb-6">
+                    <span class="h-px w-6 bg-[#f5d8a0]"></span><span class="font-serif text-base tracking-widest">Source</span>
+                </div>
+                <p class="text-xs leading-relaxed text-[#d2b89a]">A collective of 31<br>independent floral &amp;<br>event design studios<br>across India.</p>
+            </div>
+            
+            <!-- Column 2 -->
+            <div>
+                <p class="uppercase text-[#d2b89a] text-xs tracking-widest mb-4">Browse</p>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Mandaps</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Floral tunnels</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Reception stages</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Backdrops</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Full packages</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3 -->
+            <div>
+                <p class="uppercase text-[#d2b89a] text-xs tracking-widest mb-4">Source Atelier</p>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Meet the makers</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Recent commissions</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">Private tours</a></li>
+                    <li><a href="#" class="hover:text-[#f5d8a0] transition">2026 availability</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4 -->
+            <div>
+                <p class="uppercase text-[#d2b89a] text-xs tracking-widest mb-4">Connect</p>
+                <div class="flex flex-col gap-y-3 text-sm">
+                    <a href="#" class="hover:text-[#f5d8a0]">Instagram @sourcewedding</a>
+                    <a href="#" class="hover:text-[#f5d8a0]">WhatsApp +91 98211 44722</a>
+                    <a href="#" class="hover:text-[#f5d8a0]">info@sourcewedding.in</a>
+                </div>
+            </div>
+            
+            <!-- Column 5 -->
+            <div class="col-span-2 md:col-span-1 md:text-right">
+                <div class="bg-[#513e37] rounded-3xl py-5 px-6 text-xs h-full flex flex-col justify-between">
+                    <div>
+                        <span class="block text-[#f5d8a0] text-[10px] tracking-[0.065em]">Currently booking for</span>
+                        <span class="block font-serif text-base leading-none">Jaipur<br>Udaipur<br>Goa<br>Kerala</span>
+                    </div>
+                    <span class="block text-[10px] text-[#d2b89a] mt-6">12 dates remaining<br>in 2025</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-14 text-center text-[#d2b89a] text-[10px] tracking-widest">© Source Wedding Collective 2025</div>
+    </footer>
+    
+    <!-- Service Detail Modal -->
+    <div id="detailModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[999]">
+        <div onclick="event.stopImmediatePropagation()" 
+             id="modalContent"
+             class="bg-white max-w-2xl w-full mx-4 rounded-3xl overflow-hidden shadow-2xl">
+             <!-- Filled by JS -->
+        </div>
+    </div>
+    
+    <!-- Mobile Filters Modal -->
+    <div id="mobileFiltersModal" class="hidden fixed inset-0 bg-black/60 flex items-end z-50 lg:hidden">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-white w-full rounded-t-3xl max-h-[82vh] overflow-auto">
+            
+            <!-- Mobile filter content populated by JS but static for demo -->
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <span class="font-serif text-lg">Filters</span>
+                    <button onclick="toggleMobileFilterModal()" id="close-mobile-modal-btn"
+                        class="text-[#9f5d7f] text-sm">Done</button>
+                </div>
+                
+                <!-- Category select -->
+                <div class="mb-6">
+                    <label class="block uppercase text-xs tracking-widest text-[#a38f7d] mb-2">Category</label>
+                    <div class="grid grid-cols-2 gap-2 text-sm" id="mobile-category-options">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+                
+                <!-- Style -->
+                <div class="mb-6">
+                    <label class="block uppercase text-xs tracking-widest text-[#a38f7d] mb-2">Style</label>
+                    <select id="mobile-style-filter" onchange="applyFilters()" class="w-full border border-[#e8dfda] rounded-xl py-3 px-4 text-sm">
+                        <option value="">Any style</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Romantic">Romantic</option>
+                        <option value="Minimal">Minimal</option>
+                        <option value="Botanical">Botanical</option>
+                    </select>
+                </div>
+                
+                <!-- Color theme -->
+                <div class="mb-6">
+                    <label class="block uppercase text-xs tracking-widest text-[#a38f7d] mb-2">Color theme</label>
+                    <div class="flex gap-3" id="mobile-color-swatches">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+                
+                <button onclick="resetFilters();toggleMobileFilterModal()" 
+                    class="mt-4 text-xs text-[#c9a16b] w-full py-3 border border-[#e8dfda] rounded-2xl">Reset all filters</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tailwind script already injected via CDN
+        
+        // Fake data
+        const servicesData = [
+            {
+                id: 1,
+                title: "Royal Floral Mandap",
+                descriptor: "Cascading pink &amp; ivory roses with antique gold pillars",
+                price: "4800",
+                category: "Mandap",
+                style: "Luxury",
+                color: "Pink",
+                availability: "Available",
+                img: "https://picsum.photos/id/870/600/420",
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Crystal Chandelier Tunnel",
+                descriptor: "LED-lit crystal archway entrance for 120 guests",
+                price: "3200",
+                category: "Lighting",
+                style: "Luxury",
+                color: "White",
+                availability: "Available",
+                img: "https://picsum.photos/id/106/600/420",
+            },
+            {
+                id: 3,
+                title: "Blush Reception Stage",
+                descriptor: "Velvet draped stage with suspended floral clouds",
+                price: "2650",
+                category: "Stage Décor",
+                style: "Romantic",
+                color: "Pink",
+                availability: "Booked until Apr 12",
+                img: "https://picsum.photos/id/312/600/420",
+            },
+            {
+                id: 4,
+                title: "Marigold &amp; Jasmine Wall",
+                descriptor: "Traditional South Indian floral wall with 8000 stems",
+                price: "1750",
+                category: "Floral Installations",
+                style: "Botanical",
+                color: "Yellow",
+                availability: "Available",
+                img: "https://picsum.photos/id/317/600/420",
+            },
+            {
+                id: 5,
+                title: "Midnight Backdrop",
+                descriptor: "Black silk drapery with 300 hand-blown glass orbs",
+                price: "3950",
+                category: "Backdrops",
+                style: "Minimal",
+                color: "Purple",
+                availability: "Available",
+                img: "https://picsum.photos/id/870/600/420",
+            }
+        ];
+        
+        // Extra items to reach realistic quantity
+        const moreServices = [
+            { id:6,title:"Golden Lotus Mandap",descriptor:"Lotus petals carved in brass with LED backlighting",price:"5900",category:"Mandap",style:"Luxury",color:"Gold",availability:"Available",img:"https://picsum.photos/id/431/600/420"},
+            { id:7,title:"Hanging Floral Canopy",descriptor:"Suspended garden above the dance floor",price:"2200",category:"Floral Installations",style:"Romantic",color:"Pink",availability:"Available",img:"https://picsum.photos/id/870/600/420"},
+            { id:8,title:"Neon Welcome Gate",descriptor:"Custom acrylic signage + warm LED perimeter",price:"890",category:"Lighting",style:"Minimal",color:"White",availability:"Available",img:"https://picsum.photos/id/159/600/420"},
+            { id:9,title:"Ivory Sofa Lounge",descriptor:"Curated velvet seating area with Persian rugs",price:"1450",category:"Rentals",style:"Romantic",color:"White",availability:"Booked until Apr 9",img:"https://picsum.photos/id/312/600/420"}
+        ];
+        
+        let allServices = [...servicesData, ...moreServices];
+        
+        // State
+        let selectedServices = [];
+        let activeCategoryFilter = "All";
+        let activeStyleFilter = "";
+        let activeColorFilter = "";
+        let searchQuery = "";
+        
+        // Moodboard state
+        let moodboardItems = [];
+        
+        // Sample builder library
+        const builderLibrary = [
+            { id: "b1", name: "Peony arch", category: "Florals", img: "https://picsum.photos/id/312/80/80" },
+            { id: "b2", name: "Brass pillars", category: "Structure", img: "https://picsum.photos/id/870/80/80" },
+            { id: "b3", name: "Hanging lanterns", category: "Lighting", img: "https://picsum.photos/id/106/80/80" },
+            { id: "b4", name: "Silk drapes", category: "Structure", img: "https://picsum.photos/id/317/80/80" }
+        ];
+        
+        // Signature installations data
+        const signatureInstallations = [
+            {
+                title: "Lotus Mandap at City Palace",
+                location: "Udaipur • March 2025",
+                img: "https://picsum.photos/id/870/800/520",
+                duration: "14 hours to install"
+            },
+            {
+                title: "Infinite Floral Tunnel",
+                location: "The Oberoi Sukhvilas • Chandigarh",
+                img: "https://picsum.photos/id/312/800/520",
+                duration: "Signature 2025"
+            },
+            {
+                title: "Moonlit Reception Canopy",
+                location: "Alila Fort Bishangarh",
+                img: "https://picsum.photos/id/159/800/520",
+                duration: "Featured in Vogue India"
+            }
+        ];
+        
+        // Render category chips for filter bar
+        function renderCategoryFilters() {
+            const categories = ["All", "Mandap", "Stage Décor", "Floral Installations", "Backdrops", "Lighting", "Rentals"];
+            
+            let html = categories.map(cat => {
+                const isActive = activeCategoryFilter === cat;
+                return `
+                    <button 
+                        onclick="filterByCategory('${cat}')" 
+                        id="cat-chip-${cat}"
+                        class="category-chip whitespace-nowrap px-6 py-2 text-xs uppercase rounded-3xl transition-all ${isActive ? 
+                            'bg-[#9f5d7f] text-white shadow-md' : 
+                            'bg-[#f5f0eb] hover:bg-[#e8dfda] text-[#67514a]'}">
+                        ${cat}
+                    </button>
+                `;
+            }).join("");
+            
+            document.getElementById("category-filters").innerHTML = html;
+        }
+        
+        // Render horizontal category scroll
+        function renderHorizontalCategories() {
+            const categories = [
+                { name: "Mandap Setups", count: "29", icon: "🪔" },
+                { name: "Stage Décor", count: "18", icon: "🎭" },
+                { name: "Floral Installations", count: "41", icon: "🌸" },
+                { name: "Reception Styling", count: "14", icon: "🛋️" },
+                { name: "Backdrops", count: "22", icon: "🖼️" },
+                { name: "Rentals", count: "11", icon: "🪑" },
+                { name: "Lighting", count: "7", icon: "✨" }
+            ];
+            
+            let html = `<div class="flex gap-6 snap-x">`;
+            
+            categories.forEach(cat => {
+                html += `
+                    <div onclick="quickCategorySelect('${cat.name.split(" ")[0]}')" 
+                         class="snap-center bg-white shadow-sm hover:shadow-md transition-all cursor-pointer w-44 flex-shrink-0 rounded-3xl overflow-hidden">
+                        <div class="h-28 bg-[#f5d8a0]/10 flex items-center justify-center text-4xl">${cat.icon}</div>
+                        <div class="px-4 py-3">
+                            <p class="font-medium text-[#67514a] text-sm leading-tight">${cat.name}</p>
+                            <span class="text-[#c9a16b] text-xs">${cat.count} pieces</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            document.getElementById("category-scroll").innerHTML = html;
+        }
+        
+        // Render services grid
+        function renderServicesGrid(filteredServices) {
+            let html = ``;
+            
+            filteredServices.forEach(service => {
+                const isSelected = selectedServices.findIndex(s => s.id === service.id) !== -1;
+                
+                html += `
+                    <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-[#f5d8a0]/40 flex flex-col h-full" 
+                         data-id="${service.id}">
+                        
+                        <!-- Image -->
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="${service.img}" 
+                                 alt="${service.title}"
+                                 class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+                            
+                            <!-- Availability badge -->
+                            <div class="absolute top-4 right-4 bg-white text-[#67514a] text-[10px] tracking-widest px-3 py-px rounded-2xl shadow-sm text-xs">
+                                ${service.availability}
+                            </div>
+                            
+                            <!-- Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                                <div class="p-4 w-full">
+                                    <div class="flex gap-2">
+                                        <button onclick="viewDetail(${service.id})" 
+                                            class="bg-white text-[#67514a] flex-1 py-2 rounded-2xl text-xs font-medium">View details</button>
+                                        <button onclick="toggleSelectService(${service.id})" id="add-btn-${service.id}"
+                                            class="bg-[#9f5d7f] hover:bg-[#7f4763] text-white flex-1 py-2 rounded-2xl text-xs font-medium transition-colors ${isSelected ? 'bg-[#c9a16b]':'bg-[#9f5d7f]'}">
+                                            ${isSelected ? '✓ In inquiry' : 'Add to inquiry'}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="flex-1 p-5 flex flex-col">
+                            <span class="uppercase text-[#c9a16b] text-[10px] tracking-[0.065em]">${service.category}</span>
+                            <h4 class="font-serif text-[#67514a] text-[1.08rem] leading-tight mt-1 mb-2 line-clamp-2">${service.title}</h4>
+                            <p class="text-[#a38f7d] text-xs line-clamp-2 flex-1">${service.descriptor}</p>
+                            
+                            <div class="mt-5 pt-5 border-t flex items-center justify-between">
+                                <span class="font-mono text-[#9f5d7f] text-xs">₹${parseInt(service.price).toLocaleString()}</span>
+                                <span class="bg-[#f5d8a0] text-[#67514a] text-[10px] px-3 py-px rounded-full">Custom quote</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById("services-grid").innerHTML = html || `
+                <div class="col-span-full py-12 text-center">
+                    <p class="font-serif text-[#67514a] text-xl">No services match your filters.</p>
+                    <button onclick="resetFilters()" class="mt-4 underline text-sm text-[#9f5d7f]">Clear filters</button>
+                </div>
+            `;
+            
+            document.getElementById("results-count").innerHTML = filteredServices.length;
+        }
+        
+        // Render signature installations strip
+        function renderSignatureStrip() {
+            let html = `<div class="flex gap-6 pb-4 snap-x">`;
+            
+            signatureInstallations.forEach(installation => {
+                html += `
+                    <div class="min-w-[280px] snap-center bg-[#513e37] rounded-3xl overflow-hidden">
+                        <!-- Image -->
+                        <div class="relative h-44">
+                            <img src="${installation.img}" alt="${installation.title}" 
+                                 class="absolute inset-0 w-full h-full object-cover brightness-[0.82]">
+                            
+                            <div class="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#513e37] to-transparent"></div>
+                        </div>
+                        
+                        <!-- Meta -->
+                        <div class="p-5 text-xs">
+                            <div class="uppercase text-[#f5d8a0] text-[11px] tracking-[0.065em]">${installation.location}</div>
+                            <div class="font-serif leading-tight text-white text-base mt-px mb-px">${installation.title}</div>
+                            <div class="text-[#d2b89a] text-[10px]">${installation.duration}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += "</div>";
+            document.getElementById("signature-scroll").innerHTML = html;
+        }
+        
+        // Render builder library
+        function renderBuilderLibrary() {
+            let html = ``;
+            
+            builderLibrary.forEach(item => {
+                html += `
+                    <div onclick="addToMoodboard('${item.id}')" 
+                         id="library-item-${item.id}"
+                         class="flex items-center gap-4 bg-[#f8f5f3] hover:bg-[#f0e9e3] transition-colors rounded-2xl p-3 mb-3 cursor-pointer group">
+                        <div class="h-12 w-12 rounded-xl overflow-hidden flex-shrink-0">
+                            <img src="${item.img}" alt="${item.name}" 
+                                 class="h-full w-full object-cover transition-transform group-hover:scale-110">
+                        </div>
+                        <div>
+                            <p class="font-medium text-sm">${item.name}</p>
+                            <span class="text-[#c9a16b] text-xs">${item.category}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById("builder-library").innerHTML = html;
+        }
+        
+        // Add item to moodboard
+        function addToMoodboard(id) {
+            const item = builderLibrary.find(i => i.id === id);
+            if (!item) return;
+            
+            // Prevent duplicates
+            if (moodboardItems.findIndex(m => m.id === id) !== -1) {
+                alert("Already added to moodboard");
+                return;
+            }
+            
+            moodboardItems.push(item);
+            
+            renderMoodboard();
+            
+            // Visual feedback
+            const el = document.getElementById("library-item-" + id);
+            const originalText = el.querySelector("p").innerText;
+            el.querySelector("p").innerText = "✓ Added";
+            el.style.opacity = "0.6";
+            
+            setTimeout(() => {
+                el.querySelector("p").innerText = originalText;
+                el.style.opacity = "1";
+            }, 650);
+        }
+        
+        // Render moodboard canvas items
+        function renderMoodboard() {
+            let html = '';
+            
+            moodboardItems.forEach((item, index) => {
+                const leftPos = 15 + (index * 22);
+                const topPos = 30 + ((index % 3) * 15);
+                
+                html += `
+                    <div onclick="removeMoodboardItem(${index})" 
+                        style="left: ${leftPos}%; top: ${topPos}%; transform: rotate(${index % 2 === 0 ? '-' : ''}${8 + (index*4)}deg);" 
+                        class="absolute bg-white shadow-md rounded-xl p-px cursor-pointer hover:scale-110 transition-transform w-14 h-14 flex-shrink-0">
+                        <img src="${item.img}" alt="${item.name}" 
+                             class="rounded-xl object-cover w-full h-full">
+                    </div>
+                `;
+            });
+            
+            document.getElementById("moodboard-items").innerHTML = html;
+            document.getElementById("moodboard-count").innerText = `${moodboardItems.length} / 7 elements`;
+            
+            document.getElementById("moodboard-empty").style.display = moodboardItems.length > 0 ? "none" : "block";
+        }
+        
+        // Remove item from moodboard
+        function removeMoodboardItem(index) {
+            moodboardItems.splice(index, 1);
+            renderMoodboard();
+        }
+        
+        // Switch tabs in builder (UI only)
+        function switchBuilderTab(n) {
+            document.querySelectorAll(".builder-tab").forEach((tab, i) => {
+                if (i === n) {
+                    tab.classList.add("border-b-2", "border-[#9f5d7f]", "text-[#9f5d7f]");
+                } else {
+                    tab.classList.remove("border-b-2", "border-[#9f5d7f]", "text-[#9f5d7f]");
+                }
+            });
+            
+            // Simulate filter
+            renderBuilderLibrary();
+        }
+        
+        // Toggle service selection
+        function toggleSelectService(id) {
+            const service = allServices.find(s => s.id === id);
+            const index = selectedServices.findIndex(s => s.id === id);
+            
+            if (index > -1) {
+                selectedServices.splice(index, 1);
+            } else {
+                selectedServices.push(service);
+            }
+            
+            updateInquiryPanel();
+            
+            // Refresh grid to reflect changed "Add" button state
+            const filtered = getFilteredServices();
+            renderServicesGrid(filtered);
+        }
+        
+        // Update inquiry panel
+        function updateInquiryPanel() {
+            let html = '';
+            
+            if (selectedServices.length < 1) {
+                html = `
+                    <div class="flex flex-col items-center justify-center h-full text-center py-12">
+                        <span class="block text-[#c9a16b] text-[42px] mb-2">🪔</span>
+                        <span class="block text-xs tracking-widest text-[#a38f7d] font-medium">No selections yet</span>
+                        <span class="text-[13px] text-[#67514a]">Add décor services from the catalogue<br>to build your quote</span>
+                    </div>
+                `;
+            } else {
+                selectedServices.forEach(service => {
+                    html += `
+                        <div class="flex items-start gap-3 group">
+                            <div class="w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0">
+                                <img src="${service.img}" alt="" class="h-full w-full object-cover">
+                            </div>
+                            <div class="flex-1 pt-px">
+                                <div class="text-xs text-[#67514a] line-clamp-1">${service.title}</div>
+                                <div class="font-mono text-[#c9a16b] text-xs">₹${parseInt(service.price).toLocaleString()}</div>
+                            </div>
+                            <button onclick="removeFromInquiry(${service.id})" 
+                                class="opacity-30 hover:opacity-100 text-[#9f5d7f] transition-all text-xs">✕</button>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById("selected-items-list").innerHTML = html;
+            
+            // Update badge
+            document.getElementById("inquiry-count-badge").innerText = selectedServices.length;
+            
+            // Estimate range
+            let total = selectedServices.reduce((sum, s) => sum + parseInt(s.price), 0);
+            const lowEstimate = Math.round(total * 0.85);
+            const highEstimate = Math.round(total * 1.3);
+            
+            document.getElementById("estimate-range").innerText = 
+                `₹${lowEstimate.toLocaleString()} — ₹${highEstimate.toLocaleString()}`;
+            
+            // Disable/enable quote button
+            document.getElementById("request-quote-btn").style.opacity = selectedServices.length ? "1" : "0.5";
+        }
+        
+        // Remove from inquiry
+        function removeFromInquiry(id) {
+            selectedServices = selectedServices.filter(s => s.id !== id);
+            updateInquiryPanel();
+            
+            // Re-render main grid
+            renderServicesGrid(getFilteredServices());
+        }
+        
+        // Get filtered services
+        function getFilteredServices() {
+            return allServices.filter(service => {
+                const matchesCategory = activeCategoryFilter === "All" || service.category === activeCategoryFilter;
+                const matchesSearch = !searchQuery || 
+                    service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    service.descriptor.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesStyle = !activeStyleFilter || service.style === activeStyleFilter;
+                const matchesColor = !activeColorFilter || service.color === activeColorFilter;
+                
+                return matchesCategory && matchesSearch && matchesStyle && matchesColor;
+            });
+        }
+        
+        // Filter by category
+        function filterByCategory(category) {
+            activeCategoryFilter = category;
+            
+            // Style all chips
+            document.querySelectorAll(".category-chip").forEach(chip => {
+                if (chip.textContent.trim() === category) {
+                    chip.classList.add("bg-[#9f5d7f]", "text-white");
+                } else {
+                    chip.classList.remove("bg-[#9f5d7f]", "text-white");
+                }
+            });
+            
+            const filtered = getFilteredServices();
+            renderServicesGrid(filtered);
+        }
+        
+        // Quick select from horizontal scroll
+        function quickCategorySelect(categoryPrefix) {
+            activeCategoryFilter = categoryPrefix;
+            
+            // Scroll to services
+            document.getElementById("services-grid").scrollIntoView({
+                behavior:'smooth'
+            });
+            
+            renderCategoryFilters();
+            
+            const filtered = getFilteredServices();
+            renderServicesGrid(filtered);
+        }
+        
+        // View detail modal
+        function viewDetail(id) {
+            const service = allServices.find(s => s.id === parseInt(id));
+            if (!service) return;
+            
+            let html = `
+                <div class="relative">
+                    <!-- Hero image -->
+                    <div class="relative h-80">
+                        <img src="${service.img}" alt="${service.title}" 
+                             class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent"></div>
+                        
+                        <button onclick="closeModal()" id="close-modal-button"
+                            class="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 text-[#67514a]">
+                            ✕
+                        </button>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="px-7 pb-7 -mt-4 relative bg-white rounded-t-3xl">
+                        <!-- Category tag -->
+                        <div class="inline-block bg-[#f5d8a0] text-[#67514a] uppercase text-[10px] tracking-[0.065em] px-4 py-px rounded-full mb-4">${service.category}</div>
+                        
+                        <h1 class="font-serif text-[#67514a] text-[2.15rem] leading-tight">${service.title}</h1>
+                        <p class="text-[#a38f7d] text-xs mt-px">${service.style} • ${service.color}</p>
+                        
+                        <div class="h-px bg-[#f0e6e1] my-6"></div>
+                        
+                        <div class="text-sm text-[#67514a]">
+                            ${service.descriptor}<br><br>
+                            Includes:<br>
+                            • Full installation &amp; teardown<br>
+                            • Premium flowers &amp; materials<br>
+                            • On-site floral team of 7<br>
+                            • Mood-lighting integration
+                        </div>
+                        
+                        <div class="bg-[#f8f5f3] rounded-2xl p-5 mt-7 mb-6">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="uppercase text-[#a38f7d]">Starting price</span>
+                                <span class="font-mono font-semibold text-[#9f5d7f] text-base">₹${parseInt(service.price).toLocaleString()}</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="addServiceFromModal(${service.id})" id="modal-add-btn"
+                            class="bg-[#9f5d7f] w-full py-4 text-sm text-white rounded-2xl hover:bg-[#7f4763] transition-colors flex items-center justify-center gap-2">
+                            ${selectedServices.some(s => s.id === service.id) ? "✓ Already in your inquiry" : "Add to inquiry &amp; continue browsing"}
+                        </button>
+                        
+                        <p class="text-center text-[#c9a16b] text-xs mt-4">Lead time: 18 days</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById("modalContent").innerHTML = html;
+            document.getElementById("detailModal").classList.remove("hidden");
+        }
+        
+        function closeModal() {
+            document.getElementById("detailModal").classList.add("hidden");
+        }
+        
+        function addServiceFromModal(id) {
+            const alreadySelected = selectedServices.findIndex(s => s.id === id) !== -1;
+            
+            if (!alreadySelected) {
+                const service = allServices.find(s => s.id === id);
+                selectedServices.push(service);
+                updateInquiryPanel();
+                
+                // Refresh grid
+                renderServicesGrid(getFilteredServices());
+            }
+            
+            // Slight animation to indicate success
+            const btn = document.getElementById("modal-add-btn");
+            const originalHTML = btn.innerHTML;
+            btn.style.width = btn.offsetWidth + "px";
+            btn.innerHTML = `<span class="inline-block">Added to inquiry ✓</span>`;
+            btn.classList.replace("bg-[#9f5d7f]", "bg-[#c9a16b]");
+            
+            setTimeout(() => {
+                closeModal();
+            }, 420);
+        }
+        
+        // Fake request quote
+        function requestQuote() {
+            if (selectedServices.length === 0) return;
+            
+            const btn = document.getElementById("request-quote-btn");
+            const originalText = btn.innerHTML;
+            
+            btn.style.pointerEvents = "none";
+            btn.innerHTML = `<span class="inline-flex items-center"><span class="animate-spin h-3 w-3 mr-2 border-2 border-white border-t-transparent rounded-full"></span>Sending request...</span>`;
+            
+            setTimeout(() => {
+                btn.classList.remove("bg-[#9f5d7f]");
+                btn.classList.add("bg-emerald-500");
+                btn.innerHTML = `<span class="flex items-center gap-2">✓ Quote request sent to atelier</span>`;
+                
+                setTimeout(() => {
+                    alert("Your custom quote request has been received.\n\nThe Source Atelier team will contact you shortly on +91 98211 44722.");
+                    
+                    // Clear inquiry for demo purposes
+                    selectedServices = [];
+                    updateInquiryPanel();
+                    renderServicesGrid(getFilteredServices());
+                    
+                    btn.classList.replace("bg-emerald-500", "bg-[#9f5d7f]");
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = "all";
+                }, 280);
+            }, 1250);
+        }
+        
+        // Apply all filters together
+        function applyFilters() {
+            // This function supports the mobile & sort dropdowns
+            const filtered = getFilteredServices();
+            
+            // For this demo we ignore the price sort complexity
+            // but we could implement a simple sort here
+            const sortMode = document.getElementById("price-sort") ? 
+                                document.getElementById("price-sort").value : 
+                                document.getElementById("mobile-price-sort").value;
+            
+            let sortedServices = [...filtered];
+            
+            switch(sortMode) {
+                case "low":
+                    sortedServices.sort((a,b) => parseInt(a.price) - parseInt(b.price));
+                    break;
+                case "high":
+                    sortedServices.sort((a,b) => parseInt(b.price) - parseInt(a.price));
+                    break;
+                case "new":
+                    // fake "new" logic by reversing
+                    sortedServices.reverse();
+                    break;
+                default:
+                    // popular - leave unchanged
+                    break;
+            }
+            
+            renderServicesGrid(sortedServices);
+        }
+        
+        // Reset all filters
+        function resetFilters() {
+            activeCategoryFilter = "All";
+            activeStyleFilter = "";
+            activeColorFilter = "";
+            searchQuery = "";
+            
+            document.getElementById("hero-search").value = "";
+            
+            document.getElementById("mobile-style-filter").value = "";
+            
+            renderCategoryFilters();
+            const filtered = getFilteredServices();
+            renderServicesGrid(filtered);
+        }
+        
+        // Toggle mobile filter modal
+        function toggleMobileFilterModal() {
+            const modal = document.getElementById("mobileFiltersModal");
+            modal.classList.toggle("hidden");
+        }
+        
+        // Fake consultation CTA
+        function fakeConsultationClick() {
+            const btn = document.getElementById("consult-btn");
+            const originalText = btn.textContent;
+            
+            btn.textContent = "✓ Scheduled for Apr 4 @ 11am";
+            btn.classList.replace("bg-[#f5d8a0]","bg-emerald-400");
+            
+            setTimeout(() => {
+                alert("Thank you! A member of our creative team has reserved 30 minutes with you on April 4th.\n\nYou will receive a calendar invite shortly.");
+                btn.textContent = originalText;
+                btn.classList.replace("bg-emerald-400","bg-[#f5d8a0]");
+            }, 1600);
+        }
+        
+        function fakeContactClick() {
+            alert("Message received by Source Atelier.\n\nWe’ll reply on WhatsApp within the hour.");
+        }
+        
+        // Toggle the floating right panel (mobile)
+        function toggleInquiryPanel() {
+            alert("Inquiry panel expanded.\n\n3 services selected.\n\nTotal estimate: ₹13,250 – ₹16,900");
+        }
+        
+        // Simulate adding random item from builder into the inquiry panel
+        function addRandomToInquiryFromBuilder() {
+            if (moodboardItems.length < 2) {
+                alert("Add more pieces to your moodboard first.");
+                return;
+            }
+            
+            // Add the floral arch and brass pillars to inquiry as an example
+            const floralArch = {
+                id: 99,
+                title: "Peony &amp; Brass Arch Canopy",
+                descriptor: "Moodboard combination",
+                price: "2850",
+                category: "Floral Installations"
+            };
+            
+            if (!selectedServices.some(s => s.id === 99)) {
+                selectedServices.push(floralArch);
+                updateInquiryPanel();
+                
+                // Reflect change on main grid if possible (fake id)
+                renderServicesGrid(getFilteredServices());
+            }
+            
+            document.getElementById("inspiration-builder").scrollIntoView({
+                behavior:'smooth'
+            });
+            
+            const msg = document.createElement("div");
+            msg.textContent = "Moodboard added to inquiry";
+            msg.style.position = "fixed";
+            msg.style.bottom = "30px";
+            msg.style.left = "50%";
+            msg.style.transform = "translateX(-50%)";
+            msg.style.backgroundColor = "#9f5d7f";
+            msg.style.color = "white";
+            msg.style.padding = "12px 24px";
+            msg.style.borderRadius = "9999px";
+            msg.style.zIndex = "9999";
+            document.body.appendChild(msg);
+            
+            setTimeout(() => {
+                msg.style.transition = "all .3s ease-out";
+                msg.style.opacity = "0";
+                setTimeout(() => msg.remove(), 300);
+            }, 1800);
+        }
+        
+        // Create floating decorative shapes in hero
+        function createFloatingShapes() {
+            const container = document.getElementById("floating-shapes");
+            
+            for (let i = 0; i < 6; i++) {
+                const shape = document.createElement("div");
+                const size = Math.random() * 110 + 60;
+                
+                shape.style.position = "absolute";
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                shape.style.borderRadius = "50%";
+                shape.style.background = i % 2 === 0 ? 
+                    "rgba(245,216,160,.15)" : "rgba(159,93,127,.12)";
+                shape.style.left = Math.random() * 100 + "%";
+                shape.style.top = Math.random() * 85 + "%";
+                shape.style.opacity = Math.random() * 0.6 + 0.3;
+                shape.style.zIndex = "1";
+                shape.style.animation = `floatShape ${12 + Math.random() * 16}s linear infinite`;
+                shape.style.animationDelay = `-${Math.random()*12}s`;
+                
+                container.appendChild(shape);
+            }
+        }
+        
+        // Randomize moodboard for demo
+        function randomizeMoodboard() {
+            moodboardItems = [];
+            
+            // Add 3 random items
+            const shuffled = [...builderLibrary].sort(() => 0.5 - Math.random());
+            moodboardItems = shuffled.slice(0, 3);
+            
+            renderMoodboard();
+            
+            // Button flash
+            const btn = document.getElementById("randomize-btn");
+            const original = btn.textContent;
+            btn.textContent = "✦ Done";
+            setTimeout(() => btn.textContent = original, 380);
+        }
+        
+        // Handle hero search
+        function setupHeroSearch() {
+            const searchInput = document.getElementById("hero-search");
+            
+            searchInput.addEventListener("input", () => {
+                searchQuery = searchInput.value;
+                const filtered = getFilteredServices();
+                renderServicesGrid(filtered);
+                
+                // Scroll user to grid after search
+                if (searchQuery !== "") {
+                    document.documentElement.scrollTop = 580;
+                }
+            });
+        }
+        
+        // Mobile color swatches
+        function renderMobileColorSwatches() {
+            const colors = ["Pink", "White", "Gold", "Purple", "Yellow"];
+            
+            let html = '';
+            colors.forEach(color => {
+                let bg = "";
+                switch(color) {
+                    case "Pink":
+                        bg = "bg-pink-400";
+                        break;
+                    case "White":
+                        bg = "bg-neutral-100 border border-neutral-300";
+                        break;
+                    case "Gold":
+                        bg = "bg-amber-300";
+                        break;
+                    case "Purple":
+                        bg = "bg-purple-500";
+                        break;
+                    case "Yellow":
+                        bg = "bg-yellow-400";
+                        break;
+                }
+                
+                html += `
+                    <button data-color="${color}" onclick="setMobileColorFilter('${color}')" id="swatch-${color}"
+                        class="color-swatch h-7 w-7 rounded-full ${bg} flex-shrink-0 ring-1 ring-offset-2 ring-transparent hover:ring-[#9f5d7f]">
+                    </button>
+                `;
+            });
+            
+            document.getElementById("mobile-color-swatches").innerHTML = html;
+        }
+        
+        function setMobileColorFilter(color) {
+            activeColorFilter = activeColorFilter === color ? "" : color;
+            
+            document.querySelectorAll(".color-swatch").forEach(swatch => {
+                if (swatch.getAttribute("data-color") === activeColorFilter) {
+                    swatch.classList.add("ring-[#9f5d7f]");
+                } else {
+                    swatch.classList.remove("ring-[#9f5d7f]");
+                }
+            });
+            
+            applyFilters();
+        }
+        
+        // Fake mobile category options
+        function renderMobileCategoryOptions() {
+            const cats = ["All","Mandap","Stage Décor","Floral Installations","Backdrops","Lighting"];
+            
+            let html = "";
+            
+            cats.forEach(cat => {
+                const active = activeCategoryFilter === cat ? "bg-[#9f5d7f] text-white" : "bg-[#f5f0eb]";
+                html += `
+                    <button onclick="mobileCategoryClick('${cat}')" id="mob-cat-${cat.replace(" ","")}" 
+                        class="py-2 rounded-2xl text-xs transition-all ${active}">${cat}</button>
+                `;
+            });
+            
+            document.getElementById("mobile-category-options").innerHTML = html;
+        }
+        
+        function mobileCategoryClick(cat) {
+            activeCategoryFilter = cat;
+            
+            document.querySelectorAll("[id^='mob-cat-']").forEach(btn => {
+                if (btn.id === "mob-cat-" + cat.replace(" ","")) {
+                    btn.classList.add("bg-[#9f5d7f]","text-white");
+                } else {
+                    btn.classList.remove("bg-[#9f5d7f]","text-white");
+                }
+            });
+            
+            renderCategoryFilters();
+            applyFilters();
+        }
+        
+        // Toggle dropdown helper
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle("hidden");
+        }
+        
+        // Main initialization
+        window.onload = () => {
+            // Populate data
+            allServices = [...allServices];
+            
+            // Render core sections
+            renderCategoryFilters();
+            renderHorizontalCategories();
+            renderServicesGrid(allServices);
+            renderSignatureStrip();
+            renderBuilderLibrary();
+            
+            // Mobile extras
+            renderMobileColorSwatches();
+            renderMobileCategoryOptions();
+            
+            // Modal click away
+            document.getElementById("detailModal").addEventListener("click", function(e){
+                if (e.target === this) closeModal();
+            });
+            
+            // Close mobile filters when clicking "Done"
+            document.getElementById("close-mobile-modal-btn").addEventListener("click", function(){
+                document.getElementById("mobileFiltersModal").classList.add("hidden");
+            });
+            
+            // Hero search setup
+            setupHeroSearch();
+            
+            // Create floating elements
+            createFloatingShapes();
+            
+            // Keyboard shortcut demo
+            console.log("%cWelcome to Source Wedding — a curated services marketplace.\nTry clicking a few cards and building the moodboard!", 
+                "color:#9f5d7f;font-weight:500");
+            
+            // Fake event dropdown close on outside click
+            document.addEventListener("click", function(e){
+                if (!e.target.closest("#event-trigger")) {
+                    document.getElementById("event-dropdown").classList.add("hidden");
+                }
+            });
+            
+            // Keyboard support for modal
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape") {
+                    const modal = document.getElementById("detailModal");
+                    if (!modal.classList.contains("hidden")) closeModal();
+                }
+            });
+            
+            // Make the mobile filter modal dismissible by clicking backdrop
+            document.getElementById("mobileFiltersModal").addEventListener("click", function(e) {
+                if (e.target === this) {
+                    this.classList.add("hidden");
+                }
+            });
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair_Display:ital@0;1&amp;family=Inter:wght@400;500&amp;display=swap');
+        
+        :root {
+            scroll-behavior: smooth;
+        }
+        
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(12deg); }
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+    
+</body>
+</html>

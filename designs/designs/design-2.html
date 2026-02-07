@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Wedding | Premium Event Styling & Décor</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sw-purple': '#4a1d96',
+                        'sw-pink': '#be185d',
+                        'sw-gold': '#d4af37',
+                        'sw-dark': '#1e1b4b',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'main-gradient': 'linear-gradient(135deg, #be185d 0%, #4a1d96 100%)',
+                        'mesh-gradient': 'radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'sweep': 'sweep 3s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        sweep: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(30, 27, 75, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Text Reveal Animation Classes */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Service Card Hover */
+        .service-card {
+            transition: all 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, rgba(190, 24, 93, 0.1) 0%, rgba(74, 29, 150, 0.1) 100%);
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+
+        /* Timeline Line */
+        .timeline-line {
+            height: 0;
+            transition: height 1s ease-out;
+        }
+
+        /* CTA Sweep */
+        .sweep-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .sweep-bar {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg) translateX(-150%);
+            animation: none;
+        }
+        .sweep-wrap:hover .sweep-bar {
+            animation: sweep 1.5s infinite;
+        }
+
+        /* Hero Overlay Gradient */
+        .hero-overlay {
+            background: linear-gradient(90deg, #0f0518 0%, rgba(15, 5, 24, 0.8) 50%, rgba(15, 5, 24, 0.3) 100%);
+        }
+        
+        /* Image Gradients */
+        .img-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 py-6 px-8 flex justify-between items-center text-white mix-blend-difference" id="navbar">
+        <a href="#" class="text-2xl font-serif font-bold tracking-wider">SOURCE WEDDING</a>
+        <div class="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase">
+            <a href="#services" class="hover:text-sw-pink transition-colors">Services</a>
+            <a href="#portfolio" class="hover:text-sw-pink transition-colors">Portfolio</a>
+            <a href="#process" class="hover:text-sw-pink transition-colors">Process</a>
+        </div>
+        <a href="#contact" class="border border-white/50 px-6 py-2 rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300">Inquire</a>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header class="relative w-full h-screen overflow-hidden flex items-center bg-sw-dark">
+        <!-- Three.js Canvas Container -->
+        <div id="canvas-container" class="absolute inset-0 z-0 opacity-60"></div>
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 hero-overlay z-10 pointer-events-none"></div>
+
+        <!-- Content -->
+        <div class="container mx-auto px-6 z-20 relative h-full flex flex-col md:flex-row items-center">
+            <!-- Text Content -->
+            <div class="md:w-1/2 text-white pt-20 md:pt-0">
+                <p class="text-sw-gold uppercase tracking-[0.3em] mb-4 text-sm font-semibold animate-fade-in-up" style="animation-delay: 0.2s;">Premium Event Styling</p>
+                <h1 class="font-serif text-6xl md:text-8xl leading-[0.9] mb-6 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    Designed <br>
+                    <span class="italic font-light text-sw-pink">Moments.</span><br>
+                    Staged to <br>
+                    Perfection.
+                </h1>
+                <p class="text-gray-300 text-lg md:w-3/4 mb-10 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 0.6s;">
+                    Luxury wedding décor and event styling crafted with precision, emotion, and visual drama. We transform venues into immersive experiences.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style="animation-delay: 0.8s;">
+                    <a href="#portfolio" class="bg-gradient-to-r from-sw-pink to-sw-purple text-white px-8 py-4 rounded-none hover:shadow-[0_0_20px_rgba(190,24,93,0.5)] transition-all duration-300 text-center font-medium tracking-wide">VIEW PORTFOLIO</a>
+                    <a href="#contact" class="border border-white/30 text-white px-8 py-4 hover:bg-white/10 transition-all duration-300 text-center font-medium tracking-wide backdrop-blur-sm">BOOK CONSULTATION</a>
+                </div>
+            </div>
+
+            <!-- Visual Collage (Right Side) -->
+            <div class="md:w-1/2 h-[60vh] md:h-full relative mt-12 md:mt-0 perspective-1000">
+                <!-- Layered Images -->
+                <div class="absolute top-10 right-10 w-2/3 h-3/4 overflow-hidden rounded-sm border-2 border-white/10 shadow-2xl animate-float z-20">
+                    <img src="https://picsum.photos/seed/wedding1/600/800" alt="Mandap" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="absolute bottom-10 left-0 w-1/2 h-1/2 overflow-hidden rounded-sm border-2 border-sw-pink/30 shadow-2xl animate-float-delayed z-30 mix-blend-screen opacity-90">
+                    <img src="https://picsum.photos/seed/flowers/400/500" alt="Florals" class="w-full h-full object-cover">
+                </div>
+                <!-- Decorative blur circle -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sw-purple rounded-full blur-[80px] opacity-40 z-10"></div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 animate-bounce text-white/50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- 2. Signature Showcase Strip -->
+    <section class="py-20 bg-sw-dark text-white overflow-hidden relative">
+        <div class="container mx-auto px-6 mb-12">
+            <h2 class="font-serif text-4xl md:text-5xl text-center reveal-text">Signature Setups</h2>
+        </div>
+        
+        <div class="flex overflow-x-auto no-scrollbar space-x-6 px-6 pb-10 snap-x snap-mandatory">
+            <!-- Item 1 -->
+            <div class="min-w-[300px] md:min-w-[400px] h-[500px] relative group snap-center cursor-pointer overflow-hidden">
+                <img src="https://picsum.photos/seed/mandap/400/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                    <h3 class="font-serif text-3xl italic translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Mandap Experiences</h3>
+                    <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Traditional grandeur reimagined.</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="min-w-[300px] md:min-w-[400px] h-[500px] relative group snap-center cursor-pointer overflow-hidden">
+                <img src="https://picsum.photos/seed/stage/400/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                    <h3 class="font-serif text-3xl italic translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Reception Stages</h3>
+                    <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Backdrops that command attention.</p>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="min-w-[300px] md:min-w-[400px] h-[500px] relative group snap-center cursor-pointer overflow-hidden">
+                <img src="https://picsum.photos/seed/floral/400/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                    <h3 class="font-serif text-3xl italic translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Floral Installations</h3>
+                    <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Botanical art on a massive scale.</p>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="min-w-[300px] md:min-w-[400px] h-[500px] relative group snap-center cursor-pointer overflow-hidden">
+                <img src="https://picsum.photos/seed/culture/400/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                    <h3 class="font-serif text-3xl italic translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Cultural Ceremonies</h3>
+                    <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Honoring heritage with style.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Brand Statement -->
+    <section class="py-32 bg-white relative overflow-hidden">
+        <!-- Decorative Background -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
+            <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-sw-pink rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-sw-purple rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="font-serif text-4xl md:text-6xl text-sw-dark max-w-4xl mx-auto mb-12 leading-tight reveal-text">
+                Source Wedding is a full-service décor studio specializing in <span class="text-sw-pink italic">immersive environments.</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16 reveal-text">
+                We don’t decorate spaces. We build atmospheres that photograph, flow, and stay remembered.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                <div class="reveal-text border-l-2 border-sw-pink pl-6">
+                    <h4 class="text-2xl font-serif font-bold mb-2">Custom Concepts</h4>
+                    <p class="text-gray-500">Every design begins with a blank page and your unique story.</p>
+                </div>
+                <div class="reveal-text border-l-2 border-sw-purple pl-6" style="transition-delay: 0.1s;">
+                    <h4 class="text-2xl font-serif font-bold mb-2">Premium Materials</h4>
+                    <p class="text-gray-500">Sourcing the finest fabrics, florals, and structural elements globally.</p>
+                </div>
+                <div class="reveal-text border-l-2 border-sw-gold pl-6" style="transition-delay: 0.2s;">
+                    <h4 class="text-2xl font-serif font-bold mb-2">Full Execution</h4>
+                    <p class="text-gray-500">White-glove setup, styling, and teardown services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="font-serif text-5xl mb-16 text-center reveal-text">What We Create</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text">
+                    <img src="https://picsum.photos/seed/weddingdecor/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Wedding Décor Design</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">Comprehensive theme development from color palette to table setting.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text" style="transition-delay: 0.1s;">
+                    <img src="https://picsum.photos/seed/stage2/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Stage & Mandap Setups</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">Structural marvels designed as the focal point of your ceremony.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text" style="transition-delay: 0.2s;">
+                    <img src="https://picsum.photos/seed/flowers2/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Floral Styling</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">Lush, organic arrangements that bring life and fragrance to the venue.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text">
+                    <img src="https://picsum.photos/seed/lights/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Reception Environments</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">Dining experiences designed for ambiance and conversation.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text" style="transition-delay: 0.1s;">
+                    <img src="https://picsum.photos/seed/rental/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Event Rentals</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">Exclusive inventory of furniture, lounges, and accent pieces.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="service-card group relative h-96 overflow-hidden cursor-pointer reveal-text" style="transition-delay: 0.2s;">
+                    <img src="https://picsum.photos/seed/coord/500/600" class="service-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 bg-white/90 backdrop-blur-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="font-serif text-2xl text-sw-dark mb-2">Full Styling Coordination</h3>
+                        <p class="text-sm text-gray-600 mb-4 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">End-to-end management of the visual aesthetic on the big day.</p>
+                        <span class="text-sw-purple text-sm font-bold uppercase tracking-wider">Explore &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Process Section -->
+    <section id="process" class="py-24 bg-sw-dark text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="font-serif text-5xl mb-20 text-center reveal-text">From Concept to Celebration</h2>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-white/10 transform md:-translate-x-1/2">
+                    <div id="timeline-bar" class="w-full bg-gradient-to-b from-sw-pink to-sw-purple timeline-line origin-top"></div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="process-step relative flex flex-col md:flex-row items-center mb-16 w-full opacity-20 transition-opacity duration-700">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-20 md:pl-0">
+                        <h3 class="text-2xl font-serif text-sw-gold mb-2">01. Consultation</h3>
+                        <p class="text-gray-300">We meet to understand your vision, budget, and the emotion you want to evoke.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-sw-pink rounded-full border-4 border-sw-dark z-10 transform md:-translate-x-1/2 shadow-[0_0_15px_rgba(190,24,93,0.8)] order-1 md:order-2"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-step relative flex flex-col md:flex-row items-center mb-16 w-full opacity-20 transition-opacity duration-700">
+                    <div class="md:w-1/2 md:pr-12 order-2"></div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-sw-purple rounded-full border-4 border-sw-dark z-10 transform md:-translate-x-1/2 order-1"></div>
+                    <div class="md:w-1/2 md:pl-12 pl-20 md:pl-12 order-3">
+                        <h3 class="text-2xl font-serif text-sw-gold mb-2">02. Moodboard & Concept</h3>
+                        <p class="text-gray-300">Creating visual direction boards, color palettes, and material selections.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step relative flex flex-col md:flex-row items-center mb-16 w-full opacity-20 transition-opacity duration-700">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-20 md:pl-0">
+                        <h3 class="text-2xl font-serif text-sw-gold mb-2">03. Design Planning</h3>
+                        <p class="text-gray-300">Detailed floor plans, 3D renderings, and floral schematics are finalized.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-sw-pink rounded-full border-4 border-sw-dark z-10 transform md:-translate-x-1/2 shadow-[0_0_15px_rgba(190,24,93,0.8)] order-1 md:order-2"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-step relative flex flex-col md:flex-row items-center mb-16 w-full opacity-20 transition-opacity duration-700">
+                    <div class="md:w-1/2 md:pr-12 order-2"></div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-sw-purple rounded-full border-4 border-sw-dark z-10 transform md:-translate-x-1/2 order-1"></div>
+                    <div class="md:w-1/2 md:pl-12 pl-20 md:pl-12 order-3">
+                        <h3 class="text-2xl font-serif text-sw-gold mb-2">04. Setup & Execution</h3>
+                        <p class="text-gray-300">Our team transforms the venue overnight with military precision.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="process-step relative flex flex-col md:flex-row items-center w-full opacity-20 transition-opacity duration-700">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-20 md:pl-0">
+                        <h3 class="text-2xl font-serif text-sw-gold mb-2">05. Event Day Styling</h3>
+                        <p class="text-gray-300">On-site styling team ensures every detail is perfect before the first guest arrives.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-sw-pink rounded-full border-4 border-sw-dark z-10 transform md:-translate-x-1/2 shadow-[0_0_15px_rgba(190,24,93,0.8)] order-1 md:order-2"></div>
+                    <div class="md:w-1/2 md:pl-12 order-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Portfolio Feature Section -->
+    <section id="portfolio" class="py-0 bg-white">
+        <div class="flex flex-col md:flex-row h-auto md:h-[80vh]">
+            <!-- Left Image -->
+            <div class="w-full md:w-3/5 h-[50vh] md:h-full relative overflow-hidden">
+                <div class="absolute inset-0 bg-gray-200">
+                    <img src="https://picsum.photos/seed/editorial/900/1200" alt="Portfolio Feature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]">
+                </div>
+            </div>
+            <!-- Right Content -->
+            <div class="w-full md:w-2/5 bg-gray-50 flex flex-col justify-center px-12 py-20">
+                <h2 class="font-serif text-4xl md:text-5xl text-sw-dark mb-6">Crafted for <br><span class="text-sw-pink italic">Visual Impact.</span></h2>
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                    Every installation is tailored to the venue, culture, and mood. Our work blends traditional elements with contemporary staging to create distinctive wedding environments.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="border-b-2 border-sw-dark pb-1 text-sw-dark font-bold hover:text-sw-pink hover:border-sw-pink transition-colors">VIEW GALLERY</a>
+                    <a href="#" class="border-b-2 border-sw-dark pb-1 text-sw-dark font-bold hover:text-sw-pink hover:border-sw-pink transition-colors">RECENT EVENTS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Decorative Inspiration -->
+    <section class="py-24 bg-sw-dark text-white">
+        <div class="container mx-auto px-6 mb-12">
+            <h2 class="font-serif text-5xl text-center reveal-text">Themes We Love</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 h-[600px] md:h-[500px] px-4">
+            <!-- Item 1 -->
+            <div class="group relative overflow-hidden col-span-2 row-span-2">
+                <img src="https://picsum.photos/seed/royal/800/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="font-serif text-3xl italic">Royal Floral</span>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="group relative overflow-hidden col-span-1 row-span-1">
+                <img src="https://picsum.photos/seed/modern/400/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="font-serif text-xl italic">Modern</span>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="group relative overflow-hidden col-span-1 row-span-2">
+                <img src="https://picsum.photos/seed/fusion/400/800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="font-serif text-2xl italic text-center">Cultural Fusion</span>
+                </div>
+            </div>
+             <!-- Item 4 -->
+             <div class="group relative overflow-hidden col-span-1 row-span-1">
+                <img src="https://picsum.photos/seed/minimal/400/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="font-serif text-xl italic">Minimal</span>
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div class="group relative overflow-hidden col-span-1 row-span-1">
+                <img src="https://picsum.photos/seed/statement/400/400" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="font-serif text-xl italic">Statement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Testimonials -->
+    <section class="py-24 relative bg-main-gradient">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="font-serif text-4xl text-white text-center mb-16">Client Experiences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Quote 1 -->
+                <div class="glass p-8 rounded-xl reveal-text">
+                    <div class="text-sw-gold text-4xl mb-4 font-serif">"</div>
+                    <p class="text-white/90 mb-6 font-light italic">Source Wedding transformed our venue into a dream. The attention to detail was unlike anything we've seen.</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/seed/person1/50/50" class="w-10 h-10 rounded-full mr-4 border border-white/30">
+                        <div>
+                            <p class="text-white font-medium text-sm">Priya & Rahul</p>
+                            <p class="text-white/60 text-xs uppercase">Multiday Wedding</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote 2 -->
+                <div class="glass p-8 rounded-xl reveal-text" style="transition-delay: 0.1s;">
+                    <div class="text-sw-gold text-4xl mb-4 font-serif">"</div>
+                    <p class="text-white/90 mb-6 font-light italic">Professional, artistic, and incredibly organized. They handled the décor so we could enjoy the party.</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/seed/person2/50/50" class="w-10 h-10 rounded-full mr-4 border border-white/30">
+                        <div>
+                            <p class="text-white font-medium text-sm">Sarah Jenkins</p>
+                            <p class="text-white/60 text-xs uppercase">Gala Dinner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote 3 -->
+                <div class="glass p-8 rounded-xl reveal-text" style="transition-delay: 0.2s;">
+                    <div class="text-sw-gold text-4xl mb-4 font-serif">"</div>
+                    <p class="text-white/90 mb-6 font-light italic">Visual impact is an understatement. Our photos look like they are from a magazine.</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/seed/person3/50/50" class="w-10 h-10 rounded-full mr-4 border border-white/30">
+                        <div>
+                            <p class="text-white font-medium text-sm">Ananya Mehta</p>
+                            <p class="text-white/60 text-xs uppercase">Reception</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CTA Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-sw-pink to-sw-purple opacity-10"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="font-serif text-5xl md:text-6xl text-sw-dark mb-6">Let’s Design Your Event</h2>
+            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Tell us your date, venue, and vision. We’ll create the environment.</p>
+            
+            <div class="relative inline-block group cursor-pointer">
+                <div class="sweep-wrap rounded-full">
+                    <div class="sweep-bar"></div>
+                </div>
+                <a href="#" class="relative block bg-sw-dark text-white px-12 py-5 rounded-full text-lg font-medium tracking-wide hover:bg-sw-purple transition-colors duration-300 shadow-xl">
+                    Start Consultation
+                </a>
+            </div>
+            <div class="mt-8">
+                <a href="mailto:hello@sourcewedding.com" class="text-sw-pink font-medium hover:underline">Or email us directly</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Footer -->
+    <footer class="bg-sw-dark text-white pt-20 pb-10 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="font-serif text-2xl font-bold mb-6 tracking-wider">SOURCE WEDDING</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Crafting atmospheres of elegance and emotion through premium event styling and décor.
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- Social Icons (Placeholders) -->
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-sw-pink transition-colors">IG</a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-sw-pink transition-colors">FB</a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-sw-pink transition-colors">PI</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sw-gold font-bold uppercase tracking-widest text-xs mb-6">About</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Our Studio</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">The Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sw-gold font-bold uppercase tracking-widest text-xs mb-6">Services</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Full Planning</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Décor Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Florals</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Rentals</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sw-gold font-bold uppercase tracking-widest text-xs mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>hello@sourcewedding.com</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>123 Design District,<br>New York, NY 10012</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-500">&copy; 2023 Source Wedding. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-xs text-gray-500">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+    <!-- Three.js (Module) -->
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+        // SCENE SETUP
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        // Fog for depth
+        scene.fog = new THREE.FogExp2(0x0f0518, 0.002);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 50;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // PARTICLES (Bokeh effect)
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 150;
+        const posArray = new Float32Array(particlesCount * 3);
+        const scaleArray = new Float32Array(particlesCount);
+        
+        for(let i = 0; i < particlesCount * 3; i++) {
+            // Spread wide
+            posArray[i] = (Math.random() - 0.5) * 150; 
+        }
+        
+        for(let i = 0; i < particlesCount; i++) {
+            scaleArray[i] = Math.random();
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        particlesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1));
+
+        // Custom shader material for soft circles
+        const particlesMaterial = new THREE.ShaderMaterial({
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            uniforms: {
+                uTime: { value: 0 },
+                uColor1: { value: new THREE.Color('#be185d') }, // Pink
+                uColor2: { value: new THREE.Color('#4a1d96') }  // Purple
+            },
+            vertexShader: `
+                uniform float uTime;
+                attribute float aScale;
+                varying float vAlpha;
+                void main() {
+                    vec3 pos = position;
+                    // Gentle floating
+                    pos.y += sin(uTime * 0.5 + position.x * 0.1) * 2.0;
+                    pos.x += cos(uTime * 0.3 + position.y * 0.1) * 1.0;
+
+                    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                    gl_Position = projectionMatrix * mvPosition;
+                    
+                    // Size attenuation
+                    gl_PointSize = (20.0 * aScale) * (1.0 / -mvPosition.z);
+                    
+                    // Fade based on depth
+                    vAlpha = smoothstep(60.0, 20.0, -mvPosition.z);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 uColor1;
+                uniform vec3 uColor2;
+                varying float vAlpha;
+                void main() {
+                    // Make circle
+                    float r = distance(gl_PointCoord, vec2(0.5));
+                    if (r > 0.5) discard;
+                    
+                    // Soft edge
+                    float glow = 1.0 - (r * 2.0);
+                    glow = pow(glow, 1.5);
+                    
+                    vec3 finalColor = mix(uColor1, uColor2, vAlpha);
+                    gl_FragColor = vec4(finalColor, glow * vAlpha * 0.5);
+                }
+            `
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // ANIMATION LOOP
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+            
+            particlesMaterial.uniforms.uTime.value = elapsedTime;
+            
+            // Slow rotation of the whole system
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = elapsedTime * 0.02;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // RESIZE HANDLER
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+    <!-- Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-sw-dark/90', 'backdrop-blur-md', 'shadow-lg');
+                    navbar.classList.remove('py-6');
+                    navbar.classList.add('py-4');
+                } else {
+                    navbar.classList.remove('bg-sw-dark/90', 'backdrop-blur-md', 'shadow-lg');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // 2. Intersection Observer for Animations (Fade Ups & Reveals)
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-text').forEach(el => observer.observe(el));
+
+            // 3. Process Timeline Logic
+            const processSection = document.getElementById('process');
+            const processSteps = document.querySelectorAll('.process-step');
+            const timelineBar = document.getElementById('timeline-bar');
+
+            // Observer specifically for the timeline section to control the bar height
+            const timelineObserver = new IntersectionObserver((entries) => {
+                // Calculate progress based on scroll position within the section
+                const rect = processSection.getBoundingClientRect();
+                const sectionHeight = processSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                // Calculate how far we've scrolled into the section
+                let progress = -rect.top / (sectionHeight - windowHeight);
+                
+                // Clamp progress 0 to 1
+                progress = Math.max(0, Math.min(1, progress));
+
+                if (progress > 0) {
+                    timelineBar.style.height = `${progress * 100}%`;
+                }
+            }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+
+            timelineObserver.observe(processSection);
+
+            // Highlight steps as the bar passes them
+            const stepsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-20');
+                        entry.target.classList.add('opacity-100');
+                    } else {
+                        entry.target.classList.add('opacity-20');
+                        entry.target.classList.remove('opacity-100');
+                    }
+                });
+            }, { threshold: 0.5, rootMargin: "-10% 0px -10% 0px" });
+
+            processSteps.forEach(step => stepsObserver.observe(step));
+
+        });
+    </script>
+</body>
+</html>

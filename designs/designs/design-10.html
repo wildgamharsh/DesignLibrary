@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Wedding | Luxury Wedding Décor & Event Styling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pink: {
+                            light: '#F8BBD0',
+                            DEFAULT: '#EC407A',
+                            dark: '#C2185B'
+                        },
+                        purple: {
+                            light: '#D1C4E9',
+                            DEFAULT: '#7E57C2',
+                            dark: '#4527A0'
+                        },
+                        gold: '#D4AF37',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom CSS */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #EC407A 0%, #7E57C2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #EC407A 0%, #7E57C2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(236, 64, 122, 0.7), rgba(126, 87, 194, 0.7)), url('https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px);
+            }
+            75% {
+                transform: translateY(-25px) translateX(5px);
+            }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #EC407A 0%, #7E57C2 100%);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover::after {
+            animation: shine 1.5s forwards;
+        }
+        
+        @keyframes shine {
+            0% {
+                left: -50%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+        
+        .service-card:hover .service-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .service-details {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .showcase-item {
+            flex: 0 0 75%;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .showcase-item:hover {
+            flex: 0 0 100%;
+        }
+        
+        .showcase-item:hover .showcase-caption {
+            opacity: 1;
+        }
+        
+        .showcase-item:hover .showcase-img {
+            transform: scale(1.05);
+        }
+        
+        .showcase-caption {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .showcase-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .timeline-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-connector {
+            position: relative;
+        }
+        
+        .timeline-connector::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: linear-gradient(to bottom, #EC407A, #7E57C2);
+            transform: translateX(-50%);
+            height: 0;
+            transition: height 1.5s ease;
+        }
+        
+        .timeline-connector.drawing::before {
+            height: 100%;
+        }
+        
+        .testimonial-card {
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .theme-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .theme-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .theme-item:hover .theme-overlay {
+            opacity: 1;
+        }
+        
+        .theme-item:hover .theme-img {
+            transform: scale(1.05);
+        }
+        
+        .theme-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .theme-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #EC407A 0%, #7E57C2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            animation: sweep 4s infinite linear;
+        }
+        
+        @keyframes sweep {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #4527A0 0%, #7E57C2 100%);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .showcase-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .showcase-item {
+                flex: 0 0 85%;
+            }
+            
+            .timeline-connector::before {
+                left: 20px;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: #333;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(135deg, #EC407A 0%, #7E57C2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full z-50 px-6 py-4 transition-all">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-white text-3xl font-serif font-bold">Source Wedding</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="nav-link text-white hover:text-purple-200 transition">Services</a>
+                <a href="#portfolio" class="nav-link text-white hover:text-purple-200 transition">Portfolio</a>
+                <a href="#process" class="nav-link text-white hover:text-purple-200 transition">Our Process</a>
+                <a href="#testimonials" class="nav-link text-white hover:text-purple-200 transition">Testimonials</a>
+                <a href="#contact" class="btn-primary py-2 px-6 rounded-full text-white font-medium">Book Consultation</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-4/5 bg-white z-50 shadow-2xl p-6">
+        <div class="flex justify-end">
+            <button id="close-menu" class="text-2xl text-gray-700 focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col mt-10 space-y-6">
+            <a href="#services" class="text-gray-800 text-lg font-medium hover:text-purple-500 transition">Services</a>
+            <a href="#portfolio" class="text-gray-800 text-lg font-medium hover:text-purple-500 transition">Portfolio</a>
+            <a href="#process" class="text-gray-800 text-lg font-medium hover:text-purple-500 transition">Our Process</a>
+            <a href="#testimonials" class="text-gray-800 text-lg font-medium hover:text-purple-500 transition">Testimonials</a>
+            <a href="#contact" class="btn-primary py-3 px-6 rounded-full text-white font-medium text-center mt-4">Book Consultation</a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center relative">
+        <div class="particles-container" id="particles-container"></div>
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-white z-10">
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-6">Designed Moments. <br>Staged to Perfection.</h1>
+                    <p class="text-xl md:text-2xl mb-10 max-w-xl">Luxury wedding décor and event styling crafted with precision, emotion, and visual drama.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#portfolio" class="btn-primary py-3 px-8 rounded-full text-white font-medium text-center">View Portfolio</a>
+                        <a href="#contact" class="btn-secondary py-3 px-8 rounded-full font-medium text-center">Book Consultation</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 z-10">
+                    <div class="relative">
+                        <!-- Layered Collage -->
+                        <div class="rounded-2xl overflow-hidden shadow-2xl transform -rotate-3 transition-all duration-500 hover:rotate-0">
+                            <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Luxury Wedding Décor" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -top-8 -right-8 w-3/4 rounded-2xl overflow-hidden shadow-2xl transform rotate-6 transition-all duration-500 hover:rotate-0">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Wedding Stage" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-8 -left-8 w-2/3 rounded-2xl overflow-hidden shadow-2xl transform rotate-3 transition-all duration-500 hover:rotate-0">
+                            <img src="https://images.unsplash.com/photo-1464699973765-c48c96e429f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Floral Arrangements" class="w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Signature Showcase Strip -->
+    <section class="py-16 md:py-20 overflow-hidden bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-12">Signature Setups</h2>
+            <div class="showcase-container flex space-x-6 overflow-x-auto pb-8 -mx-6 px-6 scrollbar-hide">
+                <div class="showcase-item rounded-xl overflow-hidden shadow-lg relative group">
+                    <div class="relative h-96 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Mandap Experiences" class="showcase-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent"></div>
+                        <div class="showcase-caption absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Mandap Experiences</h3>
+                            <p class="text-sm md:text-base opacity-90">Richly designed ceremonial spaces honoring tradition with contemporary flair.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item rounded-xl overflow-hidden shadow-lg relative group">
+                    <div class="relative h-96 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Reception Stage Design" class="showcase-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent"></div>
+                        <div class="showcase-caption absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Reception Stage Design</h3>
+                            <p class="text-sm md:text-base opacity-90">Breathtaking focal points that serve as the visual anchor for your celebration.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item rounded-xl overflow-hidden shadow-lg relative group">
+                    <div class="relative h-96 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1464699973765-c48c96e429f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Floral Installations" class="showcase-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent"></div>
+                        <div class="showcase-caption absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Floral Installations</h3>
+                            <p class="text-sm md:text-base opacity-90">Immersive botanical artistry that transforms spaces into sensory experiences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item rounded-xl overflow-hidden shadow-lg relative group">
+                    <div class="relative h-96 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Luxury Backdrops" class="showcase-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent"></div>
+                        <div class="showcase-caption absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Luxury Backdrops</h3>
+                            <p class="text-sm md:text-base opacity-90">Statement pieces that create unforgettable photo opportunities and visual impact.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="showcase-item rounded-xl overflow-hidden shadow-lg relative group">
+                    <div class="relative h-96 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513278974582-3e1b4a4fa21e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Cultural Ceremonies" class="showcase-img w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent"></div>
+                        <div class="showcase-caption absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Cultural Ceremonies</h3>
+                            <p class="text-sm md:text-base opacity-90">Heritage-honoring environments designed with cultural authenticity and modern elegance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Brand Statement Section -->
+    <section class="py-20 md:py-28 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-pink-100 to-purple-100 opacity-50"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-pink-500 filter blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-purple-500 filter blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-8">Our Vision</h2>
+                <p class="text-lg md:text-xl leading-relaxed mb-10">Source Wedding is a full-service décor and event design studio specializing in immersive wedding environments. We don't decorate spaces. We build atmospheres that photograph, flow, and stay remembered.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="text-purple-500 text-4xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-3">Custom Concepts</h3>
+                    <p class="text-gray-600">Every design begins with your vision, refined through our expertise for a truly personalized experience.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="text-pink-500 text-4xl mb-4">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-3">Premium Materials</h3>
+                    <p class="text-gray-600">Sourced globally and crafted locally, we use only the finest fabrics, florals and décor elements.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-xl p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="text-purple-500 text-4xl mb-4">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-3">Full Setup & Teardown</h3>
+                    <p class="text-gray-600">Our dedicated team handles everything from installation to removal, leaving you free to enjoy your day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-12">What We Create</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Wedding décor design" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Wedding Décor Design</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">Comprehensive design concepts that transform venues into cohesive, immersive environments.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Stage & mandap setups" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Stage & Mandap Setups</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">Custom-designed ceremonial spaces that honor tradition while embracing modern aesthetics.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1464699973765-c48c96e429f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Floral styling" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Floral Styling</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">Botanical artistry from centerpieces to statement installations that bring your vision to life.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1513278974582-3e1b4a4fa21e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Reception environments" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Reception Environments</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">Fully designed tablescapes, lounge areas, and dance floors that create flow and atmosphere.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1507217633297-c9815ce2ac75?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Event rentals" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Event Rentals</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">Exclusive furniture and décor pieces available to enhance your event's unique aesthetic.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg h-96 relative">
+                    <div class="relative h-full">
+                        <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Full styling coordination" class="service-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Full Styling Coordination</h3>
+                            <div class="service-details">
+                                <p class="mb-4 text-gray-200">End-to-end management of all visual aspects of your event for seamless execution.</p>
+                                <a href="#contact" class="text-pink-300 flex items-center text-sm font-medium">
+                                    Explore <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section id="process" class="py-20 md:py-28 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16">From Concept to Celebration</h2>
+            
+            <div class="timeline-connector drawing relative max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="timeline-step flex md:items-center mb-16 relative">
+                    <div class="hidden md:block w-1/3">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg relative z-10 mx-auto">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3 md:pl-10">
+                        <div class="md:hidden w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg mb-4 relative z-10 ml-4">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold mb-3">Consultation</h3>
+                        <p class="text-gray-600 leading-relaxed">We begin with an in-depth conversation about your vision, preferences, venue, and budget. This forms the foundation of our design approach.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="timeline-step flex md:items-center mb-16 relative">
+                    <div class="md:w-2/3 md:pr-10 md:text-right order-2 md:order-1">
+                        <div class="md:hidden w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg mb-4 relative z-10 ml-4">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold mb-3">Moodboard & Concept</h3>
+                        <p class="text-gray-600 leading-relaxed">Based on our consultation, we create visual inspiration boards and conceptual designs that capture the essence of your event's aesthetic.</p>
+                    </div>
+                    
+                    <div class="hidden md:block w-1/3 order-1 md:order-2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg relative z-10 mx-auto">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="timeline-step flex md:items-center mb-16 relative">
+                    <div class="hidden md:block w-1/3">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg relative z-10 mx-auto">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3 md:pl-10">
+                        <div class="md:hidden w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg mb-4 relative z-10 ml-4">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold mb-3">Design Planning</h3>
+                        <p class="text-gray-600 leading-relaxed">Once the concept is approved, we develop detailed plans including materials, color palettes, floral selections, and spatial layouts.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="timeline-step flex md:items-center mb-16 relative">
+                    <div class="md:w-2/3 md:pr-10 md:text-right order-2 md:order-1">
+                        <div class="md:hidden w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg mb-4 relative z-10 ml-4">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold mb-3">Setup & Execution</h3>
+                        <p class="text-gray-600 leading-relaxed">Our experienced team handles all logistics, installation, and setup, transforming the venue according to the approved design plan.</p>
+                    </div>
+                    
+                    <div class="hidden md:block w-1/3 order-1 md:order-2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg relative z-10 mx-auto">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="timeline-step flex md:items-center relative">
+                    <div class="hidden md:block w-1/3">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg relative z-10 mx-auto">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3 md:pl-10">
+                        <div class="md:hidden w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg mb-4 relative z-10 ml-4">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold mb-3">Event Day Styling</h3>
+                        <p class="text-gray-600 leading-relaxed">During your event, we provide on-site styling services to ensure everything remains perfect throughout the celebration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Feature Section -->
+    <section id="portfolio" class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Luxury Wedding Décor" class="w-full h-auto">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent text-white">
+                            <h4 class="text-xl font-serif font-bold">Aisha & Raj's Royal Celebration</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-16">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Crafted for Visual Impact</h2>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">Every installation is tailored to the venue, culture, and mood. Our work blends traditional elements with contemporary staging to create distinctive wedding environments.</p>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed">We understand that your celebration is a once-in-a-lifetime event, and our designs reflect that significance through meticulous attention to detail and visual coherence.</p>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#" class="btn-primary py-3 px-8 rounded-full text-white font-medium text-center">View Gallery</a>
+                        <a href="#" class="border border-purple-500 text-purple-500 py-3 px-8 rounded-full font-medium text-center hover:bg-purple-50 transition">See Recent Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Decorative Inspiration Section -->
+    <section class="py-20 md:py-28 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-12">Themes We Love Designing</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Theme Item 1 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Royal Floral" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Royal Floral</h3>
+                            <p class="text-sm md:text-base">Majestic floral arrangements that create a regal atmosphere worthy of royalty.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theme Item 2 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Modern Luxury" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Modern Luxury</h3>
+                            <p class="text-sm md:text-base">Contemporary designs that push boundaries while maintaining elegant sophistication.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theme Item 3 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1464699973765-c48c96e429f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Cultural Fusion" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Cultural Fusion</h3>
+                            <p class="text-sm md:text-base">Blending traditional cultural elements with contemporary design sensibilities.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theme Item 4 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1507217633297-c9815ce2ac75?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Minimal Elegance" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Minimal Elegance</h3>
+                            <p class="text-sm md:text-base">Refined, understated luxury that lets careful curation and quality speak volumes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theme Item 5 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1513278974582-3e1b4a4fa21e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Statement Reception" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Statement Reception</h3>
+                            <p class="text-sm md:text-base">Bold, unforgettable environments that create immersive celebration experiences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Theme Item 6 -->
+                <div class="theme-item rounded-xl overflow-hidden shadow-lg relative h-72 group">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Intimate Gatherings" class="theme-img w-full h-full object-cover">
+                    <div class="theme-overlay absolute inset-0 bg-gradient-to-t from-purple-900/80 to-pink-500/40 flex items-center justify-center">
+                        <div class="text-center text-white p-6">
+                            <h3 class="text-2xl font-serif font-bold mb-2">Intimate Gatherings</h3>
+                            <p class="text-sm md:text-base">Cozy, personalized spaces that enhance connection and create memorable moments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 md:py-28 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-100 to-pink-100"></div>
+        <div class="absolute top-0 right-0 w-full h-full overflow-hidden">
+            <div class="absolute top-1/4 left-1/3 w-96 h-96 rounded-full bg-pink-300 filter blur-3xl opacity-20"></div>
+            <div class="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-purple-300 filter blur-3xl opacity-20"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16">Client Experiences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white/60 backdrop-blur rounded-xl shadow-lg p-8 border border-white/40">
+                    <div class="text-pink-500 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">Source Wedding transformed our venue beyond recognition. The mandap design was breathtaking, and every detail was executed with precision. They made our vision come to life in ways we couldn't have imagined.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Priya & Arjun</h4>
+                            <p class="text-sm text-gray-500">June 2023 Wedding</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white/60 backdrop-blur rounded-xl shadow-lg p-8 border border-white/40">
+                    <div class="text-purple-500 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">Working with Source Wedding was the best decision we made. Their attention to detail is unmatched, and they created an environment that perfectly reflected our personalities while still honoring our cultural traditions.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sameer & Nisha</h4>
+                            <p class="text-sm text-gray-500">April 2023 Wedding</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white/60 backdrop-blur rounded-xl shadow-lg p-8 border border-white/40">
+                    <div class="text-pink-500 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">The floral installations created by Source Wedding were absolutely spectacular. Guests couldn't stop taking photos, and the setup transitioned beautifully from ceremony to reception. Worth every penny!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maya & David</h4>
+                            <p class="text-sm text-gray-500">March 2023 Wedding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call-to-Action Section -->
+    <section id="contact" class="cta-section py-20 md:py-28 relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Let's Design Your Event</h2>
+                <p class="text-xl md:text-2xl mb-10">Tell us your date, venue, and vision. We'll create the environment.</p>
+                
+                <div class="bg-white/20 backdrop-blur rounded-2xl p-8 shadow-lg">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/80 backdrop-blur border-0 focus:ring-2 focus:ring-purple-400 transition" placeholder="Your Name">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg bg-white/80 backdrop-blur border-0 focus:ring-2 focus:ring-purple-400 transition" placeholder="Your Email">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Phone</label>
+                            <input type="tel" class="w-full px-4 py-3 rounded-lg bg-white/80 backdrop-blur border-0 focus:ring-2 focus:ring-purple-400 transition" placeholder="Your Phone">
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Wedding Date</label>
+                            <input type="date" class="w-full px-4 py-3 rounded-lg bg-white/80 backdrop-blur border-0 focus:ring-2 focus:ring-purple-400 transition">
+                        </div>
+                        
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium">Tell us about your vision</label>
+                            <textarea class="w-full px-4 py-3 rounded-lg bg-white/80 backdrop-blur border-0 focus:ring-2 focus:ring-purple-400 transition" rows="4" placeholder="Describe your event, venue, and design preferences"></textarea>
+                        </div>
+                        
+                        <div class="md:col-span-2 flex justify-center mt-4">
+                            <button type="submit" class="btn-primary py-3 px-10 rounded-full text-white font-medium shadow-lg">Start Consultation</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="mt-12 flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-10">
+                    <div class="flex items-center">
+                        <div class="text-3xl mr-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm text-white/80">Call Us</p>
+                            <p class="font-medium">(123) 456-7890</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="text-3xl mr-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm text-white/80">Email Us</p>
+                            <p class="font-medium">hello@sourcewedding.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="text-3xl mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-sm text-white/80">Studio Address</p>
+                            <p class="font-medium">123 Design Ave, Suite 200</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer py-16 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <h3 class="text-xl font-serif font-bold mb-6">Source Wedding</h3>
+                    <p class="mb-6">Luxury wedding décor and event styling crafted with precision, emotion, and visual drama.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-serif font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-pink-200 transition">Wedding Décor</a></li>
+                        <li><a href="#" class="hover:text-pink-200 transition">Stage & Mandap Design</a></li>
+                        <li><a href="#" class="hover:text-pink-200 transition">Floral Styling</a></li>
+                        <li><a href="#" class="hover:text-pink-200 transition">Reception Environments</a></li>
+                        <li><a href="#" class="hover:text-pink-200 transition">Event Rentals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-serif font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-pink-200 transition">About Us</a></li>
+                        <li><a href="#portfolio" class="hover:text-pink-200 transition">Portfolio</a></li>
+                        <li><a href="#testimonials" class="hover:text-pink-200 transition">Testimonials</a></li>
+                        <li><a href="#" class="hover:text-pink-200 transition">Blog</a></li>
+                        <li><a href="#contact" class="hover:text-pink-200 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-serif font-bold mb-6">Newsletter</h3>
+                    <p class="mb-4">Subscribe for inspiration, offers, and updates.</p>
+                    <form class="mb-4">
+                        <div class="flex">
+                            <input type="email" class="w-full px-4 py-2 rounded-l-lg focus:outline-none text-gray-800" placeholder="Your email">
+                            <button type="submit" class="bg-pink-500 hover:bg-pink-600 px-4 py-2 rounded-r-lg transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-sm text-white/70">By subscribing, you agree to our Privacy Policy.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-sm text-white/60">
+                <p>&copy; 2023 Source Wedding. All rights reserved. Designed with love and creativity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create particles for hero section
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Navbar scroll effect
+        function initNavbar() {
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+            
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+            
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        }
+        
+        // Timeline animation on scroll
+        function initTimeline() {
+            const timelineSteps = document.querySelectorAll('.timeline-step');
+            const timelineConnector = document.querySelector('.timeline-connector');
+            
+            function checkTimelineVisibility() {
+                if (isInViewport(timelineConnector)) {
+                    timelineConnector.classList.add('drawing');
+                    
+                    timelineSteps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('visible');
+                        }, 300 * index);
+                    });
+                    
+                    // Remove the scroll listener once animation is triggered
+                    window.removeEventListener('scroll', checkTimelineVisibility);
+                }
+            }
+            
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+                );
+            }
+            
+            window.addEventListener('scroll', checkTimelineVisibility);
+            // Check once on page load
+            checkTimelineVisibility();
+        }
+        
+        // Initialize everything when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initNavbar();
+            initMobileMenu();
+            initTimeline();
+        });
+    </script>
+</body>
+</html>
